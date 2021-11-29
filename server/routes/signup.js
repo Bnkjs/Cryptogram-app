@@ -15,9 +15,9 @@ router.post('/', async (req,res)=>{
     const bcryptPassword = await bcrypt.hash(password,salt)
 
     // 3. check if user exist in db
-    const checkUser = await pool.query('SELECT * FROM users WHERE email=($1)',[email])
+    const checkUserExist = await pool.query('SELECT * FROM users WHERE email=($1)',[email])
     
-    if(checkUser.rows[0] === undefined){
+    if(checkUserExist.rows[0] === undefined){
 
       // 4. add req.body to db
       const newUser = await pool.query('INSERT INTO users (email, password, first_name, last_name, created_at) VALUES($1,$2,$3,$4,$5) RETURNING *',

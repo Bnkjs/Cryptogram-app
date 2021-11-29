@@ -1,5 +1,5 @@
 CREATE TABLE users (
-  id uuid PRIMARY KEY DEFAULT
+ id uuid PRIMARY KEY DEFAULT
   uuid_generate_v4(),
   email VARCHAR(60) NOT NULL,
   password VARCHAR(60) NOT NULL,
@@ -57,17 +57,9 @@ CREATE TABLE user_transfert_item (
   id SERIAL PRIMARY KEY,
   transfert_id uuid,
   amount NUMERIC,
-  contact_id SERIAL,
-  crypto_name BIGINT
-);
-
-
-CREATE TABLE user_transfert_item (
-  id SERIAL PRIMARY KEY,
   contact_id VARCHAR(255),
   crypto_name BIGINT
 );
-
 
 ALTER TABLE user_bank_card ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
