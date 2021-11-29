@@ -5,7 +5,7 @@ const newPool = new pool({
   password: "",
   host: "localhost",
   port: '5432',
-  database: "crypto-app-db"
+  database: "crypto_app"
 })
 
 module.exports = newPool;
