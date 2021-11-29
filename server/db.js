@@ -4,7 +4,7 @@ const newPool = new pool({
   user: "macbookpro",
   password: "",
   host: "localhost",
-  port: 5432,
+  port: '5432',
   database: "crypto-app-db"
 })
 
