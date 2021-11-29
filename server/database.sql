@@ -1,19 +1,19 @@
 CREATE TABLE users (
- id uuid PRIMARY KEY DEFAULT
+  id uuid PRIMARY KEY DEFAULT
   uuid_generate_v4(),
   email VARCHAR(60) NOT NULL,
   password VARCHAR(60) NOT NULL,
   first_name VARCHAR(255) NOT NULL,
-  Last_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
   avatar VARCHAR(255),
   created_at DATE NOT NULL
 );
 
 CREATE TABLE user_contact (
- id SERIAL PRIMARY KEY, 
+  id SERIAL PRIMARY KEY, 
   email VARCHAR(60) NOT NULL,
   first_name VARCHAR(255) NOT NULL,
-  Last_name VARCHAR(255) NOT NULL,  
+  last_name VARCHAR(255) NOT NULL,  
   birthday_date DATE,
   user_id uuid NOT NULL,
   avatar VARCHAR(255),
@@ -57,9 +57,17 @@ CREATE TABLE user_transfert_item (
   id SERIAL PRIMARY KEY,
   transfert_id uuid,
   amount NUMERIC,
+  contact_id SERIAL,
+  crypto_name BIGINT
+);
+
+
+CREATE TABLE user_transfert_item (
+  id SERIAL PRIMARY KEY,
   contact_id VARCHAR(255),
   crypto_name BIGINT
 );
+
 
 ALTER TABLE user_bank_card ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
