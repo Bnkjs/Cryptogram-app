@@ -11,6 +11,8 @@ app.use(cors())
 app.use('/signup',require('./routes/signup'))
 app.use('/login', require('./routes/login'))
 app.use('/dashboard', require('./routes/dashboard'))
+app.use('/profil', require('./routes/profil'))
+
 
 
 app.listen('5000', () => {
