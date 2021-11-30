@@ -2,7 +2,9 @@ const router = require('express').Router()
 const bcrypt = require('bcrypt')
 const pool = require('../db')
 const jwtGenerator = require('../jwtGenerator')
-console.log(process.env.jwtSecret)
+const authorization = require('../middleware/authorization')
+
+
 router.post('/', async (req,res)=>{
   
   // 1. destructure req.body
@@ -25,17 +27,22 @@ router.post('/', async (req,res)=>{
       }
 
       // 4. generate token 
-      const token = jwtGenerator(checkUserExist.rows[0].id)
+      const token = jwtGenerator(checkUserExist.rows[0].user_id)
       
       res.json({token})
     
     }
     
-
-
-    
   } catch (error) {
     console.error('⛔ error ⛔: '+ error.message);
   }
+
+  router.get('/is-verify', authorization, (req,res)=>{
+    try {
+      res.json(true)
+    } catch (error) {
+      console.error('⛔ error ⛔: '+ error.message);
+    }
+  })
 })
 module.exports = router
