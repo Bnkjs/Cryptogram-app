@@ -38,6 +38,7 @@ router.post('/', async (req,res)=>{
 
   } catch (error) {
     console.error('⛔ error ⛔: '+ error.message);
+    res.status(404).json("Verifiez votre email/mot de passe 🤔")
   }
 })
 
