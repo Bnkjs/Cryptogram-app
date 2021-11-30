@@ -1,5 +1,7 @@
 CREATE DATABASE crypto_app;
 
+create extension if not exists "uuid-ossp";
+
 CREATE TABLE users (
   user_id uuid PRIMARY KEY DEFAULT
   uuid_generate_v4(),
@@ -8,7 +10,7 @@ CREATE TABLE users (
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   avatar VARCHAR(255),
-  created_at DATE NOT NULL
+  created_at VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE user_contact (
@@ -19,7 +21,7 @@ CREATE TABLE user_contact (
   birthday_date DATE,
   user_id uuid NOT NULL,
   avatar VARCHAR(255),
-  created_at DATE NOT NULL
+  created_at VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE user_bank_card (
@@ -27,7 +29,7 @@ CREATE TABLE user_bank_card (
   name VARCHAR(150) NOT NULL,
   card_number VARCHAR(19) NOT NULL,
   user_id uuid NOT NULL,
-  created_at DATE NOT NULL
+  created_at VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE user_order (
@@ -36,7 +38,7 @@ CREATE TABLE user_order (
   user_id uuid NOT NULL,
   card_name VARCHAR(150) NOT NULL,
   status VARCHAR(150),
-  created_at DATE NOT NULL
+  created_at VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE user_order_item (
@@ -52,7 +54,7 @@ CREATE TABLE user_transfert (
   user_id uuid NOT NULL,
   card_name VARCHAR(150) NOT NULL,
   status VARCHAR(150),
-  created_at DATE NOT NULL
+  created_at VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE user_transfert_item (
