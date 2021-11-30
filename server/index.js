@@ -10,7 +10,7 @@ app.use(cors())
 //Routes
 app.use('/signup',require('./routes/signup'))
 app.use('/login', require('./routes/login'))
-
+app.use('/dashboard', require('./routes/dashboard'))
 
 
 app.listen('5000', () => {
