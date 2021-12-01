@@ -20,21 +20,23 @@ router.post('/', async (req,res)=>{
       res.status(401).json('l\'email ou le mot de passe est incorrect')
     }else{
       //3. compare password db
-      const validPassport = bcrypt.compare(password, checkUserExist.rows[0].password)
+      const validPassport = await bcrypt.compare(password, checkUserExist.rows[0].password)
       
       if(!validPassport){
         res.status(401).json('le mot de passe est incorrect')
+        console.log(checkUserExist);
+      }else{
+          // 4. generate token 
+          const token = jwtGenerator(checkUserExist.rows[0].user_id)
+          res.json({token})
       }
 
-      // 4. generate token 
-      const token = jwtGenerator(checkUserExist.rows[0].user_id)
       
-      res.json({token})
-    
     }
     
   } catch (error) {
     console.error('⛔ error ⛔: '+ error.message);
+    res.status(401).json('le mot de passe est incorrect');
   }
 
   router.get('/is-verify', authorization, (req,res)=>{

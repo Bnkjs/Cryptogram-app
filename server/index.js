@@ -12,6 +12,14 @@ app.use('/signup',require('./routes/signup'))
 app.use('/login', require('./routes/login'))
 app.use('/dashboard', require('./routes/dashboard'))
 app.use('/profil', require('./routes/profil'))
+app.use('/buy_crypto', require('./routes/buy_crypto'))
+app.use('/transfert_crypto', require('./routes/transfert_crypto'))
+app.use('/contact', require('./routes/contact'))
+
+// app.use('/activity', require('./routes/activity'))
+
+
+
 
 
 
