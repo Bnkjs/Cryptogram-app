@@ -28,6 +28,7 @@ CREATE TABLE user_bank_card (
   bank_card_id SERIAL PRIMARY KEY,
   name VARCHAR(150) NOT NULL,
   card_number VARCHAR(19) NOT NULL,
+  card_date VARCHAR(19) NOT NULL,
   user_id uuid NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
@@ -38,6 +39,7 @@ CREATE TABLE user_order (
   user_id uuid NOT NULL,
   card_name VARCHAR(150) NOT NULL,
   status VARCHAR(150),
+  transaction_id VARCHAR(150) NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
 
@@ -54,6 +56,7 @@ CREATE TABLE user_transfert (
   user_id uuid NOT NULL,
   card_name VARCHAR(150) NOT NULL,
   status VARCHAR(150),
+  tracking_id VARCHAR(150) NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
 
