@@ -6,7 +6,7 @@ const moment = require('moment')
 router.post('/', authorization, async (req,res)=>{
   const findUser = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
   const date = moment().format('DD MMM YYYY H:mm')
-  const generateTransactionId = Math.random().toString(36).substr(2, 9)
+  const generateTransactionId = Math.random().toString(36).substr(2, 40)
 
   const { crypto_name, amount, card_name } = req.body
   try {
