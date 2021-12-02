@@ -82,7 +82,7 @@ ALTER TABLE user_transfert_item ADD FOREIGN KEY (transfert_id) REFERENCES user_t
 ALTER TABLE user_contact ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
 
 
-insert into users (email, password, first_name, last_name, created_at) values ('tjessett0@xing.com', 'Mongoose, small indian', 'Tobi', 'Jessett', '9/10/2021');
+insert into users (email, password, first_name, last_name, created_at) values ('dddtjessett0@xing.com', 'pg', 'Tobi', 'Jessett', '9/10/2021');
 
 insert into user_contact (email, first_name, last_name, user_id, created_at) values ('mfarmer0@sbwire.com', 'Markos', 'Farmer', '8dc84cd8-4392-4ef9-8166-1be09c4aa1f5', '8/20/2021');
 insert into user_contact (email, first_name, last_name, user_id, created_at) values ('aconeron1@bizjournals.com', 'Aubrey', 'Coneron', '8dc84cd8-4392-4ef9-8166-1be09c4aa1f5', '4/10/2021');
