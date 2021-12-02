@@ -8,7 +8,7 @@ router.post('/', async (req,res)=>{
   
   // 1. destructure req.body
   const {email, password, first_name, last_name} = req.body
-  const date = moment().format('DD MMM YYYY')
+  const date = moment().format('DD MMM YYYY H:mm')
   
   
   try {

@@ -9,7 +9,7 @@ module.exports = (req,res,next) => {
     const jwtToken = req.header("token") 
     //1.5 si token pas valid renvoyer erreur
     if(!jwtToken || jwtToken === undefined){
-      res.status(403).json("not authorized")
+      res.status(403).json('vous n\'êtes pas autorisé à effectuer cette action..')
     }
     //2. on va verifier le token et le jwtSecret
     const payload = jwt.verify(jwtToken,process.env.jwtSecret)
@@ -18,7 +18,6 @@ module.exports = (req,res,next) => {
 
   } catch (error) {
     console.error('⛔ error ⛔: '+ error.message);
-    res.status(403).json("not authorized")
   }
   next()
 }

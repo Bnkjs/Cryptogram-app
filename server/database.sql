@@ -69,17 +69,17 @@ CREATE TABLE user_transfert_item (
   contact_id SERIAL NOT NULL
 );
 
-ALTER TABLE user_bank_card ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE user_bank_card ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
 
-ALTER TABLE user_order ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE user_order ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
 
-ALTER TABLE user_transfert ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE user_transfert ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
 
-ALTER TABLE user_order_item ADD FOREIGN KEY (order_id) REFERENCES user_order (order_id);
+ALTER TABLE user_order_item ADD FOREIGN KEY (order_id) REFERENCES user_order (order_id) ON DELETE CASCADE;
 
-ALTER TABLE user_transfert_item ADD FOREIGN KEY (transfert_id) REFERENCES user_transfert (transfert_id);
+ALTER TABLE user_transfert_item ADD FOREIGN KEY (transfert_id) REFERENCES user_transfert (transfert_id) ON DELETE CASCADE;
 
-ALTER TABLE user_contact ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE user_contact ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
 
 
 insert into users (email, password, first_name, last_name, created_at) values ('tjessett0@xing.com', 'Mongoose, small indian', 'Tobi', 'Jessett', '9/10/2021');

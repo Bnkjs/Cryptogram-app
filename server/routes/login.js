@@ -16,27 +16,24 @@ router.post('/', async (req,res)=>{
     const checkUserExist = await pool.query('SELECT * FROM users WHERE email=($1)',
     [email])
 
-    if(checkUserExist.rows.length === 0){
+    if(checkUserExist.rows[0] === undefined){
       res.status(401).json('l\'email ou le mot de passe est incorrect')
     }else{
       //3. compare password db
       const validPassport = await bcrypt.compare(password, checkUserExist.rows[0].password)
       
       if(!validPassport){
-        res.status(401).json('le mot de passe est incorrect')
-        console.log(checkUserExist);
+        res.status(401).json('l\'email ou le mot de passe est incorrect');
       }else{
           // 4. generate token 
           const token = jwtGenerator(checkUserExist.rows[0].user_id)
           res.json({token})
       }
-
-      
     }
     
   } catch (error) {
     console.error('⛔ error ⛔: '+ error.message);
-    res.status(401).json('le mot de passe est incorrect');
+    res.status(401).json('l\'email ou le mot de passe est incorrect');
   }
 
   router.get('/is-verify', authorization, (req,res)=>{
