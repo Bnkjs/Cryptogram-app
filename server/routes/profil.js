@@ -6,9 +6,9 @@ const bcrypt = require('bcrypt')
 
 router.put('/', authorization, async(req,res)=>{
   try {
-    const { password } = req.body
     const checkUserExist = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
-    
+    const { password } = req.body
+  
     const saltRound = 10
     const salt = await bcrypt.genSalt(saltRound)
     const bcryptPassword = await bcrypt.hash(password,salt)
@@ -50,8 +50,8 @@ router.post('/', authorization, async(req,res)=>{
 
 router.delete('/', authorization, async(req,res)=>{
   try {
-    const findUser = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
-    if(findUser.rows[0] === undefined){
+    const checkUserExist = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
+    if(checkUserExist.rows[0] === undefined){
       res.status(404).json('cet utilisateur n\'existe pas!')
     } else{
       const delUser = await pool.query('DELETE FROM users WHERE user_id = ($1)',[req.user])
