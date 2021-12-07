@@ -7,9 +7,11 @@ CREATE TABLE users (
   uuid_generate_v4(),
   email VARCHAR(60) NOT NULL,
   password VARCHAR(60) NOT NULL,
-  first_name VARCHAR(255) NOT NULL,
-  last_name VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
   avatar VARCHAR(255),
+  wallet_adress uuid DEFAULT 
+  uuid_generate_v4() NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
 
@@ -21,6 +23,8 @@ CREATE TABLE user_contact (
   birthday_date DATE,
   user_id uuid NOT NULL,
   avatar VARCHAR(255),
+  wallet_adress uuid DEFAULT
+  uuid_generate_v4() NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
 
@@ -57,6 +61,7 @@ CREATE TABLE user_transfert (
   card_name VARCHAR(150) NOT NULL,
   status VARCHAR(150),
   tracking_id VARCHAR(150) NOT NULL,
+  wallet_adress VARCHAR(255) NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
 

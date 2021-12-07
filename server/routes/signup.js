@@ -7,7 +7,6 @@ const moment = require('moment')
 router.post('/', async (req,res)=>{
   
   const date = moment().format('DD MMM YYYY H:mm')
-  
   try {
     const {email, password, first_name, last_name} = req.body
     const checkUserExist = await pool.query('SELECT * FROM users WHERE email=($1)',[req.user])
@@ -17,7 +16,7 @@ router.post('/', async (req,res)=>{
     const bcryptPassword = await bcrypt.hash(password,salt)
 
     if(checkUserExist.rows[0] === undefined){
-      const newUser = await pool.query('INSERT INTO users (email, password, first_name, last_name, created_at) VALUES($1,$2,$3,$4,$5) RETURNING *',
+      const newUser = await pool.query('INSERT INTO users (email, password, first_name, last_name,created_at) VALUES($1,$2,$3,$4,$5) RETURNING *',
       [email,bcryptPassword,first_name,last_name,date])
        
        const token = jwtGenerator(newUser.rows[0].id)

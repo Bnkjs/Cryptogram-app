@@ -15,8 +15,8 @@ router.post('/', authorization, async (req,res)=>{
     if(checkUserExist.rows[0] === undefined){
       res.status(404).json('cet utilisateur n\'existe pas!')
   } else{
-    const newtransfert = await pool.query('INSERT INTO user_transfert (user_id,card_name,tracking_id,created_at) VALUES ($1,$2,$3,$4) RETURNING *',
-    [req.user,card_name,generateTrackingId,date])
+    const newtransfert = await pool.query('INSERT INTO user_transfert (user_id,card_name,tracking_id,wallet_adress,created_at) VALUES ($1,$2,$3,$4,$5) RETURNING *',
+    [req.user,card_name,generateTrackingId,checkUserExist.rows[0].wallet_adress,date])
     
     const newtransfertItem = await pool.query('INSERT INTO user_transfert_item (transfert_id,crypto_name,amount,description,contact_id) VALUES ($1,$2,$3,$4,$5) RETURNING *',
     [newtransfert.rows[0].transfert_id,crypto_name,amount,description,1])
