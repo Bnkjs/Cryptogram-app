@@ -3,13 +3,14 @@ const bcrypt = require('bcrypt')
 const pool = require('../db')
 const jwtGenerator = require('../jwtGenerator')
 const moment = require('moment')
+const validInfosUser = require('../middleware/validInfosUser')
 
-router.post('/', async (req,res)=>{
+router.post('/', validInfosUser, async (req,res)=>{
   
   const date = moment().format('DD MMM YYYY H:mm')
   try {
     const {email, password, first_name, last_name} = req.body
-    const checkUserExist = await pool.query('SELECT * FROM users WHERE email=($1)',[req.user])
+    const checkUserExist = await pool.query('SELECT * FROM users WHERE email=($1)',[email])
   
     const saltRound = 10
     const salt = await bcrypt.genSalt(saltRound)
@@ -19,11 +20,11 @@ router.post('/', async (req,res)=>{
       const newUser = await pool.query('INSERT INTO users (email, password, first_name, last_name,created_at) VALUES($1,$2,$3,$4,$5) RETURNING *',
       [email,bcryptPassword,first_name,last_name,date])
        
-       const token = jwtGenerator(newUser.rows[0].id)
-
+       const token = jwtGenerator(newUser.rows[0].user_id)
        res.json({token})
+       
 
-    } else{
+    } else if(checkUserExist.rows[0].email === email){
       res.status(401).json('un utilisateur existe dejà avec cet email..')
     }
 

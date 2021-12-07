@@ -1,11 +1,13 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const validInfos = require('./middleware/validInfosUser')
 
 
 //Middleware
 app.use(express.json())//req.body
 app.use(cors())
+
 
 //Routes
 app.use('/signup',require('./routes/signup'))
@@ -17,6 +19,7 @@ app.use('/transfert_crypto', require('./routes/transfert_crypto'))
 app.use('/contact', require('./routes/contact'))
 
 // app.use('/activity', require('./routes/activity'))
+
 
 
 

@@ -2,10 +2,10 @@ const router = require('express').Router()
 const pool = require('../db')
 const authorization = require('../middleware/authorization')
 const moment = require('moment')
-
+const validInfosContact = require('../middleware/validInfosContact')
 const date = moment().format('DD MMM YYYY H:m')
 
-router.post('/', authorization, async(req,res)=>{
+router.post('/', validInfosContact, authorization , async(req,res)=>{
   const { email,firstname,lastname } = req.body
   const findUserContact = await pool.query('SELECT * FROM user_contact WHERE email = ($1)',[email])
 

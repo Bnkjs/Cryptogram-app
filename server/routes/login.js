@@ -3,9 +3,10 @@ const bcrypt = require('bcrypt')
 const pool = require('../db')
 const jwtGenerator = require('../jwtGenerator')
 const authorization = require('../middleware/authorization')
+const validInfosUser = require('../middleware/validInfosUser')
 
 
-router.post('/', async (req,res)=>{
+router.post('/', validInfosUser, async (req,res)=>{
   const {email,password} = req.body
   const checkUserExist = await pool.query('SELECT * FROM users WHERE email=($1)',[email])
 
