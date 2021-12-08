@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from 'axios';
 import { Button } from "../Button";
 import { InputForm } from "../InputForm";
+import apiUrls from "../../services/ApiUrls";
 
 const Form = ({url}) =>{
   
@@ -18,11 +19,14 @@ const Form = ({url}) =>{
     e.preventDefault()
     
     try {
-      const res = await axios.post(url,{
+      await axios.post(url,{
         email: email,
         password: password
       })
-      console.log(res.data);
+      .then((response)=> {
+        localStorage.setItem('token', response.data.token)
+        console.log(response.data);
+      })
     } catch (error) {
       console.log(error.response.data);
     }
