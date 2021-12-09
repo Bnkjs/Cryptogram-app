@@ -1,6 +1,7 @@
 const apiUrls = {
   signup: "http://localhost:5000/signup",
   login: "http://localhost:5000/login",
+  isVerified:"http://localhost:5000/is-verify",
   dashboard: "http://localhost:5000/dashboard",
   profil: "http://localhost:5000/profil",
   contact: "http://localhost:5000/contact",
