@@ -20,9 +20,10 @@ router.post('/', validInfosUser, async (req,res)=>{
       const newUser = await pool.query('INSERT INTO users (email, password, first_name, last_name,created_at) VALUES($1,$2,$3,$4,$5) RETURNING *',
       [email,bcryptPassword,first_name,last_name,date])
        
+      const returningNewUserInfo = await pool.query('SELECT email,first_name, last_name FROM users WHERE email=($1)',[email])
+
        const token = jwtGenerator(newUser.rows[0].user_id)
-       res.json({token})
-       
+       res.json({token: token, user: returningNewUserInfo.rows[0]})
 
     } else if(checkUserExist.rows[0].email === email){
       res.status(401).json('un utilisateur existe dejà avec cet email..')

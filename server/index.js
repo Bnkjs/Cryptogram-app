@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const validInfos = require('./middleware/validInfosUser')
-
+const authorization = require('./middleware/authorization')
 
 //Middleware
 app.use(express.json())//req.body
@@ -21,7 +21,13 @@ app.use('/contact', require('./routes/contact'))
 // app.use('/activity', require('./routes/activity'))
 
 
-
+app.get('/is-verify', authorization, (req,res)=>{
+  try {
+    res.json(true)
+  } catch (error) {
+    console.error('⛔ error ⛔: '+ error.message);
+  }
+})
 
 
 

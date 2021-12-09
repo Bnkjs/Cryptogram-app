@@ -1,28 +1,29 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import Signup from "./Pages/signup";
 import Login from "./Pages/login";
-import Form from "./components/Form";
 import Dashboard from "./Pages/dashboard";
-
+import store from "./store";
+import Container from "./Pages/container";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-  const setAuth = boolean => {
+  const myStore = store.getState().authReducer.isLoggedIn
+  const [isAuthenticated, setIsAuthenticated] = useState(myStore)
+  
+  const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
   }
-  console.log(isAuthenticated);
+  useEffect(()=>{
+  },[myStore])
+  
   return(
     <>
+    
     <Router>
-      <div className="app-container">
-        <Route exact path ="/signup" render={props => !isAuthenticated? <Signup {...props} />  : <Redirect to="/login"/>} />
-        <Route exact path ="/login" render={props => !isAuthenticated ? <Login {...props} /> : <Redirect to="/dashboard"/>} /> 
-        <Route exact path ="/dashboard" render={props => isAuthenticated ? <Dashboard {...props} /> : <Redirect to="/login"/>} /> 
-
-      </div>  
+      <Container/>
+      <Route exact path ="/signup" render={props => !myStore? <Signup {...props} setAuth={setAuth}/>  : <Redirect to="/login"/>} />
+      <Route exact path ="/login" render={props => !myStore ? <Login {...props} setAuth={setAuth} /> : <Redirect to="/dashboard"/>} /> 
+      <Route exact path ="/dashboard" render={props => myStore ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/login"/>} /> 
     </Router>
       
     </>

@@ -1,11 +1,12 @@
 import React, {useState} from "react"; 
-import axios from 'axios';
 import { Button } from "../Button";
+import { register } from "../../Actions/auth";
 import { InputForm } from "../InputForm";
-import apiUrls from "../../services/ApiUrls";
+import store from "../../store";
 
-const Form = ({url}) =>{
-  
+const Form = ({ setAuth }) =>{
+  const myStore = store.getState().authReducer.isLoggedIn
+
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
@@ -14,26 +15,14 @@ const Form = ({url}) =>{
   const onChange = e => {
     setInputs({...inputs,[e.target.name]: e.target.value})
   }
-
-  const submitForm = async (e) =>{
-    e.preventDefault()
-    
-    try {
-      await axios.post(url,{
-        email: email,
-        password: password
-      })
-      .then((response)=> {
-        localStorage.setItem('token', response.data.token)
-        console.log(response.data);
-      })
-    } catch (error) {
-      console.log(error.response.data);
-    }
+  const handleSubmit = (e,email, password) =>{
+    register(e,email,password)
+    setAuth(myStore)
   }
+  
   return(<>
     <div>
-      <form action="" method="POST" onSubmit={submitForm}>
+      <form action="" onSubmit={(e)=> handleSubmit(e,email,password)}>
         <InputForm type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} />
         <InputForm type="password" placeholder="mdp" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} />
         <Button message="Inscrivez-vous" />
