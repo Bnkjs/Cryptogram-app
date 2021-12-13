@@ -1,0 +1,21 @@
+#navbar{
+  width: 100%;
+  background-color: black;
+
+  color: white;
+  padding: 1rem;
+}
+ul{
+  max-width: 15%;
+  list-style: none;
+  color: white;
+  display: flex;
+}
+.li-nav p{
+  text-decoration: none;
+  color: white;
+  margin-left: 1rem;
+}
+.li-nav{
+  cursor: pointer;
+}
