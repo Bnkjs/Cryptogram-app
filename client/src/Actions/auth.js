@@ -3,14 +3,14 @@ import AuthService from "../services/auth.service";
 import store from "../store";
 
 
-export const register = (e,email, password) => {
+export const register = (e,email, password, username) => {
   
-   return AuthService.register(e,email, password)
+   return AuthService.register(e,email, password, username)
     .then((response) => {
       console.log(response);
         store.dispatch({
           type: types.REGISTER_SUCCESS,
-          payload: response.user
+          payload: response
         });
   
         store.dispatch({
@@ -34,7 +34,6 @@ export const register = (e,email, password) => {
         type: types.SET_MESSAGE,
         payload: error.response.data,
       });
-
     }
   );
 };
@@ -45,7 +44,7 @@ export const login = (e, email, password) => {
     console.log(response);
       store.dispatch({
         type: types.LOGIN_SUCCESS,
-        payload: response.user,
+        payload: response,
       });     
       store.dispatch({
         type: types.SET_MESSAGE,
@@ -86,4 +85,8 @@ export const logout = () => {
     type: types.SET_MESSAGE,
     payload: 'logout !! ',
   });
+  store.dispatch({
+    type: types.DASHBOARD_FAIL
+  })
 };
+

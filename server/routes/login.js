@@ -18,7 +18,7 @@ router.post('/', validInfosUser, async (req,res)=>{
       if(!validPassport){
         res.status(401).json('l\'email ou le mot de passe est incorrect');
       }else{   
-        const returningUserInfo = await pool.query('SELECT email,first_name, last_name FROM users WHERE email=($1)',[email])
+        const returningUserInfo = await pool.query('SELECT email, username, avatar FROM users WHERE email=($1)',[email])
         const token = jwtGenerator(checkUserExist.rows[0].user_id)
         res.json({user: returningUserInfo.rows[0], token: token})
       }

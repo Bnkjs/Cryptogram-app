@@ -7,6 +7,10 @@ const authorization = require('./middleware/authorization')
 //Middleware
 app.use(express.json())//req.body
 app.use(cors())
+app.use('/', require('./middleware/validInfosUser'))
+app.use('/', require('./middleware/validInfosContact'))
+app.use('/', require('./middleware/validInfosCryptos'))
+
 
 
 //Routes
@@ -19,16 +23,6 @@ app.use('/transfert_crypto', require('./routes/transfert_crypto'))
 app.use('/contact', require('./routes/contact'))
 
 // app.use('/activity', require('./routes/activity'))
-
-
-app.get('/is-verify', authorization, (req,res)=>{
-  try {
-    res.json(true)
-  } catch (error) {
-    console.error('⛔ error ⛔: '+ error.message);
-  }
-})
-
 
 
 

@@ -34,14 +34,15 @@ router.put('/', authorization, async(req,res)=>{
 
 router.post('/', authorization, async(req,res)=>{
   try {
-    const { avatar } = req.body
+    const { avatar, username } = req.body
     const checkUserExist = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
     
     if(checkUserExist.rows[0] === undefined){
       res.status(404).json('cet utilisateur n\'existe pas!')
     } else{
-      const newAvatar = await pool.query('UPDATE users SET avatar = ($1) WHERE user_id = ($2)',[avatar,checkUserExist.rows[0].user_id])
-      res.json('Votre avatar a bien été modifié 🤩 ')
+        const newAvatar = await pool.query('UPDATE users SET avatar = ($1) WHERE user_id = ($2)',[avatar,checkUserExist.rows[0].user_id])
+        const newUserName = await pool.query('UPDATE users SET userName = ($1) WHERE user_id = ($2)',[username,checkUserExist.rows[0].user_id])
+        res.json('Votre profil a bien été modifié 🤩 ')
     }
   } catch (error) {
     console.error('⛔ error ⛔: '+ error.message);
