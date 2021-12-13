@@ -13,6 +13,7 @@ router.get('/', authorization, async (req,res)=>{
             user_order.order_id,
             user_order_item.crypto_name,
             user_order_item.amount,
+            user_order_item.crypto_id_name,
             user_order.created_at
           FROM user_order
           INNER JOIN user_order_item USING(order_id)

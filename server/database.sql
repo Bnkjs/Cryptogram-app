@@ -41,7 +41,7 @@ CREATE TABLE user_order (
   uuid_generate_v4(),
   user_id uuid NOT NULL,
   card_name VARCHAR(150) NOT NULL,
-  status VARCHAR(150),
+  status VARCHAR(150) NOT NULL,
   transaction_id VARCHAR(150) NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
@@ -49,7 +49,8 @@ CREATE TABLE user_order (
 CREATE TABLE user_order_item (
   order_item_id SERIAL PRIMARY KEY,
   order_id uuid,
-  crypto_name VARCHAR(150),
+  crypto_name VARCHAR(100) NOT NULL,
+  crypto_id_name VARCHAR(100) NOT NULL,
   amount NUMERIC
 );
 
