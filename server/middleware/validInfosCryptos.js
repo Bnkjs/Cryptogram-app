@@ -5,15 +5,30 @@ module.exports = function (req,res,next) {
     return /^[0-9-.]{1,15}$/.test(cryptoAmount);
   }
   function validDescription(transfertDesc) {
-    return /^\S.{5,250}$/.test(transfertDesc);
+    return /^[a-zA-Z0-9\-\s\!\?\.\,\()]{5,250}$/.test(transfertDesc);
   }
-   if (req.path === "/") {
+  function validCryptoName (crypto_name){
+    return /^[a-zA-Z\s]{3,50}$/.test(crypto_name)
+  }
+   if (req.path === "/buy_crypto") {
+    if (![amount, crypto_name].every(Boolean)) {
+      return res.status(401).json("Il manque des informations");
+    } else if (!validCrypto(amount)) {
+      return res.status(401).json("Le montant est trop petit/grand");
+    }else if (!validCryptoName(crypto_name)) {
+      return res.status(401).json("les informations sont érronées (caractères interdits / nom trop court/long");
+    }
+  }
+  
+  if (req.path === "/transfert_crypto") {
     if (![amount, crypto_name, description].every(Boolean)) {
       return res.status(401).json("Il manque des informations");
     } else if (!validCrypto(amount)) {
       return res.status(401).json("Le montant est trop petit/grand");
     }else if (!validDescription(description)) {
-      return res.status(401).json("La description doit contenir min 5 à 300 max caractères");
+      return res.status(401).json("La description est trop court/long ou comporte un/des caractère(s) non-autorisé(s)");
+    }else if (!validCryptoName(crypto_name)) {
+      return res.status(401).json("les informations sont érronées (caractères interdits / nom trop court/long");
     }
   }
   next();

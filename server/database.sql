@@ -7,8 +7,7 @@ CREATE TABLE users (
   uuid_generate_v4(),
   email VARCHAR(60) NOT NULL,
   password VARCHAR(60) NOT NULL,
-  first_name VARCHAR(255),
-  last_name VARCHAR(255),
+  username VARCHAR(255),
   avatar VARCHAR(255),
   wallet_adress uuid DEFAULT 
   uuid_generate_v4() NOT NULL,

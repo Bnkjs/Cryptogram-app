@@ -4,10 +4,11 @@ const authorization = require('../middleware/authorization')
 const moment = require('moment')
 const validInfosCrypto = require('../middleware/validInfosCryptos')
 
-const date = moment().format('DD MMM YYYY H:mm')
-const generateTrackingId = Math.random().toString(36).substr(2, 40)
+
 
 router.post('/', validInfosCrypto, authorization, async (req,res)=>{
+  const date = moment().format('DD MMM YYYY H:mm')
+  const generateTrackingId = Math.random().toString(36).substr(2, 40)
   const checkUserExist = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
   const { crypto_name, amount,description ,card_name } = req.body
   

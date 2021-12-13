@@ -4,12 +4,12 @@ const authorization = require('../middleware/authorization')
 const moment = require('moment')
 const validInfosCrypto = require('../middleware/validInfosCryptos')
 
-const date = moment().format('DD MMM YYYY H:mm')
-const generateTransactionId = Math.random().toString(36).substr(2, 40)
 
 router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
+  const date = moment().format('DD MMM YYYY H:mm')
+  const generateTransactionId = Math.random().toString(36).substr(2, 40)
   const checkUserExist = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
-  const { cryptoName, amount, card_name } = req.body
+  const { crypto_name, amount, card_name } = req.body
 
   try {
     if(checkUserExist.rows[0] === undefined){
@@ -19,9 +19,9 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
       [req.user,card_name,generateTransactionId,date])
       
       const newOrderItem = await pool.query('INSERT INTO user_order_item (order_id,crypto_name,amount) VALUES ($1,$2,$3) RETURNING *',
-      [newOrder.rows[0].order_id,cryptoName,amount])
-
-      res.json([newOrder.rows[0],newOrderItem.rows[0]])  
+      [newOrder.rows[0].order_id,crypto_name,amount])
+        
+      res.json({ order: newOrder.rows[0], order_item: newOrderItem.rows[0]})  
     }
 
     

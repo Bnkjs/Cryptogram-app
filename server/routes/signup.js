@@ -9,18 +9,18 @@ router.post('/', validInfosUser, async (req,res)=>{
   
   const date = moment().format('DD MMM YYYY H:mm')
   try {
-    const {email, password, first_name, last_name} = req.body
+    const {email, password, username} = req.body
     const checkUserExist = await pool.query('SELECT * FROM users WHERE email=($1)',[email])
   
     const saltRound = 10
     const salt = await bcrypt.genSalt(saltRound)
     const bcryptPassword = await bcrypt.hash(password,salt)
-
+    
     if(checkUserExist.rows[0] === undefined){
-      const newUser = await pool.query('INSERT INTO users (email, password, first_name, last_name,created_at) VALUES($1,$2,$3,$4,$5) RETURNING *',
-      [email,bcryptPassword,first_name,last_name,date])
+      const newUser = await pool.query('INSERT INTO users (email, password, username,created_at) VALUES($1,$2,$3,$4) RETURNING *',
+      [email,bcryptPassword,username,date])
        
-      const returningNewUserInfo = await pool.query('SELECT email,first_name, last_name FROM users WHERE email=($1)',[email])
+      const returningNewUserInfo = await pool.query('SELECT email,username,avatar FROM users WHERE email=($1)',[email])
 
        const token = jwtGenerator(newUser.rows[0].user_id)
        res.json({token: token, user: returningNewUserInfo.rows[0]})
