@@ -6,11 +6,13 @@ import { DashboardStore } from "./Pages/dashboard";
 import store from "./store";
 import Navbar from "./components/Navbar";
 import { useSelector } from "react-redux";
-import Activity from "./Pages/activity";
+import { ActivityStore } from "./Pages/activity";
 import BuyCrypto from "./Pages/buy";
 import TransfertCrypto from "./Pages/transfert/transfert";
-import getDashboardInfo from "./services/dashboard.service";
+
 import { ProfilStore } from "./Pages/profil";
+import Dashboard from "./Actions/Activity";
+import Activity from "./Actions/Activity";
 
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn
@@ -21,7 +23,7 @@ const App = () => {
     setIsAuthenticated(boolean)
   }
   useEffect(()=>{
-    getDashboardInfo(currentUserInfo.token)
+    Activity(currentUserInfo.token)
   },[myStore])
   
 
@@ -32,7 +34,7 @@ const App = () => {
     <Router>
       <Navbar setAuth={setAuth}/>
       <Route exact path="/profil" render={props => myStore? <ProfilStore {...props}/> : <Redirect to="/login"/>}/>
-      <Route exact path="/activity" render={props => myStore? <Activity {...props}/> : <Redirect to="/login"/>}/>
+      <Route exact path="/activity" render={props => myStore? <ActivityStore {...props}/> : <Redirect to="/login"/>}/>
       <Route exact path="/buy_crypto" render={props => myStore? <BuyCrypto {...props}/> : <Redirect to="/login"/>}/>
       <Route exact path="/transfert_crypto" render={props => myStore? <TransfertCrypto {...props}/> : <Redirect to="/login"/>}/>      
       <Route exact path ="/signup" render={props => !myStore? <Signup {...props} setAuth={setAuth}/>  : <Redirect to="/login"/>} />
