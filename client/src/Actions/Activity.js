@@ -1,9 +1,9 @@
 import axios from "axios";
 import store from "../store";
 import types from "../Types/types";
-import apiUrls from "./ApiUrls";
+import apiUrls from "../services/ApiUrls";
 
-const getDashboardInfo = async (token) => {
+const Activity = async (token) => {
  
     try {
       if(token){
@@ -27,4 +27,4 @@ const getDashboardInfo = async (token) => {
 
 }
 
-export default getDashboardInfo
+export default Activity
