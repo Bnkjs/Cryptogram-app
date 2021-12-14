@@ -7,7 +7,7 @@ router.get('/', authorization, async (req,res)=>{
 
       try {
         //1. find user
-        const checkUserExist = await pool.query('SELECT email,username,avatar,balance FROM users WHERE user_id = ($1)',[req.user])
+        const checkUserExist = await pool.query('SELECT email,username,avatar,investment,balance FROM users WHERE user_id = ($1)',[req.user])
         const userContact = await pool.query('SELECT * FROM user_contact WHERE user_id = ($1)',[req.user])
         const userOrderInfos = await pool.query(`
           SELECT 
