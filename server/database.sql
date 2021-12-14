@@ -11,7 +11,10 @@ CREATE TABLE users (
   avatar VARCHAR(255),
   wallet_adress uuid DEFAULT 
   uuid_generate_v4() NOT NULL,
-  created_at VARCHAR(20) NOT NULL
+  investment NUMERIC NOT NULL,
+  balance NUMERIC NOT NULL,
+  created_at VARCHAR(20) NOT NULL,
+  updated_at VARCHAR(20)
 );
 
 CREATE TABLE user_contact (
@@ -40,9 +43,9 @@ CREATE TABLE user_order (
   order_id uuid PRIMARY KEY DEFAULT
   uuid_generate_v4(),
   user_id uuid NOT NULL,
-  card_name VARCHAR(150) NOT NULL,
   status VARCHAR(150) NOT NULL,
   transaction_id VARCHAR(150) NOT NULL,
+  wallet_adress VARCHAR(255) NOT NULL,
   created_at VARCHAR(20) NOT NULL
 );
 
@@ -51,14 +54,14 @@ CREATE TABLE user_order_item (
   order_id uuid,
   crypto_name VARCHAR(100) NOT NULL,
   crypto_id_name VARCHAR(100) NOT NULL,
-  amount NUMERIC
+  amount_in_user_currency NUMERIC NOT NULL,
+  amount_converted_in_coin NUMERIC NOT NULL
 );
 
 CREATE TABLE user_transfert (
   transfert_id uuid PRIMARY KEY DEFAULT
   uuid_generate_v4(),
   user_id uuid NOT NULL,
-  card_name VARCHAR(150) NOT NULL,
   status VARCHAR(150),
   tracking_id VARCHAR(150) NOT NULL,
   wallet_adress VARCHAR(255) NOT NULL,
@@ -69,12 +72,40 @@ CREATE TABLE user_transfert_item (
   transfert_item_id SERIAL PRIMARY KEY,
   transfert_id uuid NOT NULL,
   crypto_name VARCHAR(150) NOT NULL,
-  amount NUMERIC NOT NULL,
+  crypto_id_name VARCHAR(100) NOT NULL,
+  amount_in_user_currency NUMERIC NOT NULL,
+  amount_converted_in_coin NUMERIC NOT NULL,
   description VARCHAR(255) NOT NULL,
-  contact_id SERIAL NOT NULL
+  contact_id SERIAL NOT NULL,
+  contact_wallet_adress VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE user_bank_card ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
+  CREATE TABLE user_investment (
+    investment_id uuid PRIMARY KEY DEFAULT
+    uuid_generate_v4(),
+    user_id uuid NOT NULL,
+    status VARCHAR(150),
+    investment_tracking_id VARCHAR(150) NOT NULL,
+    wallet_adress VARCHAR(255) NOT NULL,
+    created_at VARCHAR(20) NOT NULL,
+    updated_at VARCHAR(20)
+  );
+
+  CREATE TABLE user_investment_item (
+    investment_item_id SERIAL PRIMARY KEY,
+    crypto_name VARCHAR(150) NOT NULL,
+    crypto_id_name VARCHAR(100) NOT NULL,
+    amount_in_user_currency NUMERIC NOT NULL,
+    amount_converted_in_coin NUMERIC NOT NULL,
+    total_amount_of_coin_in_user_currency NUMERIC NOT NULL,
+    total_amount_of_converted_coin NUMERIC NOT NULL,
+    investment_id uuid NOT NULL
+  );
+
+
+ALTER TABLE user_investment ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
+
+ALTER TABLE user_investment_item ADD FOREIGN KEY (investment_id) REFERENCES user_investment (investment_id) ON DELETE CASCADE;
 
 ALTER TABLE user_order ADD FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
 
