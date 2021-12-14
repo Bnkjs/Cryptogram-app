@@ -1,8 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const validInfos = require('./middleware/validInfosUser')
-const authorization = require('./middleware/authorization')
 
 //Middleware
 app.use(express.json())//req.body
@@ -10,7 +8,6 @@ app.use(cors())
 app.use('/', require('./middleware/validInfosUser'))
 app.use('/', require('./middleware/validInfosContact'))
 app.use('/', require('./middleware/validInfosCryptos'))
-
 
 
 //Routes

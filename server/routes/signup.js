@@ -15,10 +15,13 @@ router.post('/', validInfosUser, async (req,res)=>{
     const saltRound = 10
     const salt = await bcrypt.genSalt(saltRound)
     const bcryptPassword = await bcrypt.hash(password,salt)
+    const balanceOnAccountCreation = 0;
+    const investmentOnAccountCreation = 0;
+
     
     if(checkUserExist.rows[0] === undefined){
-      const newUser = await pool.query('INSERT INTO users (email, password, username,created_at) VALUES($1,$2,$3,$4) RETURNING *',
-      [email,bcryptPassword,username,date])
+      const newUser = await pool.query('INSERT INTO users (email,password,username,investment,balance,created_at) VALUES($1,$2,$3,$4,$5,$6) RETURNING *',
+      [email,bcryptPassword,username,investmentOnAccountCreation,balanceOnAccountCreation,date])
        
       const returningNewUserInfo = await pool.query('SELECT email,username,avatar FROM users WHERE email=($1)',[email])
 
