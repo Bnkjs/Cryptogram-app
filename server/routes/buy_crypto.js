@@ -22,9 +22,9 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
       // amount converted
       const cryptoExchange = () => {
         return axios.get(cryptoApiUrl.coinsById + crypto_name)
-        .then((response) => {
-          return amount * response.data[0].current_price
-        })
+          .then((response) => {
+            return amount * response.data[0].current_price
+          })
       }
       const amountConverted = await cryptoExchange().then(res => res)
 
@@ -36,14 +36,22 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
         })
       }
       const cryptoSymbol = await getCryptoSymbol().then(res => res)
-      console.log(cryptoSymbol);
 
+      // crypto_name
+      const getCryptoName = () => {
+        return axios.get(cryptoApiUrl.coinsById + crypto_name)
+        .then((response) => {
+          return response.data[0].name
+        })
+      }
+      const cryptoName = await getCryptoName().then(res => res)
 
+      // queries db 
       const newOrder = await pool.query('INSERT INTO user_order (user_id,card_name,transaction_id,status,created_at) VALUES ($1,$2,$3,$4,$5) RETURNING *',
       [req.user,card_name,generateTransactionId,true,date])
 
       const newOrderItem = await pool.query('INSERT INTO user_order_item (order_id,crypto_name,crypto_id_name,amount) VALUES ($1,$2,$3,$4) RETURNING *',
-      [newOrder.rows[0].order_id,crypto_name, cryptoSymbol.toUpperCase(),amountConverted])
+      [newOrder.rows[0].order_id,cryptoName, cryptoSymbol.toUpperCase(),amountConverted])
       res.json({ order: newOrder.rows[0], order_item: newOrderItem.rows[0]})
     }
 
