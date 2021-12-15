@@ -50,7 +50,7 @@ router.get('/', authorization, async (req,res)=>{
         if(checkUserExist.rows[0] === undefined){
             res.status(404).json('cet utilisateur n\'existe pas!')
        } else{
-            res.json({ user: checkUserExist.rows[0], contact: userContact.rows.length ,order: userOrderInfos.rows, transfert: userTransfertInfos.rows, investment: userInvestmentInfos.rows})
+            res.json({ order: userOrderInfos.rows, transfert: userTransfertInfos.rows, investment: userInvestmentInfos.rows})
         }
       } catch (error) {
         console.error('⛔ error ⛔: '+ error.message);

@@ -28,7 +28,7 @@ router.get('/:id', authorization, async (req,res) => {
        if(findContact.rows[0] === undefined){
          res.status(404).json('Ce contact n\'existe pas!')
        } else{
-         res.json(findContact.rows[0])
+         res.json(findContact.rows)
        }
      }
   } catch (error) {
@@ -41,16 +41,13 @@ router.post('/', validInfosContact, authorization , async(req,res)=>{
   const date = moment().format('DD MMM YYYY H:mm')
   const { email,firstname,lastname } = req.body
   const findContactByEmail = await pool.query('SELECT * FROM user_contact WHERE email = ($1)',[email])
-  const findContactByFirstname = await pool.query('SELECT * FROM user_contact WHERE first_name = ($1)',[firstname])
-  const findContactByLastname = await pool.query('SELECT * FROM user_contact WHERE last_name = ($1)',[lastname])
-
-
+  const getUserContact = await pool.query('SELECT * FROM user_contact WHERE user_id = ($1)',[req.user])
 
   try {
     if(findContactByEmail.rows[0] === undefined){
       const newContact = await pool.query('INSERT INTO user_contact (email,first_name,last_name,user_id,created_at) VALUES ($1,$2,$3,$4,$5) RETURNING *',
         [email,firstname,lastname,req.user,date ])
-        res.json(newContact.rows[0])
+        res.json(getUserContact.rows)
     }  else if(findContactByEmail.rows[0].first_name === firstname){
         res.status(403).json('Ce prénom est déjà présent dans votre liste!')
       } 
@@ -61,6 +58,7 @@ router.post('/', validInfosContact, authorization , async(req,res)=>{
   
 
 router.delete('/', authorization, async(req,res)=>{
+  
   const { email } = req.body
   const findContact = await pool.query('SELECT * FROM user_contact WHERE email = ($1)',[email])
   try {
