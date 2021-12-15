@@ -23,6 +23,9 @@ const Navbar = ({ setAuth }) =>{
               <Link to="/profil"><p>Profil</p></Link>
             </li>
             <li className="li-nav">
+              <Link to="/contact"><p>Contact</p></Link>
+            </li>
+            <li className="li-nav">
               <Link to="/activity"><p>Activity</p></Link>
             </li>
             <li className="li-nav">

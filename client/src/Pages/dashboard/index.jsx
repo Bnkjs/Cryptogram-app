@@ -1,16 +1,20 @@
 import React,{useEffect, useState} from "react";
 import { connect } from "react-redux";
+import dashboard from "../../Actions/dashboard";
 
-const Dashboard = ({ state }) =>{
-
+const Dashboard = ({ state, token }) =>{
+  
+  const [dashState, getDashState] = useState(state)
   const currentUserEmail = state? state.user.email : null
   const currentUserName = state? state.user.username : null
   const currentContact = state? state.contact : null
   const currentUserInvestment = state? state.investment : null
   const currentUserTransfert = state? state.transfert : null
 
-  console.log(state);
-   
+ useEffect(()=>{
+  dashboard(token)
+ },[dashState])
+  
   return(
     <>
         <div>

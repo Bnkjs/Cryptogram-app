@@ -28,7 +28,7 @@ export const profil = (e, email, username, firstname, lastname, avatar) => {
       })
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error.response.data);
   }
    
 }
