@@ -4,7 +4,7 @@ import { getMarket } from "../../Actions/crypto";
 import { RowMarket } from "../../components/market";
 
 const Market = ({ state }) => {
-  const [market, setMArket] = useState(state)
+  const [market, setMArket] = useState(false)
   const storeMarket = state? state : null
 
   const getDatasMarket = state? storeMarket.map((el,index)=>{
@@ -24,7 +24,11 @@ const Market = ({ state }) => {
   }) : null
 
   useEffect(()=>{
-    getMarket()
+    const cryptoTracker = setInterval(() => {
+      getMarket()
+      setMArket(()=> !market)
+    },5000)
+    return () => clearInterval(cryptoTracker)
   },[market])
  
   return(<>
