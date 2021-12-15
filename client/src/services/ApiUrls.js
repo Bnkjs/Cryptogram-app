@@ -6,7 +6,8 @@ const apiUrls = {
   profil: "http://localhost:5000/profil",
   contact: "http://localhost:5000/contact",
   buy_crytpo: "http://localhost:5000/buy_crypto",
-  transfert_crypto: "http://localhost:5000/dashboard"
+  transfert_crypto: "http://localhost:5000/dashboard",
+  activity:"http://localhost:5000/activity"
 }
 
 export default apiUrls

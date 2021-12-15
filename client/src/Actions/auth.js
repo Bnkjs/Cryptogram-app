@@ -88,5 +88,8 @@ export const logout = () => {
   store.dispatch({
     type: types.DASHBOARD_FAIL
   })
+  store.dispatch({
+    type: types.ACTIVITY_FAIL
+  })
 };
 
