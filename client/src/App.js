@@ -9,10 +9,9 @@ import { useSelector } from "react-redux";
 import { ActivityStore } from "./Pages/activity";
 import BuyCrypto from "./Pages/buy";
 import TransfertCrypto from "./Pages/transfert/transfert";
-
 import { ProfilStore } from "./Pages/profil";
-import Dashboard from "./Actions/Activity";
-import Activity from "./Actions/Activity";
+import activity from "./Actions/activity";
+import dashboard from "./Actions/dashboard";
 
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn
@@ -23,7 +22,8 @@ const App = () => {
     setIsAuthenticated(boolean)
   }
   useEffect(()=>{
-    Activity(currentUserInfo.token)
+    dashboard(currentUserInfo.token)
+    activity(currentUserInfo.token)
   },[myStore])
   
 

@@ -3,18 +3,18 @@ import store from "../store";
 import types from "../Types/types";
 import apiUrls from "../services/ApiUrls";
 
-const activity = async (token) => {
+const dashboard = async (token) => {
  
     try {
       if(token){
-        return await axios.get(apiUrls.activity,{
+        return await axios.get(apiUrls.dashboard,{
           headers: {
             'Content-Type': 'application/json',
             token: token
           },
         }).then(response => {
             store.dispatch({
-              type: types.ACTIVITY_SUCCESS,
+              type: types.DASHBOARD_SUCCESS,
               payload: response.data
             });
         })
@@ -27,4 +27,4 @@ const activity = async (token) => {
 
 }
 
-export default activity
+export default dashboard

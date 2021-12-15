@@ -5,8 +5,7 @@ const Activity = ({ state }) => {
 
   const currentUserOrder = state? state.order : null
   const currentUserTransfert = state? state.transfert : null
-  const orderLength = state? currentUserOrder.length : null
-  const transfertLength = state? currentUserTransfert.length : null
+  
   
   const getOrders = state? currentUserOrder.map((el, index) => {
     return (<>
@@ -14,7 +13,9 @@ const Activity = ({ state }) => {
       <p>{el.order_id}</p>
       <h4 className="order-item" key={index}> Nom de la cryptomonnaie: </h4>
       <p>{el.crypto_name}</p> 
-      <p className="order-item" key={index}> crée le: {el.created_at}</p>
+      <p className="order-item" key={index}> Montant: {el.amount_converted_in_coin} {el.crypto_id_name}</p>
+      <p className="order-item" key={index}> Acheté le: {el.created_at}</p>
+      <hr />
       
     </>)
   }) : null
@@ -26,6 +27,7 @@ const Activity = ({ state }) => {
       <h4 className="order-item" key={index}> Nom de la cryptomonnaie: </h4>
       <p>{el.crypto_name}</p> 
       <p className="order-item" key={index}> crée le: {el.created_at}</p>
+      
       
     </>)
   }) : null
@@ -54,7 +56,7 @@ const Activity = ({ state }) => {
 
 export const ActivityStore = connect(
   (state) => ({
-    state: state.dashboardReducer.dashboardInfos
+    state: state.activityReducer.activityInfos
   })
 )(Activity)
 export default Activity
