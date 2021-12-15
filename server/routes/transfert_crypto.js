@@ -3,8 +3,7 @@ const pool = require('../db')
 const authorization = require('../middleware/authorization')
 const moment = require('moment')
 const validInfosCrypto = require('../middleware/validInfosCryptos')
-const apiUrlCoinByID = require('../service/apiUrls')
-const axios = require('axios')
+const cryptoService = require('../service/crypto')
 
 router.post('/', validInfosCrypto, authorization, async (req,res)=>{
   
@@ -18,53 +17,23 @@ router.post('/', validInfosCrypto, authorization, async (req,res)=>{
 
     if(checkUserExist.rows[0] === undefined){
       res.status(404).json('cet utilisateur n\'existe pas!')
-  } else{
+  }else if(findContact.rows[0] === undefined){
+    res.status(404).json('Ce contact n\'existe pas dans votre liste')
+  }else{
     const newtransfert = await pool.query('INSERT INTO user_transfert (user_id,tracking_id,wallet_adress,created_at) VALUES ($1,$2,$3,$4) RETURNING *',
     [req.user,generateTrackingId,checkUserExist.rows[0].wallet_adress,date])
 
       // amount converted
-      const cryptoExchange = () => {
-        return axios.get(apiUrlCoinByID.coinsById('eur') + crypto_name)
-          .then((response) => {
-              if(response.data[0]){
-                return amount * response.data[0].current_price
-              } else{
-                res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
-              }
-          })
-      }
-      const amountConvertedInCoins = await cryptoExchange().then(res => res)
-
+      const amountExchangeInUserCurrency = await cryptoService.cryptoExchange(crypto_name,amount).then(res => res)
       //get crypto id
-      const getCryptoSymbol = () => {
-        return axios.get(apiUrlCoinByID.coinsById('eur') + crypto_name)
-        .then((response) => {
-          if(response.data[0]){
-            return response.data[0].symbol
-          }else{
-            res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
-          }
-        })
-      }
-      const cryptoSymbol = await getCryptoSymbol().then(res => res)
-
+      const cryptoSymbol = await cryptoService.getCryptoSymbol(crypto_name).then(res => res)
       // crypto_name
-      const getCryptoName = () => {
-        return axios.get(apiUrlCoinByID.coinsById('eur') + crypto_name)
-        .then((response) => {
-          if(response.data[0]){
-            return response.data[0].name
-          } else{
-            res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
-          }
-        })
-      }
-      const cryptoName = await getCryptoName().then(res => res)
+      const cryptoName = await cryptoService.getCryptoName(crypto_name).then(res => res)
 
     const newTransfertItem = await pool.query('INSERT INTO user_transfert_item (transfert_id,crypto_name,crypto_id_name,amount_in_user_currency,amount_converted_in_coin,description,contact_id,contact_wallet_adress) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *',
-    [newtransfert.rows[0].transfert_id,cryptoName,cryptoSymbol.toUpperCase(),amount,amountConvertedInCoins,description,findContact.rows[0].contact_id,findContact.rows[0].wallet_adress])
+    [newtransfert.rows[0].transfert_id,cryptoName,cryptoSymbol.toUpperCase(),amount,amountExchangeInUserCurrency,description,findContact.rows[0].contact_id,findContact.rows[0].wallet_adress])
     
-    const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING *',[parseInt(checkUserExist.rows[0].balance) - amountExchangeInUserCurrency, req.user])
+    const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING *',[parseFloat(checkUserExist.rows[0].balance) - amountExchangeInUserCurrency, req.user])
    
     
 

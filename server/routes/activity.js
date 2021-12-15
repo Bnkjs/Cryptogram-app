@@ -1,23 +1,60 @@
-// const router = require('express').Router()
-// const pool = require('../db')
-// const authorization = require('../middleware/authorization')
-// const moment = require('moment')
+const router = require('express').Router()
+const pool = require('../db')
+const authorization = require('../middleware/authorization')
 
-// router.post('/', authorization, async (req,res)=>{
-//   const findUser = await pool.query('SELECT * FROM users WHERE user_id = ($1)',[req.user])
-//   const date = moment().format('DD MMM YYYY H:m')
-//   const { crypto_name, amount, card_name } = req.body
-//   try {
-//     const newtransfert = await pool.query('INSERT INTO user_transfert (user_id,card_name,created_at) VALUES ($1,$2,$3) RETURNING *',
-//     [findUser.rows[0].user_id,card_name,date])
-    
-//     const newtransfertItem = await pool.query('INSERT INTO user_transfert_item (transfert_id,crypto_name,amount,description,contact_id) VALUES ($1,$2,$3,$4,$5) RETURNING *',
-//     [newtransfert.rows[0].transfert_id,crypto_name,amount,'Anniversaire Yannou',1])
 
-//     res.json([newtransfert.rows[0],newtransfertItem.rows[0]])
+router.get('/', authorization, async (req,res)=>{
 
-//   } catch (error) {
-//     console.error('⛔ error ⛔: '+ error.message);
-//   }
-// })
-// module.exports = router
+      try {
+        //1. find user
+        const checkUserExist = await pool.query('SELECT email,username,avatar,investment,balance FROM users WHERE user_id = ($1)',[req.user])
+        const userContact = await pool.query('SELECT * FROM user_contact WHERE user_id = ($1)',[req.user])
+        const userOrderInfos = await pool.query(`
+          SELECT 
+            user_order.order_id,
+            user_order_item.crypto_name,
+            user_order_item.amount_in_user_currency,
+            user_order_item.amount_converted_in_coin,
+            user_order_item.crypto_id_name,
+            user_order.created_at
+          FROM user_order
+          INNER JOIN user_order_item USING(order_id)
+          WHERE user_id = ($1);`,[req.user])
+
+          const userTransfertInfos = await pool.query(`
+            SELECT 
+              user_transfert.transfert_id,
+              user_transfert_item.crypto_name,
+              user_transfert_item.amount_in_user_currency,
+              user_transfert_item.amount_converted_in_coin,
+              user_transfert.created_at
+            FROM user_transfert
+            INNER JOIN user_transfert_item USING(transfert_id)
+            WHERE user_id = ($1);`,[req.user])
+
+          const userInvestmentInfos = await pool.query(`
+           SELECT 
+            user_investment.investment_id,
+            user_investment_item.crypto_name,
+            user_investment_item.crypto_id_name,
+            user_investment_item.amount_in_user_currency,
+            user_investment_item.amount_converted_in_coin,
+            user_investment_item.total_amount_of_coin_in_user_currency,
+            user_investment_item.total_amount_of_converted_coin,
+            user_investment.created_at,
+            user_investment.updated_at
+          FROM user_investment
+          INNER JOIN user_investment_item USING(investment_id)
+          WHERE user_id = ($1);`,[req.user])
+          
+        if(checkUserExist.rows[0] === undefined){
+            res.status(404).json('cet utilisateur n\'existe pas!')
+       } else{
+            res.json({ user: checkUserExist.rows[0], contact: userContact.rows.length ,order: userOrderInfos.rows, transfert: userTransfertInfos.rows, investment: userInvestmentInfos.rows})
+        }
+      } catch (error) {
+        console.error('⛔ error ⛔: '+ error.message);
+      }
+})
+
+module.exports = router;

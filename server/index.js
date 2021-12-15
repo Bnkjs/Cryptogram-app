@@ -18,8 +18,7 @@ app.use('/profil', require('./routes/profil'))
 app.use('/buy_crypto', require('./routes/buy_crypto'))
 app.use('/transfert_crypto', require('./routes/transfert_crypto'))
 app.use('/contact', require('./routes/contact'))
-
-// app.use('/activity', require('./routes/activity'))
+app.use('/activity', require('./routes/activity'))
 
 
 
