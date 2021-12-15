@@ -22,7 +22,7 @@ const dashboard = async (token) => {
           return "token manquant!"
       }
     } catch (error) {
-        return error.message
+        console.log(error.response.data);
     }
 
 }

@@ -7,7 +7,7 @@ export const register = (e,email, password, username) => {
   
    return AuthService.register(e,email, password, username)
     .then((response) => {
-      console.log(response);
+
         store.dispatch({
           type: types.REGISTER_SUCCESS,
           payload: response
@@ -41,7 +41,6 @@ export const register = (e,email, password, username) => {
 export const login = (e, email, password) => {
   return AuthService.login(e, email, password)
   .then((response) => {
-    console.log(response);
       store.dispatch({
         type: types.LOGIN_SUCCESS,
         payload: response,
@@ -90,6 +89,12 @@ export const logout = () => {
   })
   store.dispatch({
     type: types.ACTIVITY_FAIL
+  })
+  store.dispatch({
+    type: types.GET_ALL_CONTACT_FAIL
+  })
+  store.dispatch({
+    type: types.ADD_CONTACT_FAIL
   })
 };
 

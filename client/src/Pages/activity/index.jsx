@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
+import activity from "../../Actions/activity";
 
-const Activity = ({ state }) => {
-
+const Activity = ({ state, token }) => {
+  const [dashState, getDashState] = useState(state) 
   const currentUserOrder = state? state.order : null
   const currentUserTransfert = state? state.transfert : null
-  
   
   const getOrders = state? currentUserOrder.map((el, index) => {
     return (<>
@@ -16,7 +16,6 @@ const Activity = ({ state }) => {
       <p className="order-item" key={index}> Montant: {el.amount_converted_in_coin} {el.crypto_id_name}</p>
       <p className="order-item" key={index}> Acheté le: {el.created_at}</p>
       <hr />
-      
     </>)
   }) : null
 
@@ -27,11 +26,12 @@ const Activity = ({ state }) => {
       <h4 className="order-item" key={index}> Nom de la cryptomonnaie: </h4>
       <p>{el.crypto_name}</p> 
       <p className="order-item" key={index}> crée le: {el.created_at}</p>
-      
-      
     </>)
   }) : null
 
+  useEffect(()=>{
+    activity(token)
+  },[dashState])
 
   return(
     <>

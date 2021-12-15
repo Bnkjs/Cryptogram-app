@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 const Profil = ({ state }) => {
 
-  console.log(state);
   return(
     <>
       <h1>Profil Page</h1>
