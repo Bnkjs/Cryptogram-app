@@ -43,7 +43,6 @@ export const addContact = async (e,token,email,firstname,lastname) => {
           }
           
         }).then(response => {
-          console.log(response.data);
           if(response.data){
               store.dispatch({
                 type: types.ADD_CONTACT_SUCCESS,

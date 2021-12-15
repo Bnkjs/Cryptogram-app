@@ -1,6 +1,8 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import activity from "../../Actions/activity";
+import { RowOrder } from "../../components/order";
+import { RowTransfert } from "../../components/transfert";
 
 const Activity = ({ state, token }) => {
   const [dashState, getDashState] = useState(state) 
@@ -8,24 +10,24 @@ const Activity = ({ state, token }) => {
   const currentUserTransfert = state? state.transfert : null
   
   const getOrders = state? currentUserOrder.map((el, index) => {
-    return (<>
-      <h4 className="order-item" key={index}> n° identifiant de l'achat: </h4>
-      <p>{el.order_id}</p>
-      <h4 className="order-item" key={index}> Nom de la cryptomonnaie: </h4>
-      <p>{el.crypto_name}</p> 
-      <p className="order-item" key={index}> Montant: {el.amount_converted_in_coin} {el.crypto_id_name}</p>
-      <p className="order-item" key={index}> Acheté le: {el.created_at}</p>
-      <hr />
-    </>)
+    return (
+      <RowOrder
+        key={el.id}
+        order_id={el.order_id}
+        crypto_name={el.crypto_name}
+        amount_converted_in_coin={el.amount_converted_in_coin}
+        created_at={el.created_at}
+      />
+    )
   }) : null
 
   const getTransferts = state? currentUserTransfert.map((el, index) => {
     return (<>
-      <h4 className="order-item" key={index}> n° identifiant du transfert: </h4>
-      <p>{el.transfert_id}</p>
-      <h4 className="order-item" key={index}> Nom de la cryptomonnaie: </h4>
-      <p>{el.crypto_name}</p> 
-      <p className="order-item" key={index}> crée le: {el.created_at}</p>
+      <RowTransfert
+        transfert_id={el.transfert_id}
+        crypto_name={el.crypto_name}
+        created_at={el.created_at}
+      />
     </>)
   }) : null
 

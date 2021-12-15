@@ -22,7 +22,7 @@ const Contact = ({ state, token }) => {
       <p key={el.id}className="contact-item">{el.email}</p>
       <p key={el.id}className="contact-item">{el.first_name}</p> 
       <p key={el.id} className="contact-item">{el.last_name}</p>
-      <h3 color="red" onClick={(e)=> deleteContact(e,token,el.email) }>x</h3>
+      <h3 onClick={(e)=> deleteContact(e,token,el.email) }>x</h3>
       <hr/>
     </>)
   }) : null
