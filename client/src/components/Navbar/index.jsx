@@ -17,6 +17,9 @@ const Navbar = ({ setAuth }) =>{
         {userLogged && 
           <ul id="nav-ul">
              <li className="li-nav">
+              <Link to="/market"><p>Crypto-monnaies</p></Link>
+            </li>
+             <li className="li-nav">
               <Link to="/dashboard"><p>dashboard</p></Link>
             </li>
             <li className="li-nav">
@@ -46,6 +49,9 @@ const Navbar = ({ setAuth }) =>{
             </li>
             <li className="li-nav">
               <Link to="/login"><p>Se connecter</p></Link>
+            </li>
+            <li className="li-nav">
+              <Link to="/market"><p>Crypto-monnaies</p></Link>
             </li>
           </ul>
         }

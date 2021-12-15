@@ -11,6 +11,18 @@ const cryptoExchange = (crypto_name, amount) => {
         }
     })
 }
+//get all crypto 
+const getAllCrypto = (crypto_name) => {
+  return axios.get(apiUrlCoinByID.allCoins('eur'))
+    .then((response) => {
+        if(response.data[0]){
+           return response.data
+        } else{
+            res.status(404).json('une erreur s\'est glissée..')
+          }
+    })
+}
+
 
 //get crypto id
 const getCryptoSymbol = (crypto_name) => {
@@ -36,4 +48,4 @@ const getCryptoName = (crypto_name) => {
   })
 } 
 
-module.exports= {cryptoExchange,getCryptoSymbol,getCryptoName}
+module.exports= {cryptoExchange,getCryptoSymbol,getCryptoName,getAllCrypto}

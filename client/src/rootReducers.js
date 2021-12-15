@@ -4,13 +4,14 @@ import messageReducer from "./Reducers/messageReducer";
 import dashboardReducer from "./Reducers/dashboardReducer";
 import activityReducer from "./Reducers/activityReducer";
 import contactReducer from "./Reducers/contactReducer";
-
+import cryptoReducer from "./Reducers/cryptoReducer";
 const rootReducers = combineReducers({
   authReducer,
   messageReducer,
   dashboardReducer,
   activityReducer,
-  contactReducer
+  contactReducer,
+  cryptoReducer
 })
 
 export default rootReducers;

@@ -13,6 +13,7 @@ import { ProfilStore } from "./Pages/profil";
 import { ContactStore } from "./Pages/contact/contact";
 import { createStore } from "redux";
 import contactReducer from "./Reducers/contactReducer";
+import Market, { MarketStore } from "./Pages/market";
 
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn
@@ -28,6 +29,7 @@ const App = () => {
     <>
       <Router>
         <Navbar setAuth={setAuth}/>
+        <Route exact path ="/market" render={props =>  <MarketStore {...props} />}/>
         <Route exact path ="/signup" render={props => !myStore? <Signup {...props} setAuth={setAuth}/>  : <Redirect to="/login"/>} />
         <Route exact path ="/login" render={props => !myStore ? <Login {...props} setAuth={setAuth} /> : <Redirect to="/dashboard"/>} />
         <Route exact path="/profil" render={props => myStore? <ProfilStore {...props}/> : <Redirect to="/login"/>}/>
