@@ -1,6 +1,6 @@
-const cryptoApiUrls = {
-  allCoins: 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur',
-  coinsById: 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&ids='
-}
 
-module.exports = cryptoApiUrls
+const allCoins = (currency) => `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}`
+const coinsById = (currency) => `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=`
+
+
+module.exports = {allCoins,coinsById}
