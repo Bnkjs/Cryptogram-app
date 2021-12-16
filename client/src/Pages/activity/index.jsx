@@ -1,6 +1,5 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
-import activity from "../../Actions/activity";
 import { RowOrder } from "../../components/order";
 import { RowTransfert } from "../../components/transfert";
 
