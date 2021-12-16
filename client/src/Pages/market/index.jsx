@@ -14,7 +14,7 @@ const Market = ({ state }) => {
         rank={el.market_cap_rank}
         image={el.image}
         name={el.name}
-        nameId={el.symbol}
+        nameid={el.symbol.toUpperCase()}
         price={el.current_price}
         evday={el.price_change_percentage_24h}
         marketcap={el.market_cap}
@@ -24,11 +24,7 @@ const Market = ({ state }) => {
   }) : null
 
   useEffect(()=>{
-    const cryptoTracker = setInterval(() => {
       getMarket()
-      setMArket(()=> !market)
-    },5000)
-    return () => clearInterval(cryptoTracker)
   },[market])
  
   return(<>
