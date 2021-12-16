@@ -5,13 +5,14 @@ import dashboard from "../../Actions/dashboard";
 const Dashboard = ({ state, token }) =>{
   
   const [dashState, getDashState] = useState(state)
-  const currentUserEmail = state? state.user.email : null
-  const currentUserName = state? state.user.username : null
-  const currentContact = state? state.contact : null
-  const currentUserInvestment = state? state.investment : null
-  const currentUserTransfert = state? state.transfert : null
+  const storedUserEmail = state? state.user.email : null
+  const storedUserName = state? state.user.username : null
+  const storedContact = state? state.contact : null
+  const storedUserInvestment = state? state.investment : null
+  const storedUserTransfert = state? state.transfert : null
+  const storedUserBalance = state? state.user.balance : null
 
- useEffect(()=>{
+  useEffect(()=>{
   dashboard(token)
  },[dashState])
   
@@ -19,20 +20,25 @@ const Dashboard = ({ state, token }) =>{
     <>
         <div>
           <h1>Dashboard</h1>
-           <h2>{currentUserEmail}</h2>
-           <p>{currentUserName}</p>
-           <p>vous avez {currentContact} contact</p>
+           <h2>{storedUserEmail}</h2>
+           <p>{storedUserName}</p>
+           <p>vous avez {storedContact} contact</p>
+           <p>votre solde est de: {storedUserBalance} €</p>
            <hr />
            <h3>Achat</h3>
-            {currentUserInvestment === null?
+            {storedUserInvestment === null?
               <p>vous n'avez pas encore effectué d'achat </p>
-              :  <p>vous avez {currentUserInvestment} investissements </p> 
+              : storedUserInvestment.length > 1?  
+               <p>vous avez {storedUserInvestment} investissements </p> 
+               : <p>vous avez {storedUserInvestment} investissement </p>
             }
            <hr />
            <h3>Transferts</h3>
-           {currentUserTransfert === null?
+           {storedUserTransfert === null?
               <p>vous n'avez pas encore effectué de transfert </p>
-              :  <p> vous avez effécuté {currentUserTransfert} transferts  </p>
+              : storedUserTransfert.length > 1? 
+              <p> vous avez effécuté {storedUserTransfert} transferts  </p>
+              :  <p> vous avez effécuté {storedUserTransfert} transfert  </p>
             }
         </div>
     </>
