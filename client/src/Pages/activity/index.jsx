@@ -8,6 +8,10 @@ const Activity = ({ state, token }) => {
   const [dashState, getDashState] = useState(state) 
   const currentUserOrder = state? state.order : null
   const currentUserTransfert = state? state.transfert : null
+  const currentUserTransfertLength = state? state.transfert.length : null
+  const currentUserOrderLength = state? state.length : null
+
+
   
   const getOrders = state? currentUserOrder.map((el, index) => {
     return (
@@ -30,7 +34,7 @@ const Activity = ({ state, token }) => {
       />
     </>)
   }) : null
-
+  console.log(currentUserTransfertLength);
   useEffect(()=>{
     activity(token)
   },[dashState])
@@ -41,13 +45,13 @@ const Activity = ({ state, token }) => {
           <h1>Récente activité</h1>
           <hr />  
            <h3>Achat</h3>
-            {currentUserOrder === null?
+            {currentUserOrderLength === 0 || currentUserOrderLength === null?
               <p>vous n'avez pas encore effectué d'achat </p>
               : getOrders
             }
            <hr />
            <h3>Transferts</h3>
-           {currentUserTransfert === null?
+           {currentUserTransfertLength === 0 || currentUserTransfertLength === null?
               <p>vous n'avez pas encore effectué de transfert </p>
               : getTransferts
             }
