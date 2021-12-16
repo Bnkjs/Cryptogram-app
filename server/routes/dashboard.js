@@ -9,7 +9,6 @@ router.get('/', authorization, async (req,res)=>{
         //1. find user
         const checkUserExist = await pool.query('SELECT email,username,avatar,investment,balance FROM users WHERE user_id = ($1)',[req.user])
         const userContact = await pool.query('SELECT * FROM user_contact WHERE user_id = ($1)',[req.user])
-        const userOrderInfos = await pool.query('SELECT * FROM user_order WHERE user_id = ($1);',[req.user])
         const userTransfertInfos = await pool.query('SELECT * FROM user_transfert WHERE user_id = ($1);',[req.user])
         const userInvestmentInfos = await pool.query('SELECT * FROM user_investment WHERE user_id = ($1);',[req.user])
           

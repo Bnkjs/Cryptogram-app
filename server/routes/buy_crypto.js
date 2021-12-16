@@ -3,9 +3,8 @@ const pool = require('../db')
 const authorization = require('../middleware/authorization')
 const moment = require('moment')
 const validInfosCrypto = require('../middleware/validInfosCryptos')
-const axios = require('axios')
-const apiUrlCoinByID = require('../service/apiUrls')
-const { query } = require('express')
+const cryptoService = require('../service/crypto')
+
 
 router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
   const date = moment().format('DD MMM YYYY H:mm')
@@ -19,45 +18,13 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
     if(checkUserExist.rows[0] === undefined){
       res.status(404).json('cet utilisateur n\'existe pas!')
   } else{
-
+ 
       // amount converted
-      const cryptoExchange = () => {
-        return axios.get(apiUrlCoinByID.coinsById('eur') + crypto_name)
-          .then((response) => {
-              if(response.data[0]){
-                return amount * response.data[0].current_price
-              } else{
-                res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
-              }
-          })
-      }
-      const amountExchangeInUserCurrency= await cryptoExchange().then(res => res)
-
+      const amountExchangeInUserCurrency = await cryptoService.cryptoExchange(crypto_name,amount).then(res => res)
       //get crypto id
-      const getCryptoSymbol = () => {
-        return axios.get(apiUrlCoinByID.coinsById('eur') + crypto_name)
-        .then((response) => {
-          if(response.data[0]){
-            return response.data[0].symbol
-          }else{
-            res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
-          }
-        })
-      }
-      const cryptoSymbol = await getCryptoSymbol().then(res => res)
-
+      const cryptoSymbol = await cryptoService.getCryptoSymbol(crypto_name).then(res => res)
       // crypto_name
-      const getCryptoName = () => {
-        return axios.get(apiUrlCoinByID.coinsById('eur') + crypto_name)
-        .then((response) => {
-          if(response.data[0]){
-            return response.data[0].name
-          } else{
-            res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
-          }
-        })
-      }
-      const cryptoName = await getCryptoName().then(res => res)
+      const cryptoName = await cryptoService.getCryptoName(crypto_name).then(res => res)
 
       // -------------------- QUERIES DB -------------------- //
       // ---- ADD NEW ORDER ----  //
@@ -86,7 +53,6 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
             amount,newInvestment.rows[0].investment_id])
         } else{
           // ---- IF ALREADY EXITS UPDATE INVESTMENT ITEM ----  //
-            const checkIfUserHaveCoin = await pool.query('SELECT * FROM user_investment_item WHERE (crypto_name) = ($1)',[cryptoName])
             const updateInvestmentItem = await pool.query(`
             UPDATE user_investment_item 
             SET (
