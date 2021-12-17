@@ -1,0 +1,43 @@
+::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+#container{
+    display: grid;
+    width: 100%;
+    height: auto;
+}
+/* ---- FORM ---- */
+
+.title-form{
+  font-size: 2em;
+}
+
+.h-card{
+  position: absolute;
+  width: auto;
+  margin: 0 auto;
+  padding: 1em;
+  color: #fff;
+  margin-top: 5%;
+  text-align: center;
+}
+.h-card-title{
+  font-size: 2em;
+  font-weight: 600;
+  width: auto;
+  margin: 0;
+}
+.h-card-text{
+  font-weight: 300;
+  width: auto;
+  
+}
+

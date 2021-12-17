@@ -1,8 +1,17 @@
 import React,{useEffect, useState} from "react";
 import { connect } from "react-redux";
-import { InputForm } from "../../components/InputForm";
-import { Button } from "../../components/Button"
+import { inputStyled } from "../../components/Input/index";
 import { addContact, deleteAllContact, deleteContact, getAllContact } from "../../Actions/contact";
+import { Input } from "../../components/Input/index";
+import { register } from "../../Actions/auth";
+import { useSelector } from "react-redux";
+import { Button } from "../../components/Button/index";
+import { Card } from "../../components/Card";
+import Div from "../../components/Div";
+import { Marged } from "../../components/Marged";
+import { PageContainer } from "../../components/PageContainer";
+import { Form } from "../../components/Form";
+import img_gradient_contact from '../../assets/FORM_SIGNUP_CARD_GRADIENT.svg'
 
 const Contact = ({ state, token }) => {
   const [inputs, setInputs] = useState({
@@ -31,29 +40,30 @@ const Contact = ({ state, token }) => {
     getAllContact(token)
   },[currentUserContact])
   return(<>
-    <div>
-      <h1>Contact Liste</h1>
-        {currentUserContact === null?
-              <p>vous n'avez pas de contact dans votre liste </p>
-              : getContact
-            }
-      <hr />
-      <p>Ajouter un contact</p>
-      <form action="" onSubmit={(e)=> addContact(e,token,email,firstname,lastname)}>
-        <InputForm type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} />
-        <InputForm type="text" placeholder="prénom" name="firstname" className="firstname-input" value={firstname} onChange={(e)=>onChange(e)} />
-        <InputForm type="text" placeholder="nom de famille" name="lastname" className="lastname-input" value={lastname} onChange={(e)=>onChange(e)} />
-        <Button message="Ajouter" />
-      </form>
-      <hr />
-      <p>Supprimer un contact</p>
-      <button onClick={(e) => deleteAllContact(e,token)}>Supprimer All</button>
-      {/* <form action="" onSubmit={(e)=> deleteContact(e,token,email)}>
-        <InputForm type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} />
-        <Button message="Supprimer" />
-      </form> */}
-    </div>
-        
+    <PageContainer>
+      <Marged top="70px"/>
+      <Div gg="40px" display="grid" gtc="repeat(auto-fill, 550px)" justifyContent='center'  id="class">
+        <Card className="card-form">
+          <img width="500px" height="auto" src={img_gradient_contact} alt="" />
+          <div className="h-card">
+           <h3 className="h-card-title">S'inscrire</h3>
+           <p className="h-card-text">C'est simple et rapide.</p>
+         </div>
+        </Card>
+        <Div  width="550px" display="flex" justifyContent='center' alignItems='start' flexDirection='column'>
+          <h1 className="title-form">Ajouter un contact</h1>
+          <Form onSubmit={(e)=> addContact(e,email,firstname,lastname)}>
+            <Input type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} required />
+            <Marged bottom="20px"/>
+            <Input type="text" placeholder="prénom" name="firstname" className="firstname-input" value={firstname} onChange={(e)=>onChange(e)} required  />
+            <Marged bottom="20px" />
+            <Input type="text" placeholder="nom de famille" name="lastname" className="lastname-input" value={lastname} onChange={(e)=>onChange(e)} required />
+            <Marged bottom="20px"/>
+            <Button primary_xl>Créer son compte</Button>
+          </Form>
+        </Div>  
+      </Div>
+    </PageContainer>
   </>)
 }
 

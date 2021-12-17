@@ -13,8 +13,8 @@ import { ProfilStore } from "./Pages/profil";
 import { ContactStore } from "./Pages/contact/contact";
 import { createStore } from "redux";
 import contactReducer from "./Reducers/contactReducer";
-import Market, { MarketStore } from "./Pages/market";
-
+import { MarketStore } from "./Pages/market";
+import './app.css'
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn
   const [isAuthenticated, setIsAuthenticated] = useState(myStore)
@@ -26,7 +26,7 @@ const App = () => {
   }
 
   return(
-    <>
+    <div id="container">
       <Router>
         <Navbar setAuth={setAuth}/>
         <Route exact path ="/market" render={props =>  <MarketStore {...props} />}/>
@@ -40,7 +40,7 @@ const App = () => {
         <Route exact path="/transfert_crypto" render={props => myStore? <TransfertCrypto {...props}/> : <Redirect to="/login"/>}/>      
       </Router>
 
-    </>
+    </div>
   )
 }
 
