@@ -2,7 +2,11 @@ import React,{useEffect} from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../Actions/auth";
+import { Button } from "../Button/index"
 import "../Navbar/style.css"
+import { FiZap } from "react-icons/fi";
+
+
 const Navbar = ({ setAuth }) =>{
 
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
@@ -16,27 +20,27 @@ const Navbar = ({ setAuth }) =>{
       <nav id="navbar">
         {userLogged && 
           <ul id="nav-ul">
+            <li className="li-nav">
+              <Link to="/">
+                <div className="l-header"></div>
+              </Link>
+            </li>
              <li className="li-nav">
-              <Link to="/market"><p>Crypto-monnaies</p></Link>
+              <Link to="/market"><p className="li-p">Crypto-monnaies</p></Link>
             </li>
              <li className="li-nav">
-              <Link to="/dashboard"><p>dashboard</p></Link>
+              <Link to="/dashboard"><p className="li-p">dashboard</p></Link>
             </li>
             <li className="li-nav">
-              <Link to="/profil"><p>Profil</p></Link>
+              <Link to="/profil"><p className="li-p">Profil</p></Link>
             </li>
             <li className="li-nav">
-              <Link to="/contact"><p>Contact</p></Link>
+              <Link to="/contact"><p className="li-p">Contact</p></Link>
             </li>
             <li className="li-nav">
-              <Link to="/activity"><p>Activity</p></Link>
+              <Link to="/activity"><FiZap className="li-p li-icon" /></Link>
             </li>
-            <li className="li-nav">
-              <Link to="/buy_crypto"><p>buy-crypto</p></Link>
-            </li>
-            <li className="li-nav">
-              <Link to="/transfert_crypto"><p>transfert-crypto</p></Link>
-            </li>
+           
             <li className="li-nav">
               <button onClick={()=>logout()}>Se déconnecter</button>
               </li>
@@ -44,15 +48,26 @@ const Navbar = ({ setAuth }) =>{
         }
         {!userLogged && 
           <ul id="nav-ul">
-            <li className="li-nav">
-            <Link to="/signup"><p>S'inscrire</p></Link>
+            <li className="li-logo">
+              <Link to="/">
+                <div className="l-header"></div>
+              </Link>
             </li>
-            <li className="li-nav">
-              <Link to="/login"><p>Se connecter</p></Link>
-            </li>
-            <li className="li-nav">
-              <Link to="/market"><p>Crypto-monnaies</p></Link>
-            </li>
+            <div className="market-wrap">
+              <li className="li-nav">
+                <Link to="/market"><p className="li-p">Crypto-monnaies</p></Link>
+              </li>
+             </div>
+             <div className="auth-wrap">
+              <li className="li-nav">
+                <Link to="/login"><p className="li-p">Se connecter</p></Link>
+              </li>
+              <li className="li-nav">
+                <Link to="/signup">
+                  <Button gradient className="btn-cta-nav" padding="0.8em 2em">S'inscrire</Button>
+                </Link>
+              </li>
+             </div>
           </ul>
         }
       </nav>

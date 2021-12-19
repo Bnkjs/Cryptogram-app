@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { InputForm } from "../../components/InputForm";
-import { Button } from "../../components/Button";
+import { Input } from "../../components/Input/index";
 import { register } from "../../Actions/auth";
 import { useSelector } from "react-redux";
+import { Button } from "../../components/Button/index";
+import { Card } from "../../components/Card";
+import Div from "../../components/Div";
+import { Marged } from "../../components/Marged";
+import { PageContainer } from "../../components/PageContainer";
+import { Form } from "../../components/Form";
+import img_gradient_signup from '../../assets/FORM_SIGNUP_CARD_GRADIENT.svg'
+import { Link } from "react-router-dom";
 
 const Signup = ({ setAuth }) =>{
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
@@ -26,15 +33,33 @@ const Signup = ({ setAuth }) =>{
   
   
   return(<>
-    <div>
-      <h1>Inscrivez-vous</h1>
-      <form action="" onSubmit={(e)=> handleSubmit(e,email,password,username)}>
-        <InputForm type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} />
-        <InputForm type="password" placeholder="mdp" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} />
-        <InputForm type="text" placeholder="nom d'utilisateur" name="username" className="username-input" value={username} onChange={(e)=>onChange(e)} />
-        <Button message="Inscrivez-vous" />
-      </form>  
-    </div>
+    <PageContainer>
+      <Marged />
+      <Div gg="40px" display="grid" gtc="repeat(auto-fill, 550px)" justifyContent='center'  id="class">
+        <Card className="card-form">
+          <img width="450px" height="auto" src={img_gradient_signup} alt="" />
+          <div className="h-card">
+           <h3 className="h-card-title">S'inscrire</h3>
+           <p className="h-card-text">C'est simple et rapide.</p>
+         </div>
+        </Card>
+        <Div  width="550px" display="flex" justifyContent='center' alignItems='start' flexDirection='column'>
+          <h1 className="title-form">Créez votre compte</h1>
+          <Form onSubmit={(e)=> handleSubmit(e,email,password,username)}>
+            <Input type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} required />
+            <Marged bottom="20px"/>
+            <Input type="password" placeholder="mot de passe" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} required  />
+            <Marged bottom="20px" />
+            <Input type="text" placeholder="nom d'utilisateur" name="username" className="username-input" value={username} onChange={(e)=>onChange(e)} required />
+            <Marged bottom="20px"/>
+            <Button primary_xl>Créer son compte</Button>
+            <p className="n-login-signup">Vous n’avez pas de compte?
+              <Link to='/login'><span className="link-redirect"> Connectez-vous</span></Link>
+            </p>
+          </Form>
+        </Div>  
+      </Div>
+    </PageContainer>
         
   </>)
 }
