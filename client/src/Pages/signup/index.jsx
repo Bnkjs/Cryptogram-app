@@ -9,6 +9,7 @@ import { Marged } from "../../components/Marged";
 import { PageContainer } from "../../components/PageContainer";
 import { Form } from "../../components/Form";
 import img_gradient_signup from '../../assets/FORM_SIGNUP_CARD_GRADIENT.svg'
+import { Link } from "react-router-dom";
 
 const Signup = ({ setAuth }) =>{
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
@@ -33,10 +34,10 @@ const Signup = ({ setAuth }) =>{
   
   return(<>
     <PageContainer>
-      <Marged top="70px"/>
+      <Marged />
       <Div gg="40px" display="grid" gtc="repeat(auto-fill, 550px)" justifyContent='center'  id="class">
         <Card className="card-form">
-          <img width="500px" height="auto" src={img_gradient_signup} alt="" />
+          <img width="450px" height="auto" src={img_gradient_signup} alt="" />
           <div className="h-card">
            <h3 className="h-card-title">S'inscrire</h3>
            <p className="h-card-text">C'est simple et rapide.</p>
@@ -52,6 +53,9 @@ const Signup = ({ setAuth }) =>{
             <Input type="text" placeholder="nom d'utilisateur" name="username" className="username-input" value={username} onChange={(e)=>onChange(e)} required />
             <Marged bottom="20px"/>
             <Button primary_xl>Créer son compte</Button>
+            <p className="n-login-signup">Vous n’avez pas de compte?
+              <Link to='/login'><span className="link-redirect"> Connectez-vous</span></Link>
+            </p>
           </Form>
         </Div>  
       </Div>

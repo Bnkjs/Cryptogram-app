@@ -8,7 +8,7 @@ const initialState = currentUserInfo
   : { isLoggedIn: false, profilInfos: null};
 
 
-export default ProfilReducer = (state = initialState, action) => {
+const ProfilReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch(type){
@@ -39,7 +39,7 @@ export default ProfilReducer = (state = initialState, action) => {
     case types.PROFIL_DELETE_SUCCESS:
       return {
         ...state,
-        isLoggedIn: true,
+        isLoggedIn: false,
         profilInfos: payload
       }
     case types.PROFIL_DELETE_FAIL:
@@ -52,3 +52,5 @@ export default ProfilReducer = (state = initialState, action) => {
         return state;
   }
 }
+
+export default ProfilReducer

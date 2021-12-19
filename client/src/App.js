@@ -15,11 +15,12 @@ import { createStore } from "redux";
 import contactReducer from "./Reducers/contactReducer";
 import { MarketStore } from "./Pages/market";
 import './app.css'
+import Landing from "./Pages/Landing";
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn
   const [isAuthenticated, setIsAuthenticated] = useState(myStore)
   const currentUserInfo = useSelector(state => state.authReducer)
-  const storeContact = createStore(contactReducer)
+
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
@@ -29,10 +30,11 @@ const App = () => {
     <div id="container">
       <Router>
         <Navbar setAuth={setAuth}/>
+        <Route exact path ="/" render={props =>  <Landing {...props} />}/>
         <Route exact path ="/market" render={props =>  <MarketStore {...props} />}/>
         <Route exact path ="/signup" render={props => !myStore? <Signup {...props} setAuth={setAuth}/>  : <Redirect to="/login"/>} />
         <Route exact path ="/login" render={props => !myStore ? <Login {...props} setAuth={setAuth} /> : <Redirect to="/dashboard"/>} />
-        <Route exact path="/profil" render={props => myStore? <ProfilStore {...props}/> : <Redirect to="/login"/>}/>
+        <Route exact path="/profil" render={props => myStore? <ProfilStore {...props} token={currentUserInfo.token}/> : <Redirect to="/login"/>}/>
         <Route exact path ="/contact" render={props => myStore ? <ContactStore {...props} token={currentUserInfo.token} /> : <Redirect to="/login"/>} />
         <Route exact path ="/dashboard" render={props => myStore ? <DashboardStore {...props} token={currentUserInfo.token} /> : <Redirect to="/login"/>} />
         <Route exact path="/activity" render={props => myStore? <ActivityStore {...props} token={currentUserInfo.token} /> : <Redirect to="/login"/>}/>
