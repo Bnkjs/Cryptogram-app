@@ -13,7 +13,7 @@ import svg_lock from '../../assets/lock.svg';
 const Landing = ({ state }) => {
   return(<>
     <PageContainer>
-      <Div className="container-wrap" display="flex" justifyContent="center">
+      <Div className="container-landing">
         <Div className="header-slogan">
           <h1 className="header-title">Achetez et Transférez <br/> des <span className="span-gradient">cryptosmonnaie</span> <br/> instantenément</h1>
           <p className="header-text">Négociez des Bitcoin, Ethereum et toutes les meilleures <br/> cryptomonnaie  du marché. </p>
@@ -35,7 +35,28 @@ const Landing = ({ state }) => {
         <Div className="header-image">
           <img width={'400px'} src={img_gradient_landing} alt="" />
         </Div>
+        <div className="w-crypto">
+          <div className="b-crypto-data">
+            <img src="" alt="" />
+            <p className="c-name">BTC</p>
+            <p className="r-24">0,79%</p>
+            <p className="c-price">22.15</p>
+          </div>
+          <div className="b-crypto-data">
+            <img src="" alt="" />
+            <p className="c-name">BTC</p>
+            <p className="r-24">0,79%</p>
+            <p className="c-price">22.15</p>
+          </div>
+          <div className="b-crypto-data">
+            <img src="" alt="" />
+            <p className="c-name">BTC</p>
+            <p className="r-24">0,79%</p>
+            <p className="c-price">22.15</p>
+          </div>
+        </div>
       </Div>
+      
     </PageContainer>
     <PageContainer id="l-moto" bg='#F8F8F9'>
      <h1 className="l-hone">Une gamme de fonctionnalités complète</h1>

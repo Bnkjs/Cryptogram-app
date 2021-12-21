@@ -1,3 +1,15 @@
+$primary-font: 'Montserrat', sans-serif;
+$secondary-font: 'Raleway', sans-serif;
+$bg-grey:#F4F5F6;
+
+@mixin  text-aligne-center {
+  text-align: center;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 ::before, ::after {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +23,7 @@ a{
 }
 
 body{
-  font-family: 'Montserrat', sans-serif;
+  font-family: $primary-font;
   font-size: 1rem;
   margin: 0;
   padding: 0;
@@ -26,11 +38,9 @@ body{
   padding: 1rem;
   width: auto;
   height: 3.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center();
   border-bottom: 1px solid rgb(242, 242, 242);
-  font-family: 'Raleway', sans-serif;
+  font-family: $secondary-font;
 }
 
 #nav-ul{
@@ -82,20 +92,27 @@ body{
   margin: 0 0 0 1em;
 }
 /* ---- LANDING ---- */
-.container-wrap{
-  margin-top: 3em;
+.container-landing{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 550px);
+  background-color: red;
+  width: 100%;
+  margin: 3em auto;
 }
+
 .header-slogan{
-  width: 50%;
+  width: 600px;
+  background-color: lawngreen;
 }
 .header-title{
-  font-size: 3em;
-  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5em;
+  font-family: $primary-font;
   margin: 1em 0 0 0;
 }
 .header-text{
   color: #737B7D;
   margin-bottom: 1em;
+  font-weight: 300;
 }
 .span-gradient{
   background-image: linear-gradient(91.26deg, #5566fe 15%, #EB76FF 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
@@ -104,35 +121,37 @@ body{
   text-decoration: line-through;
 }
 .header-image{
-  width: 50%;
+  width: 550px;
   transform: scale(1.1);
+  position: relative;
+  display: none;
 }
 
 .circle-arrow{
   width: 25px;
   height: 25px;
   border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center();
   border: 2px solid rgb(152, 152, 152);
   margin-top: 5em;
   cursor: pointer;
+  &:hover{
+    border: 2px solid rgb(45, 45, 45);
+  }
+  .circle:hover{
+    opacity: 1;
+  }
 }
-.circle-arrow:hover{
-  border: 2px solid rgb(45, 45, 45);
 
-}
 .circle{
   width: 40px;
   height: 40px;
   position: relative;
   transform: scale(0.7);
   opacity: 0.6;
+  color: #000;
 }
-.circle:hover{
-  opacity: 1;
-}
+
 .l-hone{
   margin: 0;
   text-align: center;
@@ -145,9 +164,7 @@ body{
   justify-content: center;
 }
 .card-feat{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center();
   flex-direction: column;
   height: 396px;
   width: 349px;
@@ -167,13 +184,11 @@ body{
 .card-feat-circle{
   width: 80px;
   height: 80px;
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center();
   background-color:rgb(26, 26, 26) ;  
   margin-top: 5em;
   margin: 0 0 3em 0 ;
+  border-radius: 50px;
 }
 .round-up:nth-child(1){
   background-color: rgb(2, 164, 107);
@@ -187,6 +202,24 @@ body{
 }
 .btn-cta{
   margin-top: 0.5em;
+}
+
+.w-crypto{
+  width: 100%;
+  padding: 2em 0;
+  margin: 0 auto;
+  position: relative;
+  bottom: 0;
+  border-radius: 1em;
+  border: 1px solid $bg-grey;
+  @include flex-center();
+  gap: 15px;
+}
+.b-crypto-data{
+  width: auto;
+  background-color: $bg-grey;
+  padding: 1em 4em;
+  border-radius: 1em;
 }
 /* ---- FORM ---- */
 
