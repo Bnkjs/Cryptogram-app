@@ -14,7 +14,7 @@ import { ContactStore } from "./Pages/contact/contact";
 import { createStore } from "redux";
 import contactReducer from "./Reducers/contactReducer";
 import { MarketStore } from "./Pages/market";
-import './app.css'
+import './app.scss'
 import Landing from "./Pages/Landing";
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn

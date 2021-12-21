@@ -7,6 +7,7 @@ export const PageContainer = styled.div`
   padding-top: 50px;
   margin: 0px auto;
   background: ${({bg})=> bg} ;
+  position: relative;
 `
 
 PageContainer.proptypes = {
