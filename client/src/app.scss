@@ -1,7 +1,10 @@
 $primary-font: 'Montserrat', sans-serif;
 $secondary-font: 'Raleway', sans-serif;
 $bg-grey:#F4F5F6;
-
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
 @mixin  text-aligne-center {
   text-align: center;
 }
@@ -313,3 +316,137 @@ body{
   right: 24.5em;
   bottom: 3em;
 }
+
+/*  ---- MARKET PAGE ---- */
+/* ---- C ROW ---- */
+.link-redirect-buy{
+  color: #000;
+}
+.c-row-container{
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  height: 5em;
+  margin: 1em 0 0 0 ;
+  transition: all .1s ease-in-out;
+  &:hover{
+    background-color: $bg-grey;
+    .btn-cta-market{
+      display: block;
+    }
+  }
+  cursor: pointer;
+}
+.btn-cta-market{
+  display: none;
+  position: absolute;
+  margin: 0 0 0 2.5em ;
+  right: 0;
+}
+.c-img-name-id{
+ display: flex;
+ align-items: center;
+ gap: 5px;
+ width: 105px;
+ padding: 0 0.5em 0 0 ;
+}
+
+.c-img{
+    width: 20px;
+}
+.c-rank{
+  margin-right: 4%;
+}
+.c-img-name-id{
+  margin-right: 5%;
+}
+.c-name-id{
+  color: rgb(135, 135, 135);
+}
+.c-price{
+  margin-right: 3.5%;
+  width: 50px;
+  padding: 0 0.5em 0 0 ;
+  @include flex-end();
+}
+.c-ev-day-prct{
+  margin-right: 4%;
+  @include flex-end();
+  width: 50px;
+}
+.c-ev-day-prc{
+  margin-right: 3.5%;
+  width: 70px;
+  @include flex-end();
+}
+.c-market-cap {
+  margin-right: 6%;
+  width: 100px;
+  @include flex-end();
+}
+.c-market-cap-prc {
+  margin-right: 7%;
+  width: 100px;
+  @include flex-end();
+}
+.c-market-cap-prct {
+  margin-right: 5%;
+  width: 100px;
+  @include flex-end();
+}
+.c-t-volum {
+  width: 100px;
+  @include flex-end();
+}
+.c-more-w{
+  width: 100%;
+  @include flex-center();
+}
+.c-more{
+  position: relative;
+  margin: 2em auto;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50px;
+}
+/* ---- C ROW ---- */
+#col-info-crypto{
+  width: 100%;
+  display: flex;
+  color: rgb(135, 135, 135);
+}
+.col-i{
+  font-size: 0.8em;
+}
+.rank{
+  margin-right: 4%;
+}
+.name{
+  margin-right: 13%;
+}
+.price{
+  margin-right: 4%;
+}
+.daypct{
+  margin-right: 6%;
+}
+.dayprc{
+  margin-right: 5%;
+}
+.market-t{
+  margin-right: 5.5%;
+}
+.market-prc{
+  margin-right: 5.5%;
+}
+.market-prct{
+  margin-right: 7.5%;
+}
+.hr{
+  width: 100%;
+  height: 0.5;
+  background-color: $bg-grey;
+}
+
+/*  ---- MARKET PAGE ---- */
