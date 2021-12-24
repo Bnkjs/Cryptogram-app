@@ -12,7 +12,7 @@ export const Button = styled.button`
   font-family: 'Raleway', sans-serif;  
   font-weight: 600;
   box-shadow: 0px 2px 15px 4px rgba(0, 0, 0, 0.1);
-
+  width: ${({width}) => width};
     
     ${props => props.gradient && css`
       background: #ffff;
@@ -29,8 +29,9 @@ export const Button = styled.button`
 
   Button.proptypes = {
     padding: PropTypes.string;
+    width: PropTypes.string;
   }
-  ${props => props.black && css`
+  ${props => props.dark && css`
     background: #313131;
     color: #fff;
     :hover{
@@ -41,7 +42,6 @@ export const Button = styled.button`
   ${props => props.primary_xl && css`
     background-color: #436CFF;
     color: #fff;
-    width:auto;
     padding: 0.7em 6.5em;
     :hover{
      background: #2B59FF;
@@ -50,7 +50,6 @@ export const Button = styled.button`
   ${props => props.primary_xl_del && css`
     background-color: #FF6155;
     color: #fff;
-    width:auto;
     padding: 0.7em 6em;
     :hover{
      background: #FF4A3D ;

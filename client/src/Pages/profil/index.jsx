@@ -36,7 +36,6 @@ const Profil = ({ state, token }) => {
               <Button primary_xl_del onClick={(e)=> submitDelete(e)}>Supprimer son compte</Button>
             </div>
         </Div>
-       
       </Div>
     </PageContainer>
   )

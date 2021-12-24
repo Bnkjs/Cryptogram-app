@@ -20,7 +20,7 @@ export const RowMarket =  (props) =>{
       <p className="c-market-cap-prc">{props.market_cap_prc}</p>
       <p className="c-market-cap-prct">{props.market_cap_prct}</p>
       <p className="c-t-volum">{props.total_volum}</p>
-     <Button black className="btn-cta-market">Acheter</Button>
+     <Button dark className="btn-cta-market">Acheter</Button>
     </div>
    
   </>)

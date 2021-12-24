@@ -1,9 +1,18 @@
 $primary-font: 'Montserrat', sans-serif;
 $secondary-font: 'Raleway', sans-serif;
+$font-logo:'Poppins', sans-serif;
+$primary-color: #2B59FF;
+$alert-color :#FF4A3D;
+$dark-color: #000;
+$light-color: #fff;
 $bg-grey:#F4F5F6;
 @mixin flex-end {
   display: flex;
   justify-content: flex-end;
+}
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
 }
 @mixin  text-aligne-center {
   text-align: center;
@@ -36,81 +45,22 @@ body{
     width: 100%;
     height: auto;
 }
-/* --- NAVBAR ----*/
-#navbar{
-  padding: 1rem;
-  width: auto;
-  height: 3.5rem;
-  @include flex-center();
-  border-bottom: 1px solid rgb(242, 242, 242);
-  font-family: $secondary-font;
-}
 
-#nav-ul{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-  width: 90%;
-}
-.auth-wrap{
-  display: flex;
-  align-items: center;
-}
-
-.li-p{
-  color: #000;
-  margin-left: 1em;
-  font-size: 0.9em;
-}
-.li-p::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #000;
-  transition: width .2s ease-in-out;
-}
-.li-p:hover::after {
-  width: 100%;
-}
-.li-icon{
-  width: 25px;
-  height: 25px;
-  position: relative;
-  z-index: 1;
-  opacity: 0.6;
-}
-.li-icon:hover{
-  opacity: 1;
-}
-.l-header{
-  width: 40px;
-  height: 40px;
-  background-color: #000;
-  border-radius: 3px;
-  margin-left: -2.4em;
-}
-.btn-cta-nav{
-  margin: 0 0 0 1em;
-}
 /* ---- LANDING ---- */
 .container-landing{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 550px);
-  background-color: red;
-  width: 100%;
-  margin: 3em auto;
+  margin: auto;
 }
 
 .header-slogan{
-  width: 600px;
+  max-width: auto;
+  height: auto;
   background-color: lawngreen;
 }
 .header-title{
-  font-size: 3.5em;
+  font-size: 3em;
   font-family: $primary-font;
   margin: 1em 0 0 0;
+  font-weight: 400;
 }
 .header-text{
   color: #737B7D;
@@ -124,10 +74,13 @@ body{
   text-decoration: line-through;
 }
 .header-image{
-  width: 550px;
-  transform: scale(1.1);
-  position: relative;
-  display: none;
+  width: auto;
+  background-color: #EF96FF;
+  img{
+    transform: scale(1.2);
+    position: relative;
+    margin: 0 auto;
+  }
 }
 
 .circle-arrow{
@@ -322,6 +275,9 @@ body{
 .link-redirect-buy{
   color: #000;
 }
+.market-result{
+  padding-bottom: 2em;
+}
 .c-row-container{
   display: flex;
   align-items: center;
@@ -411,7 +367,7 @@ body{
   border-radius: 50px;
 }
 /* ---- C ROW ---- */
-#col-info-crypto{
+#col-info,#col-info-activity{
   width: 100%;
   display: flex;
   color: rgb(135, 135, 135);
@@ -450,3 +406,260 @@ body{
 }
 
 /*  ---- MARKET PAGE ---- */
+
+/*  ---- MODAL ---- */
+
+.backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+.modal{
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+}
+.modal button{
+  color: #444;
+  border-color: #444;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.modal p{
+  color: #444;
+  font-weight: bold;
+}
+/*  ---- MODAL ---- */
+.add-c{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: $dark-color;
+  margin: 0.5em auto;
+  cursor: pointer;
+  @include flex-center();
+  color: $light-color;
+  font-size: 2em;
+  &:hover{
+    background-color: $primary-color;
+  }
+}
+/*  ---- ROW CONTACT ---- */
+.modal-wrap{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  z-index: 2;
+  @include flex-center();
+}
+.modal-box{
+  max-width:40%;
+  height: auto;
+  background-color: $light-color;
+  border-radius: 20px ;
+  padding: 3em 3em;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.overlay{
+  position: fixed;
+  background-color: $dark-color;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  z-index: -1;
+}
+.close-add-c {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  @include flex-center();
+  cursor: pointer;
+  margin: -2.5em 0 0 32em;
+  padding: 0;
+}
+
+.close-add-c:before, .close-add-c:after {
+  position: absolute;
+  content: ' ';
+  height: 15px;
+  width: 2px;
+  background-color: grey;
+}
+
+.close-add-c:before {
+  transform: rotate(45deg);
+  
+}
+.close-add-c:after {
+  transform: rotate(-45deg);
+}
+
+.r-contact{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0.5em;
+  margin: 1em 0;
+  transition: all 50ms ease-out;
+  font-size: 0.9em;
+  &:hover{
+    background-color: $bg-grey;
+    border-radius: 8px;
+  }
+}
+.r-email{
+  width: 250px;
+  @include flex-start();
+  text-align: left;
+}
+.r-firstname{
+  width: 150px;
+  @include flex-end();
+  margin: 0;
+}
+.r-lastname{
+  width: 150px;
+  @include flex-end();
+  margin: 0;
+}
+.c-trash{
+  cursor: pointer;
+}
+.c-id{
+  margin: 0 4em 0  0.5em ;
+}
+.c-email{
+  margin: 0 23em 0  0.5em ;
+}
+.c-firstname{
+  margin: 0 9.2em 0  0.5em ;
+}
+.c-lastname{
+  margin: 0 13.8em 0  0.5em ;
+}
+.c-id-wallet{
+  margin: 0 0.8em 0  0.5em ;
+}
+.c-delete{
+  margin: 0 0 ;
+}
+/*  ---- ROW CONTACT ---- */
+/*  ---- ACTIVITY PAGE ---- */
+.a-rank{
+  margin: 0 5em 0 0 ;
+}
+.a-type{
+  margin: 0 4em 0 0 ;
+}
+.a-name{
+  margin: 0 5em 0 0 ;
+}
+.a-amount{
+  margin: 0 5em 0 0 ;
+  
+}
+.a-total{
+  margin: 0 15.5em 0 0 ;
+}
+.a-id{
+  margin: 0 11em 0 0 ;
+}
+.a-date{
+  margin: 0 0em 0 0 ;
+}
+
+.o-rank{
+  margin: 0 3.5em 0 0 ;
+}
+.o-t-order{
+  background-color: rgb(2, 164, 107);
+}
+.o-t-transfert{
+  background-color: #ffc532;
+}
+.o-type{
+  margin: 0 10em 0 0 ;
+  border-radius: 3px;
+  padding: .2em 0.2em;
+  color: #fff;
+  width: 80px;
+  text-align: center;
+  font-size: 0.8em;
+}
+.o-name{
+  margin: 0 9em 0 0 ;
+  width: 130px;
+}
+.o-amount{
+  margin: 0 4.5em 0 0 ;
+  width: 80px;
+}
+.o-total{
+  margin: 0 3.5em 0 0 ;
+  width: 80px;
+}
+.o-id{
+  margin: 0 9.8em 0 0 ;
+  width: 280px;
+}
+.o-date{
+  margin: 0 0em 0 0 ;
+}
+
+
+/*  ---- ACTIVITY PAGE ---- */
+
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  margin: auto;
+}
+
+// .l-rows--3 {
+//   // forcing row height since I have no content
+//   grid-template-rows: repeat(2, 550px);
+//   background-color: #0d15ff;
+// }
+
+
+// display grid layout for 750px or wider
+@media screen and (min-width: 250px) and (max-width:880px){
+
+    .l-rows--3 {
+        grid-template-columns:repeat(auto-fill, 450px);
+    }
+    .header-slogan{
+      margin: 0;
+      width: 100%;
+     .header-title{
+       font-size: 2em;
+     }
+     .header-text{
+       font-size: 1.5em;
+       font-weight: 3;
+     }
+    }
+    .circle-arrow{
+      display: none;
+    }
+    .header-image{
+      background-color: red;
+      
+      width: 100%;
+    }
+} 
+
+// end media query

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 export const PageContainer = styled.div`
-  height: 100vh;
+  height: ${({height})=> height};
   width:90%;
   padding-top: 50px;
   margin: 0px auto;
@@ -11,5 +11,6 @@ export const PageContainer = styled.div`
 `
 
 PageContainer.proptypes = {
-  bg: PropTypes.string
+  bg: PropTypes.string,
+  height: PropTypes.string
 }

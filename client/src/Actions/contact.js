@@ -64,14 +64,13 @@ export const deleteContact = async (e,token,email) => {
   e.preventDefault()
   try {
       return await axios.delete(apiUrls.contact,{
-        email: email
-        },
-        {
           headers: {
             'Content-Type': 'application/json',
-            token: token
-        }
-      }).then(response => {
+            token: token,
+        }},
+       { email : email}
+        
+      ).then(response => {
         if(response.data){
             store.dispatch({
               type: types.DELETE_CONTACT_SUCCESS,

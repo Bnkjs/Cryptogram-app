@@ -1,0 +1,255 @@
+$primary-font: 'Montserrat', sans-serif;
+$secondary-font: 'Raleway', sans-serif;
+$font-logo:'Poppins', sans-serif;
+$primary-color: #000;
+$secondary-color: #fff;
+$bg-grey:#F4F5F6;
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+@mixin flex-items-center {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+@mixin  text-aligne-center {
+  text-align: center;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* --- NAVBAR ----*/
+#navbar{
+  padding: 1rem;
+  width: auto;
+  height: 2.5rem;
+  @include flex-center();
+  border-bottom: 1px solid rgb(242, 242, 242);
+  font-family: $secondary-font;
+}
+
+
+
+.nav-ul{
+  @include flex-items-center;
+  justify-content: space-between;
+  list-style: none;
+  width: 90%;
+}
+
+.l-logo{
+  font-family: $font-logo;
+  color: rgb(26, 26, 26);
+  font-size: 1.6em;
+  @include flex-items-center;
+  gap: 10px;
+  margin-left: -1.4em;
+}
+
+.l-logo:hover{
+  .l-img{
+    transform: translateY(-5px) scale(1.2);
+   }
+}
+.l-img{
+  position: relative;
+  transition: all .2s ease-out;
+}
+
+.auth-wrap{
+  @include flex-items-center;
+}
+
+.li-p{
+  color: rgb(152, 152, 152);
+  margin-left: 0em;
+  font-size: 1em;
+  font-weight: 400;
+  min-width: auto;
+  &:hover{
+    color: #000;
+  }
+}
+.li-p::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width .2s ease-in-out;
+}
+.li-p:hover::after {
+  width: 100%;
+}
+.li-icon{
+  width: 25px;
+  height: 25px;
+  position: relative;
+  z-index: 1;
+  opacity: 0.6;
+}
+.li-icon:hover{
+  opacity: 1;
+}
+
+.btn-cta-nav{
+  margin: 0 0 0 1em;
+}
+.motion-div{
+  position: absolute;
+  top: 50px;
+  right: 0;
+  z-index: 2;
+  opacity: 0;
+}
+.menu-dropdown{
+  min-width: 200px;
+  height: 150px;
+  background-color: $secondary-color;
+  border-radius: 20px;
+  right: 0;
+  margin: 2em 0.5em 0 0;
+  padding: 1em 0;
+  box-shadow: 0.1em 0.1em 0.5em 0 rgb(216, 216, 216);
+  @include flex-center();
+}
+.d-menu{
+  display: flex;
+  flex-direction: column;
+}
+.right-nav{
+  @include flex-items-center;
+  gap: 30px;
+}
+.li-d-menu{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+  width: 90%;
+  transition: all .1s ease-out;
+  cursor: pointer;
+  font-size: 0.9em;
+  &:hover{
+    background-color: $bg-grey;
+    border-radius: 5px;
+  }
+}
+.profil-circle{
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  background: #4568dc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4568dc, #b06ab3); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4568dc, #b06ab3); 
+  color: #fff;
+  cursor: pointer;
+  @include flex-center();
+  opacity: 0.8;
+  &:hover{
+    opacity: 1;
+  }
+}
+.fi-i{
+  max-width: 100%;
+  margin: 0 1em;
+}
+.d-text{
+  max-width:auto;
+  color: $primary-color;
+  
+}
+/* ---- NAVBAR RESPONSIVE*/
+#navbar-res{
+  padding: 1rem;
+  width: auto;
+  height: 2rem;
+  @include flex-center();
+  justify-content: space-around;
+  border-bottom: 1px solid rgb(242, 242, 242);
+  font-family: $secondary-font;
+  display: none;
+}
+.h-menu{
+  width: 40px;
+  height: 40px;
+  @include flex-center();
+  flex-direction: column;
+  cursor: pointer;
+  &:hover{
+    .hr-menu:nth-child(1){
+      transform: rotate(15deg);
+    }
+    .hr-menu:nth-child(2){
+      transform: rotate(15deg);
+    }
+  }
+}
+.hr-menu{
+  width: 90%;
+  height: 0.1em;
+  background-color: rgb(26, 26, 26);
+  margin: 0.5em 0 0 0 ;
+  transition: all .1s ease-out;
+}
+
+.p-menu{
+  width: 100%;
+  height: 100%;
+  background-color: $secondary-color;
+  position: absolute;
+  margin: auto;
+  z-index: 1;
+  opacity: 1;
+}
+.p-close{
+  margin: 1em 0;
+  width: 100%;
+  cursor: pointer;
+  @include flex-center();
+  .li-close{
+    background-color: $primary-color;
+    color: $secondary-color;
+    width: 50px;
+    height: 50px;
+    transform: rotate(45deg);
+    border-radius: 50px;
+    @include flex-center();
+    font-size: 2em;
+    font-weight: 300;
+  }
+}
+.ul-menu-res{
+  min-width: 80%;
+  margin: 0 auto;
+  list-style-type: none;
+}
+.li-menu-res{
+  font-size: 2em;
+  cursor: pointer;
+  margin: 2em 1em;
+  width: auto;
+  color: $primary-color;
+  transition: all .1s ease-out;
+  &:hover{
+    background-color: $primary-color;
+    color: $secondary-color;
+
+  }
+}
+
+@media screen and (min-width: 250px) and (max-width:1050px){
+  #navbar{
+    display: none;
+  }
+  #navbar-res{
+    display: flex;
+  }
+
+}
