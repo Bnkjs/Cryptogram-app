@@ -9,8 +9,9 @@ import { v4 as uuidv4 } from "uuid";
 const Contact = ({ state, token }) => {
   
   const currentUserContact = state? state : null
+  const currentUserContactLength = state? state.length : null
   const [showModal, setShowModal] = useState(false)
-
+  const [userContact, setUserContact] = useState(currentUserContactLength)
   const displayContact = state? currentUserContact.map((el,index) => {
     return(
     <div key={uuidv4()}>
@@ -24,10 +25,9 @@ const Contact = ({ state, token }) => {
         />
       </div>)
   }) : null
-
   useEffect(()=>{
     getAllContact(token)
-  },[showModal])
+  },[showModal,currentUserContactLength])
   
   return(<>
     {showModal &&
@@ -49,7 +49,10 @@ const Contact = ({ state, token }) => {
         <div className="c-delete">Supprimer</div>
       </div>
       <div className="hr"></div>
-      { displayContact }
+      {currentUserContactLength === null ?
+        <h3>Vous n'avez acun contact enregistré pour le moment</h3>
+        :  displayContact 
+      }
       <a href="#up">
         <div 
           className="add-c" 

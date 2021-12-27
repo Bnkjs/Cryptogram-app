@@ -8,15 +8,25 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch(type){
-    case types.GET_ALL_CRYPTO_SUCCESS:
+    case types.GET_MARKET_CRYPTO_SUCCESS:
       return {
         ...state, 
-        cryptoInfos: payload
+       coinsMarket: payload
       }
-    case types.GET_ALL_CRYPTO_FAIL:
+    case types.GET_MARKET_CRYPTO_FAIL:
       return {
         ...state, 
-        cryptoInfos: null
+       coinsMarket: null
+      }
+    case types.GET_USER_CRYPTO_SUCCESS:
+      return {
+        ...state, 
+       userCoins: payload
+      }
+    case types.GET_USER_CRYPTO_FAIL:
+      return {
+        ...state, 
+       userCoins: null
       }
     case types.BUY_CRYPTO_SUCCESS:
       return {

@@ -6,7 +6,7 @@ import { Button } from "../../components/Button/index";
 import { Marged } from "../../components/Marged";
 import { Form } from "../../components/Form";
 import { PageContainer } from "../PageContainer";
-import { checkInputEmail, checkInputFirstName, checkInputLastName } from "../../services/checkInput";
+import { checkContentInput } from "../../utils/checkInput";
 
 const initial = {
   visible: { opacity: 1, y: -50},
@@ -24,15 +24,11 @@ const Modal = ({ showModal, token }) => {
   const onChange = e => {
     setInputs({...inputs,[e.target.name]: e.target.value})
   }
-  const myInterval = () => {
-    setExistModal(true)
-    showModal(false)
-  };
-
+  
   const onSubmitForm = (e) => {
-    const checkEmail = checkInputEmail(email)
-    const checkFirstName = checkInputFirstName(firstname)
-    const checkLastName = checkInputLastName(lastname)
+    const checkEmail = checkContentInput(email)
+    const checkFirstName = checkContentInput(firstname)
+    const checkLastName = checkContentInput(lastname)
 
     if(!checkEmail || !checkFirstName || !checkLastName){
       console.log('input vide');
@@ -64,7 +60,8 @@ const Modal = ({ showModal, token }) => {
               <Marged bottom="20px"/>
               <Button width="100%" primary_xl>Ajouter</Button>  
             </Form>          
-        </div>        
+        </div>
+             
         </motion.div>
       </AnimatePresence>
     </PageContainer> 

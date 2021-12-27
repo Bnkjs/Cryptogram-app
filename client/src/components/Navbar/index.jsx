@@ -88,6 +88,7 @@ const Navbar = ({ setAuth, state }) =>{
                               <p className="d-text">Profil</p>
                             </Link>
                         </li>
+                        <div className="hr"></div>
                       <li 
                         className="li-d-menu"
                         onClick={()=> submitLogout()}
@@ -103,8 +104,6 @@ const Navbar = ({ setAuth, state }) =>{
                 </motion.div>
               </AnimatePresence>
               }
-              
-          
           </ul>
          </nav>
         : 

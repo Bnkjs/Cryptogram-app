@@ -1,8 +1,14 @@
 import React from "react";
 import { FiTrash2 } from "react-icons/fi";
 import { deleteContact } from "../../Actions/contact";
+import { myNotyf } from "../notification/noyf";
 
 const RowContact = (props) => {
+
+  const submitDelete = (e,token,email) => {
+    deleteContact(e,token,email)
+   myNotyf.success('Contact supprimé')
+  }
   return (<>
       <div className="r-contact">
          <p className="c-item r-id">{props.id}</p>
@@ -10,7 +16,7 @@ const RowContact = (props) => {
         <p className="c-item r-firstname">{props.firstname}</p> 
         <p className="c-item r-lastname">{props.lastname}</p>
         <p className="c-item r-wallet">{props.c_wallet}</p>
-        <FiTrash2 className="c-trash" onClick={(e)=> deleteContact(e,props.token,props.email) }>x</FiTrash2>
+        <FiTrash2 className="c-trash" onClick={(e)=> submitDelete(e,props.token,props.email) }>x</FiTrash2>
       </div>
   </>)
 }

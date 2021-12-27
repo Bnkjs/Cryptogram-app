@@ -34,6 +34,7 @@ const Landing = ({ state }) => {
         <Div className="header-image">
           <img width={'400px'} src={img_phone} alt="téléphone portable 3D avec logo d'une cryptomonnaie" />
         </Div>
+        
         {/* <div className="w-crypto l-columns--3-2">
           <div className="b-crypto-data">
             <img src="" alt="" />

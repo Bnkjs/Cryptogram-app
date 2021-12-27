@@ -1,0 +1,64 @@
+$primary-font: 'Montserrat', sans-serif;
+$secondary-font: 'Raleway', sans-serif;
+$font-logo:'Poppins', sans-serif;
+$light-color: #fff;
+$bg-grey:#F4F5F6;
+$border-success: #3ade60;
+$border-information: #7db7ff;
+$border-warning: #ffbe4d;
+$border-destructive: #ff7f5f;
+$bg-success: #EAF7EF;
+$bg-information: #E6EFFA;
+$bg-warning: #FEF7EA;
+$bg-destructive: #FCEDE9;
+
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+@mixin  text-aligne-center {
+  text-align: center;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-space-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.notif{
+  position: absolute;
+  margin: 4.5em 11.5em;
+  top: 0;
+  right: 0;
+  z-index: 3
+}
+.close-notif {
+  width: 20px;
+  height: 20px;
+  @include flex-center();
+  cursor: pointer;
+}
+
+.close-notif:before, .close-notif:after {
+  position: absolute;
+  content: ' ';
+  height: 15px;
+  width: 2px;
+  background-color: grey;
+}
+
+.close-notif:before {
+  transform: rotate(45deg);
+  
+}
+.close-notif:after {
+  transform: rotate(-45deg);
+}

@@ -8,6 +8,7 @@ const apiUrls = {
   allContact: "http://localhost:5000/contact/all",
   getAllCrypto: "http://localhost:5000/market",
   buy_crytpo: "http://localhost:5000/buy_crypto",
+  my_crypto: "http://localhost:5000/my_crypto",
   transfert_crypto: "http://localhost:5000/dashboard",
   activity:"http://localhost:5000/activity"
 }

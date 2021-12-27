@@ -39,6 +39,14 @@ const Market = ({ state }) => {
   },[nthElement])
  
   return(<>
+    <PageContainer className="landing-market"height="70vh">
+      <div>
+        <h1>Top 100 Crypto-monnaies par capitalisation de marché</h1>
+        </div>
+      <div>
+        <p>La capitalisation boursière globale du marché crypto est de €2.09T</p>
+      </div>
+    </PageContainer>
     <PageContainer>
       <h1>Tendance du marché</h1>
       <div id="col-info">
@@ -74,7 +82,7 @@ const Market = ({ state }) => {
 
 export const MarketStore = connect(
   (state) => ({
-    state: state.cryptoReducer.cryptoInfos
+    state: state.cryptoReducer.coinsMarket
   })
 )(Market)
 
