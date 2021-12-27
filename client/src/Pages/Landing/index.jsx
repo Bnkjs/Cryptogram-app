@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import Div from "../../components/Div";
 import { PageContainer } from "../../components/PageContainer";
-import img_gradient_landing from '../../assets/GRADIENT_LANDING.png';
+import img_phone from '../../assets/phone.webp';
 import { FiArrowDown } from "react-icons/fi";
 import svg_pointer from '../../assets/mouse-pointer.svg';
 import svg_feather from '../../assets/feather.svg';
@@ -12,8 +12,7 @@ import svg_lock from '../../assets/lock.svg';
 
 const Landing = ({ state }) => {
   return(<>
-    <PageContainer>
-      <Div className="container-landing">
+    <PageContainer height="70vh" className="grid l-rows--3 ">
         <Div className="header-slogan">
           <h1 className="header-title">Achetez et Transférez <br/> des <span className="span-gradient">cryptosmonnaie</span> <br/> instantenément</h1>
           <p className="header-text">Négociez des Bitcoin, Ethereum et toutes les meilleures <br/> cryptomonnaie  du marché. </p>
@@ -33,9 +32,10 @@ const Landing = ({ state }) => {
           </a>
         </Div>
         <Div className="header-image">
-          <img width={'400px'} src={img_gradient_landing} alt="" />
+          <img width={'400px'} src={img_phone} alt="téléphone portable 3D avec logo d'une cryptomonnaie" />
         </Div>
-        <div className="w-crypto">
+        
+        {/* <div className="w-crypto l-columns--3-2">
           <div className="b-crypto-data">
             <img src="" alt="" />
             <p className="c-name">BTC</p>
@@ -54,11 +54,10 @@ const Landing = ({ state }) => {
             <p className="r-24">0,79%</p>
             <p className="c-price">22.15</p>
           </div>
-        </div>
-      </Div>
-      
+        </div> */}
+     
     </PageContainer>
-    <PageContainer id="l-moto" bg='#F8F8F9'>
+    <PageContainer height="100vh" id="l-moto" bg='#F8F8F9'>
      <h1 className="l-hone">Une gamme de fonctionnalités complète</h1>
      <div id="card-feat-wrap">
       <div className="card-feat">
@@ -92,7 +91,6 @@ const Landing = ({ state }) => {
         </Link>
       </div>
      </div>
-     
     </PageContainer>   
   </>)
 } 

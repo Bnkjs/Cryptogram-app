@@ -2,6 +2,7 @@ import axios from "axios";
 import store from "../store";
 import types from "../Types/types";
 import apiUrls from "../services/ApiUrls";
+import { myNotyf } from "../components/notification/noyf";
 
 export const getAllContact = async (token) => {
   try {
@@ -16,6 +17,7 @@ export const getAllContact = async (token) => {
               type: types.GET_ALL_CONTACT_SUCCESS,
               payload: response.data
             });
+           
         }else{
           store.dispatch({
             type: types.GET_ALL_CONTACT_FAIL,
@@ -29,6 +31,7 @@ export const getAllContact = async (token) => {
 }
 
 export const addContact = async (e,token,email,firstname,lastname) => {
+
     e.preventDefault()
     try {
         return await axios.post(apiUrls.contact,{
@@ -41,13 +44,13 @@ export const addContact = async (e,token,email,firstname,lastname) => {
               'Content-Type': 'application/json',
               token: token
           }
-          
         }).then(response => {
           if(response.data){
               store.dispatch({
                 type: types.ADD_CONTACT_SUCCESS,
                 payload: response.data
-              });
+              })
+              myNotyf.success('Contact ajouté')
           }else{
             store.dispatch({
               type: types.ADD_CONTACT_FAIL,
@@ -56,22 +59,26 @@ export const addContact = async (e,token,email,firstname,lastname) => {
           }
         })
     } catch (error) {
-        console.log(error.response.data);
+     myNotyf.error(error.response.data)
     }
 }
 
 export const deleteContact = async (e,token,email) => {
   e.preventDefault()
   try {
-      return await axios.delete(apiUrls.contact,{
-        email: email
-        },
+      return await axios.delete(apiUrls.contact,
+        
         {
           headers: {
             'Content-Type': 'application/json',
             token: token
+          },
+          data: {
+            email : email
+          }
         }
-      }).then(response => {
+          
+      ).then(response => {
         if(response.data){
             store.dispatch({
               type: types.DELETE_CONTACT_SUCCESS,

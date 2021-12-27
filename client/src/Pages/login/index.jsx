@@ -12,9 +12,7 @@ import img_gradient_login from '../../assets/FORM_LOGIN_CARD_GRADIENT.svg'
 import { Link } from "react-router-dom";
 
 const Login = ({ setAuth }) =>{
-
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
-
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
