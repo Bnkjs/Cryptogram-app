@@ -58,7 +58,6 @@ router.post('/', validInfosContact, authorization , async(req,res)=>{
   
 
 router.delete('/', authorization, async(req,res)=>{
-  
   const { email } = req.body
   const findContact = await pool.query('SELECT * FROM user_contact WHERE email = ($1)',[email])
   try {

@@ -31,7 +31,7 @@ router.post('/', validInfosCrypto, authorization, async (req,res)=>{
       const cryptoName = await cryptoService.getCryptoName(crypto_name).then(res => res)
 
     const newTransfertItem = await pool.query('INSERT INTO user_transfert_item (transfert_id,crypto_name,crypto_id_name,amount_in_user_currency,amount_converted_in_coin,description,contact_id,contact_wallet_adress) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *',
-    [newtransfert.rows[0].transfert_id,cryptoName,cryptoSymbol.toUpperCase(),amount,amountExchangeInUserCurrency,description,findContact.rows[0].contact_id,findContact.rows[0].wallet_adress])
+    [newtransfert.rows[0].transfert_id,cryptoName,cryptoSymbol.toUpperCase(),amountExchangeInUserCurrency,amount,description,findContact.rows[0].contact_id,findContact.rows[0].wallet_adress])
     
     const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING *',[parseFloat(checkUserExist.rows[0].balance) - amountExchangeInUserCurrency, req.user])
    

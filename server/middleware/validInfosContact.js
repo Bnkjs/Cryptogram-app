@@ -17,17 +17,17 @@ module.exports = function(req, res, next) {
     } else if (!validEmail(email)) {
       return res.status(401).json("L'email n'est pas valide");
     }else if(!validName(firstname || lastname)){
-      return res.status(401).json("le prénom/nom n\'est pas valide")
+      return res.status(401).json("le prénom/nom comporte des caractères non autorisé ou est trop court/long")
     }
   }
 
-  if (req.path === "/contact" && req.method === "DELETE") {
-    if (![email].every(Boolean)) {
-      return res.status(401).json("Il manque des informations");
-    } else if (!validEmail(email)) {
-      return res.status(401).json("L'email n'est pas valide");
-    }
-  }
+  // if (req.path === "/contact" && req.method === "DELETE") {
+  //   if (![email].every(Boolean)) {
+  //     return res.status(401).json("Il manque des informations");
+  //   } else if (!validEmail(email)) {
+  //     return res.status(401).json("L'email n'est pas valide");
+  //   }
+  // }
 
   next();
 }
