@@ -12,6 +12,7 @@ CREATE TABLE users (
   wallet_adress uuid DEFAULT 
   uuid_generate_v4() NOT NULL,
   investment NUMERIC NOT NULL,
+  investment_items TEXT[],
   balance NUMERIC NOT NULL,
   created_at VARCHAR(20) NOT NULL,
   updated_at VARCHAR(20)

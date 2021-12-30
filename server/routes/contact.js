@@ -10,8 +10,8 @@ router.get('/', authorization, async (req,res) => {
      if(req.user){
        const findContact = await pool.query('SELECT * FROM user_contact WHERE user_id = ($1)',[req.user])
        if(findContact.rows[0] === undefined){
-         res.status(404).json('Aucun contact n\'est enregistré pour le moment')
-       } else{
+          return null
+      } else{
          res.json(findContact.rows)
        }
      }
