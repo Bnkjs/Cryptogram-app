@@ -208,7 +208,7 @@ $bg-grey:#F4F5F6;
   background-color: $secondary-color;
   position: absolute;
   margin: auto;
-  z-index: 1;
+  z-index: 10;
   opacity: 1;
 }
 .p-close{
@@ -217,15 +217,18 @@ $bg-grey:#F4F5F6;
   cursor: pointer;
   @include flex-center();
   .li-close{
-    background-color: $primary-color;
+    background-color:rgb(42, 42, 42);
     color: $secondary-color;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     transform: rotate(45deg);
     border-radius: 50px;
     @include flex-center();
     font-size: 2em;
     font-weight: 300;
+    &:hover{
+      background-color: $primary-color;
+    }
   }
 }
 .ul-menu-res{

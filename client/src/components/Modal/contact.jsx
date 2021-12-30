@@ -7,7 +7,6 @@ import { Marged } from "../../components/Marged";
 import { Form } from "../../components/Form";
 import { PageContainer } from "../PageContainer";
 import { checkContentInput } from "../../utils/checkInput";
-
 const initial = {
   visible: { opacity: 1, y: -50},
   hidden: { opacity: 0, y: 50 },
@@ -15,6 +14,11 @@ const initial = {
 
 const Modal = ({ showModal, token }) => {
   const [existModal,setExistModal ] = useState(false)
+  const [showNotifSuccess,setShowNotifSuccess ] = useState(false)
+  const [showNotifError,setShowNotifError ] = useState(false)
+  const [notifMessage,setNotifMessage ] = useState("")
+  const [existNotif,setExistNotif ] = useState(false)
+
   const [inputs, setInputs] = useState({
     email: "",
     firstname: "",
@@ -33,8 +37,14 @@ const Modal = ({ showModal, token }) => {
     if(!checkEmail || !checkFirstName || !checkLastName){
       console.log('input vide');
     } else{
-      addContact(e,token,checkEmail,checkFirstName,checkLastName)
-      showModal(false)
+      addContact(
+          e,
+          token,
+          checkEmail,
+          checkFirstName,
+          checkLastName
+        )
+     showModal(false)
     }
   }
 

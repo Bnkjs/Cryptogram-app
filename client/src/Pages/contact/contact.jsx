@@ -7,11 +7,14 @@ import RowContact from "../../components/Contact";
 import { v4 as uuidv4 } from "uuid";
 
 const Contact = ({ state, token }) => {
-  
+ 
   const currentUserContact = state? state : null
   const currentUserContactLength = state? state.length : null
+  
   const [showModal, setShowModal] = useState(false)
+  const [existNotif,setExistNotif ] = useState(false)
   const [userContact, setUserContact] = useState(currentUserContactLength)
+
   const displayContact = state? currentUserContact.map((el,index) => {
     return(
     <div key={uuidv4()}>
@@ -25,10 +28,12 @@ const Contact = ({ state, token }) => {
         />
       </div>)
   }) : null
+
+
   useEffect(()=>{
     getAllContact(token)
-  },[showModal,currentUserContactLength])
-  
+  },[showModal,currentUserContactLength,])
+
   return(<>
     {showModal &&
       <div className="modal-wrap" id="up">
@@ -37,7 +42,6 @@ const Contact = ({ state, token }) => {
         </div>
       </div>
     }
-   
     <PageContainer>
      <h1>Liste des contacts</h1>
      <div id="col-info">
@@ -50,7 +54,7 @@ const Contact = ({ state, token }) => {
       </div>
       <div className="hr"></div>
       {currentUserContactLength === null ?
-        <h3>Vous n'avez acun contact enregistré pour le moment</h3>
+        <h3>Vous n'avez aucun contact enregistré pour le moment</h3>
         :  displayContact 
       }
       <a href="#up">

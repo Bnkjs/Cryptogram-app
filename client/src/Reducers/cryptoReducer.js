@@ -1,7 +1,10 @@
 import types from "../Types/types";
 
 const initialState =  {
-  cryptoInfos: null 
+  cryptoInfos: null ,
+  userCoins: null,
+  coinsMarket: null,
+  transfertInfos: null
 }
 
 export default function(state = initialState, action) {
@@ -31,17 +34,17 @@ export default function(state = initialState, action) {
     case types.BUY_CRYPTO_SUCCESS:
       return {
         ...state, 
-        cryptoInfos: payload
+        transfertInfos: payload
       }
     case types.BUY_CRYPTO_FAIL:
-      return undefined
-    case types.TRANSFERT_CRYPTO_SUCCESS:
+      return state
+    case types.MAKE_TRANSFERT_SUCCESS:
       return {
         ...state, 
-        cryptoInfos: payload
+        transfertInfos: payload
       }
-    case types.TRANSFERT_CRYPTO_FAIL:
-      return undefined
+    case types.MAKE_TRANSFERT_FAIL:
+      return state
     default:
         return state;
   }

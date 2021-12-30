@@ -1,13 +1,11 @@
 import React from "react";
 import { FiTrash2 } from "react-icons/fi";
 import { deleteContact } from "../../Actions/contact";
-import { myNotyf } from "../notification/noyf";
 
 const RowContact = (props) => {
 
   const submitDelete = (e,token,email) => {
     deleteContact(e,token,email)
-   myNotyf.success('Contact supprimé')
   }
   return (<>
       <div className="r-contact">
