@@ -6,6 +6,7 @@ import activityReducer from "./Reducers/activityReducer";
 import contactReducer from "./Reducers/contactReducer";
 import cryptoReducer from "./Reducers/cryptoReducer";
 import profilReducer from "./Reducers/profilReducer";
+
 const rootReducers = combineReducers({
   authReducer,
   messageReducer,

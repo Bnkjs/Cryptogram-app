@@ -4,39 +4,27 @@ import store from "../store";
 import reactDom from "react-dom";
 import * as React from 'react';
 
-export const register = (e,email, password, username) => {
+export const register = (e,email, password, username, isLoading) => {
   
-   return AuthService.register(e,email, password, username)
-    .then((response) => {
+   try {
+      return AuthService.register(e,email, password, username)
+      .then((response) => {
+        isLoading(true)
+          store.dispatch({
+            type: types.REGISTER_SUCCESS,
+            payload: response
+          });
     
-        store.dispatch({
-          type: types.REGISTER_SUCCESS,
-          payload: response
+          store.dispatch({
+            type: types.SET_MESSAGE,
+            payload: response,
         });
-  
-        store.dispatch({
-          type: types.SET_MESSAGE,
-          payload: response,
-        });
-    },
-    (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-        store.dispatch({
-        type: types.REGISTER_FAIL,
-      });
-
-      store.dispatch({
-        type: types.SET_MESSAGE,
-        payload: error.response.data,
-      });
-    }
-  );
+        isLoading(false)
+    })
+   } catch (error) {
+     console.error(error.response);
+   }
+   
 };
 
 export const login = (e, email, password) => {

@@ -41,7 +41,10 @@ const Navbar = ({ setAuth, state }) =>{
               </Link>
             </li>
              <li className="li-nav">
-              <Link to="/market"><p className="li-p">Crypto-monnaies</p></Link>
+              <Link to="/market"><p className="li-p">Marché</p></Link>
+            </li>
+            <li className="li-nav">
+              <Link to="/transfert_crypto"><p className="li-p">Transfert</p></Link>
             </li>
             
             <li className="li-nav">
@@ -54,7 +57,7 @@ const Navbar = ({ setAuth, state }) =>{
                 </Link>
                 <Link to="/dashboard">
                   <Button dark>Portefeuille</Button>
-                  </Link> 
+                </Link> 
               <div 
                 className="profil-circle" 
                 onClick={()=> setShowDropDown(!showDropDown)}>
@@ -121,7 +124,7 @@ const Navbar = ({ setAuth, state }) =>{
               </li>
               <div className="market-wrap">
                 <li className="li-nav">
-                  <Link to="/market"><p className="li-p">Crypto-monnaies</p></Link>
+                  <Link to="/market"><p className="li-p">Marché</p></Link>
                 </li>
               </div>
               <div className="auth-wrap">

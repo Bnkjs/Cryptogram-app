@@ -12,19 +12,19 @@ import { ProfilStore } from "./Pages/profil";
 import { ContactStore } from "./Pages/contact/contact";
 import { MarketStore } from "./Pages/market";
 import './app.scss'
+import './components/notification/notif.scss'
 import Landing from "./Pages/Landing";
 import { TransfertStore } from "./Pages/transfert/transfert";
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn
   const [isAuthenticated, setIsAuthenticated] = useState(myStore)
   const currentUserInfo = useSelector(state => state.authReducer)
-
-
+  
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
   }
   return(
-    <div id="container">
+    <div id="container-app">
       <Router>
         <NavBarResStore setAuth={setAuth}/>
         <NavbarStore setAuth={setAuth} state={currentUserInfo}/>

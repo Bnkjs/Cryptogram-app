@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store";
 import types from "../Types/types";
 import apiUrls from "../services/ApiUrls";
-import { myNotyf } from "../components/notification/noyf";
+import { myCustomNotif } from "../components/notification/notif";
 
 export const getAllContact = async (token) => {
   try {
@@ -26,14 +26,15 @@ export const getAllContact = async (token) => {
         }
       })
   } catch (error) {
-      console.log(error.response.data);
+      myCustomNotif('notif notif-warning',error.response.data);
   }
 }
 
 export const addContact = async (e,token,email,firstname,lastname) => {
-
+  
     e.preventDefault()
     try {
+      
         return await axios.post(apiUrls.contact,{
           email: email,
           firstname: firstname,
@@ -48,18 +49,21 @@ export const addContact = async (e,token,email,firstname,lastname) => {
           if(response.data){
               store.dispatch({
                 type: types.ADD_CONTACT_SUCCESS,
-                payload: response.data
+                payload: response.data              
               })
-              myNotyf.success('Contact ajouté')
+              myCustomNotif('notif notif-success', 'Contact ajouté');
+
+
           }else{
             store.dispatch({
               type: types.ADD_CONTACT_FAIL,
               payload: response.data
-            })
+            }) 
+            myCustomNotif('notif notif-warning', response.data)     
           }
         })
     } catch (error) {
-     myNotyf.error(error.response.data)
+        myCustomNotif('notif notif-warning', error.response.data)
     }
 }
 
@@ -83,19 +87,18 @@ export const deleteContact = async (e,token,email) => {
             store.dispatch({
               type: types.DELETE_CONTACT_SUCCESS,
             })
-            store.dispatch({
-              type: types.SET_MESSAGE,
-              payload: response.data
-            })
+          myCustomNotif('notif notif-success', response.data)
         }else{
           store.dispatch({
             type: types.DELETE_CONTACT_FAIL,
             payload: response.data
           })
+          myCustomNotif('notif notif-warning', response.data)
         }
       })
   } catch (error) {
-      console.log(error.response.data);
+      myCustomNotif('notif notif-warning',error.response.data);
+      myCustomNotif('notif notif-warning', error.response.data)
   }
 }
 
@@ -125,7 +128,7 @@ export const deleteAllContact = async (e,token) => {
       })
     } 
   } catch (error) {
-      console.log(error.response.data);
+      myCustomNotif('notif notif-warning',error.response.data);
   }
 }
 

@@ -1,0 +1,117 @@
+$primary-font: 'Montserrat', sans-serif;
+$secondary-font: 'Raleway', sans-serif;
+$font-logo:'Poppins', sans-serif;
+$light-color: #fff;
+$bg-grey:#F4F5F6;
+$border-success: #3ade60;
+$border-information: #7db7ff;
+$border-warning: #ffbe4d;
+$border-destructive: #ff7f5f;
+$bg-success: #EAF7EF;
+$bg-information: #E6EFFA;
+$bg-warning: #FEF7EA;
+$bg-destructive: #FCEDE9;
+
+/* ---- MIXINS ------*/
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+@mixin  text-aligne-center {
+  text-align: center;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-space-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* ---- NOTIF ------*/
+.notif{
+  min-width: 100px;
+  margin: 0 auto;
+  padding: 1em 1em;
+  border-radius: 10px;
+  text-align: left;
+  color: #2a2929;
+  @include flex-space-around();
+  flex-direction: row;
+  font-size: 0.8em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  animation: showNotif 4s ease-in-out 0s both ;
+  margin: 6em 10em;
+  opacity: 0;
+}
+
+@keyframes showNotif {
+  0%{
+    margin: 7em 10em;
+    opacity: 0;
+  }
+  12%{
+    margin: 6em 10em;
+    opacity: 1;
+  }
+  60%{
+    margin: 6em 10em;
+    opacity: 1;
+  }
+  80%{
+    margin: 8.5em 10em;
+    opacity: 0;
+  }
+  100%{
+    margin: 8.5em 10em;
+    opacity: 0;
+    display: none;
+  }
+
+}
+.notif-success{
+  color:#2fab50;
+  border: .1em solid #C4E2CC;
+  background-color: #EAF7EF;
+}
+.notif-info{
+  color:#1b5fb1;
+  border: .1em solid #C9DDF5;
+  background-color: #E6EFFA;
+}
+.notif-warning{
+  color: #edaa02;
+  border: .1em solid #f0d7aa;
+  background-color: #FEF7EA;
+}
+.notif-destruct{
+  color: #e1390e;
+  border: .1em solid #F9D8D0;
+  background-color: #FCEDE9;
+}
+/* ---- NOTIF ------*/
+
+.close-notif {
+  width: 20px;
+  height: 20px;
+  @include flex-center();
+  cursor: pointer;
+}
+
+.message-notif{
+  margin: 0;
+  padding: 0;
+}
+.img-notif{
+  margin: 0 1em 0 0;
+  padding: 0;
+}
