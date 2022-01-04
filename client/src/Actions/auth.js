@@ -1,65 +1,55 @@
 import types from "../Types/types";
 import AuthService from "../services/auth.service";
 import store from "../store";
-import reactDom from "react-dom";
-import * as React from 'react';
+import { myCustomNotif } from "../components/notification/notif";
 
-export const register = (e,email, password, username, isLoading) => {
+export const register = (e,email, password, username) => {
   
    try {
-      return AuthService.register(e,email, password, username)
+      return AuthService.register(e,email, password, username) 
       .then((response) => {
-        isLoading(true)
+        if(response){
           store.dispatch({
             type: types.REGISTER_SUCCESS,
             payload: response
           });
-    
+        } else{
           store.dispatch({
-            type: types.SET_MESSAGE,
-            payload: response,
-        });
-        isLoading(false)
+            type: types.REGISTER_FAIL
+          })
+          myCustomNotif('notif notif-warning',response);
+
+        }
     })
    } catch (error) {
-     console.error(error.response);
-   }
-   
+     myCustomNotif('notif notif-warning',error.response.data);
+   }  
 };
 
 export const login = (e, email, password) => {
-  return AuthService.login(e, email, password)
-  .then((response) => {
-      store.dispatch({
-        type: types.LOGIN_SUCCESS,
-        payload: response,
-      });     
-      store.dispatch({
-        type: types.SET_MESSAGE,
-        payload: 'connecté!!',
-      }); 
-    },
-    (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+  try {
+    return AuthService.login(e, email, password)
+    .then((response) => {
+      if(response.user){
+        store.dispatch({
+          type: types.LOGIN_SUCCESS,
+          payload: response,
+        });   
+      }else{
+        store.dispatch({
+          type: types.LOGIN_FAIL,
+        }); 
+        myCustomNotif('notif notif-warning',response);
+        console.log('oula');
+      }  
+    })
+  } catch (error) {
+    console.log('oula');
+     myCustomNotif('notif notif-warning',error.response.data);
+  }
 
-      store.dispatch({
-        type: types.LOGIN_FAIL,
-      });
-
-      store.dispatch({
-        type: types.SET_MESSAGE,
-        payload: error.response.data,
-      });
-
-      
-    }
-  );
-};
+  }
+    
 
 export const logout = () => {
   

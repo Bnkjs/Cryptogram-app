@@ -15,7 +15,7 @@ export const Button = styled.button`
   width: ${({width}) => width};
     
     ${props => props.gradient && css`
-      background: #ffff;
+      
       background-image: linear-gradient(91.26deg, #5364fc 30%, #EB76FF 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
       -webkit-background-clip: text;
       color: transparent;
@@ -34,6 +34,7 @@ export const Button = styled.button`
   ${props => props.dark && css`
     background: #313131;
     color: #fff;
+    transition: all .2s ease-out;
     :hover{
      background: #161616;
     }

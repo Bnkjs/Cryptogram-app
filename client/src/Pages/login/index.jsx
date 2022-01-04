@@ -37,16 +37,16 @@ const Login = ({ setAuth }) =>{
         <Card className="card-form">
           <img width="450px" height="auto" src={img_gradient_login} alt="" />
          <div className="h-card">
-           <h3 className="h-card-title">Re-Bonjour !</h3>
+           <span className="h-card-title">Re-Bonjour !</span>
            <p className="h-card-text">Content de vous revoir.</p>
          </div>
         </Card>
         <Div  width="550px" display="flex" justifyContent='center' alignItems='start' flexDirection='column'>
           <h1 className="title-form">Connectez-vous</h1>
           <Form onSubmit={(e)=> handleSubmit(e,email,password)}>
-            <Input type="text" placeholder="email" name="email" className="email-input i-form" value={email} onChange={(e)=>onChange(e)} required />
+            <Input role={"textbox"} type="text" placeholder="email" name="email" className="email-input i-form" value={email} onChange={(e)=>onChange(e)} required />
             <Marged bottom="20px"/>
-            <Input type="password" placeholder="mot de passe" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} required  />
+            <Input role={"textbox"} type="password" placeholder="mot de passe" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} required  />
             <Marged bottom="20px" />
             <Button primary_xl>Se connecter</Button>
             <p className="n-login-signup">Vous avez un compte?

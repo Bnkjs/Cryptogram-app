@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
 import { motion, AnimatePresence } from 'framer-motion';
-import { addContact, deleteAllContact, deleteContact, getAllContact } from "../../Actions/contact";
+import { addContact} from "../../Actions/contact";
 import { Input } from "../../components/Input/index";
 import { Button } from "../../components/Button/index";
 import { Marged } from "../../components/Marged";
@@ -61,12 +61,12 @@ const Modal = ({ showModal, token }) => {
         <div className="modal-box">
           <div className="close-add-c" onClick={()=> showModal(false)}></div>
           <h1 className="title-form">Ajouter un contact</h1>
-            <Form method="POST" onSubmit={(e)=> onSubmitForm(e)}>
-              <Input type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} required />
+            <Form className="form-contact" method="POST" onSubmit={(e)=> onSubmitForm(e)}>
+              <Input type="text" placeholder="email" name="email" className="email-input input" value={email} onChange={(e)=>onChange(e)} required />
               <Marged bottom="20px"/>
-              <Input type="text" placeholder="prénom" name="firstname" className="firstname-input" value={firstname} onChange={(e)=>onChange(e)} required  />
+              <Input type="text" placeholder="prénom" name="firstname" className="firstname-input input" value={firstname} onChange={(e)=>onChange(e)} required  />
               <Marged bottom="20px" />
-              <Input type="text" placeholder="nom de famille" name="lastname" className="lastname-input" value={lastname} onChange={(e)=>onChange(e)} required />
+              <Input type="text" placeholder="nom de famille" name="lastname" className="lastname-input input" value={lastname} onChange={(e)=>onChange(e)} required />
               <Marged bottom="20px"/>
               <Button width="100%" primary_xl>Ajouter</Button>  
             </Form>          
