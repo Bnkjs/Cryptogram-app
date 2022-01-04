@@ -22,6 +22,7 @@ const App = () => {
   
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
+    
   }
   return(
     <div id="container-app">

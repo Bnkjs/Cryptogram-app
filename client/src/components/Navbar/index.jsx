@@ -8,6 +8,8 @@ import "../Navbar/style.scss"
 import { FiLogOut, FiUser, FiZap } from "react-icons/fi";
 import logo from '../../assets/logo.svg'
 import { motion, AnimatePresence } from 'framer-motion';
+import { BiWallet } from "react-icons/bi";
+
 
 const Navbar = ({ setAuth, state }) =>{
 
@@ -56,7 +58,12 @@ const Navbar = ({ setAuth, state }) =>{
                  <FiZap className="li-p li-icon" />
                 </Link>
                 <Link to="/dashboard">
-                  <Button dark>Portefeuille</Button>
+                  <Button className="btn-wallet" dark>
+                      <p className="text-wallet">Portefeuille</p>
+                      <div className="icon-wallet">
+                        <BiWallet/>
+                      </div>
+                  </Button>
                 </Link> 
               <div 
                 className="profil-circle" 
@@ -180,16 +187,16 @@ export const NavbarRes = () => {
           {userLogged? 
             <div className="p-menu">
               <ul className="ul-menu-res">
-                <Link to="#">
+                <Link to="#" onClick={()=> setShowNavRes(false)}>
                   <li className="li-menu-res">Acheter</li>
                 </Link>
-                <Link to="/market">
+                <Link to="/market" onClick={()=> setShowNavRes(false)}>
                 <li className="li-menu-res">Crypto-monnaies</li>
                 </Link>
-                <Link to="/dashboard">
+                <Link to="/dashboard" onClick={()=> setShowNavRes(false)}>
                   <li className="li-menu-res">Portefeuille</li>
                 </Link>
-                <Link to="">
+                <Link to="" onClick={()=> setShowNavRes(false)}>
                   <li className="li-menu-res">Découvrir</li>
                 </Link>
               </ul>

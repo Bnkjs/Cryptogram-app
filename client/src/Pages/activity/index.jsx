@@ -5,6 +5,7 @@ import { RowOrder } from "../../components/order";
 import { RowTransfert } from "../../components/transfert";
 import { PageContainer } from "../../components/PageContainer";
 import { v4 as uuidv4 } from "uuid";
+import ShowDetail from "components/ShowDetail";
 
 const Activity = ({ state, token }) => {
   const [dashState, getDashState] = useState(state) 
@@ -12,8 +13,10 @@ const Activity = ({ state, token }) => {
   const currentUserTransfert = state? state.transfert : null
   const currentUserTransfertLength = state? state.transfert.length : null
   const currentUserOrderLength = state? state.order.length : null
+  const [showDetail, setShowDetail] = useState(false)
 
   const getOrders = state? currentUserOrder.map((el, index) => {
+
     return (
       <div key={uuidv4()}>
         <RowOrder
@@ -31,7 +34,8 @@ const Activity = ({ state, token }) => {
 
   const getTransferts = state? currentUserTransfert.map((el, index) => {
     return (
-      <div key={uuidv4()}>
+      <div key={uuidv4()} onClick={()=> setShowDetail(!showDetail)}>
+
         <RowTransfert
           key={el.id}
           rank={index + 1}
@@ -50,26 +54,26 @@ const Activity = ({ state, token }) => {
 
   return(
     <>
-        <PageContainer>
-          <h1>Récente activité</h1>
-          <div id="col-info-activity">
-            <p className="a-rank">#</p>
-            <p className="a-type">Type</p>
-            <p className="a-name">Nom cryptomonnaie</p>
-            <p className="a-amount">Quantité</p>
-            <p className="a-total">Montant</p>
-            <p className="a-id">Ref achat</p>
-            <p className="a-date">Date achat</p>
+        <PageContainer id="activity-container">
+          <div>
+            <h1>Récente activité</h1>
+            <div id="col-info-activity">
+              <p className="a-type">Type</p>
+              <p className="a-date">Date achat</p>
+              <p className="a-total">Montant</p>
+              <p className="a-id">Ref achat</p>
+            </div>
+            <div className="hr"></div>
+              {currentUserOrderLength === 0 || currentUserOrderLength === null?
+                <p>vous n'avez pas encore effectué d'achat</p>
+                : getOrders
+              }
+            {currentUserTransfertLength === 0 || currentUserTransfertLength === null?
+                <p>vous n'avez pas encore effectué de transfert </p>
+                : getTransferts
+              }
           </div>
-          <div className="hr"></div>
-            {currentUserOrderLength === 0 || currentUserOrderLength === null?
-              <p>vous n'avez pas encore effectué d'achat</p>
-              : getOrders
-            }
-           {currentUserTransfertLength === 0 || currentUserTransfertLength === null?
-              <p>vous n'avez pas encore effectué de transfert </p>
-              : getTransferts
-            }
+          
         </PageContainer>
     </>
   )

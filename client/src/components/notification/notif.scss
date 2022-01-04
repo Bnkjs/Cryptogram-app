@@ -49,30 +49,31 @@ $bg-destructive: #FCEDE9;
   position: absolute;
   top: 0;
   right: 0;
-  animation: showNotif 4s ease-in-out 0s both ;
+  animation: showNotif 5s ease-in-out 0s both ;
   margin: 6em 10em;
   opacity: 0;
 }
 
 @keyframes showNotif {
+
   0%{
+    margin: 6.5em 10em;
+    opacity: .5;
+  }
+  3%{
+    margin: 6em 10em;
+    opacity: 1;
+  }
+  35%{
+    margin: 6em 10em;
+    opacity: 1;
+  }
+  50%{
     margin: 7em 10em;
     opacity: 0;
   }
-  12%{
-    margin: 6em 10em;
-    opacity: 1;
-  }
-  60%{
-    margin: 6em 10em;
-    opacity: 1;
-  }
-  80%{
-    margin: 8.5em 10em;
-    opacity: 0;
-  }
   100%{
-    margin: 8.5em 10em;
+    margin: 7em 10em;
     opacity: 0;
     display: none;
   }

@@ -249,6 +249,25 @@ $bg-grey:#F4F5F6;
 
   }
 }
+.icon-wallet{
+  display: none;
+  top: 2em;
+}
+.text-wallet{
+  margin: 0;
+  padding: 0;
+}
+.btn-wallet{
+  &:hover{
+    .text-wallet{
+      display: none;
+    }
+    .icon-wallet{
+      display: initial;
+      padding: 0 2.3em;
+    }
+  }
+}
 
 @media screen and (min-width: 250px) and (max-width:1050px){
   #navbar{

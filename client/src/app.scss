@@ -5,7 +5,7 @@ $primary-color: #2B59FF;
 $alert-color :#FF4A3D;
 $dark-color: #000;
 $light-color: #fff;
-$bg-grey:#F4F5F6;
+$bg-grey:#eeeff0;
 @mixin flex-end {
   display: flex;
   justify-content: flex-end;
@@ -279,6 +279,7 @@ body{
 .market-result{
   padding-bottom: 2em;
 }
+
 .c-row-container{
   display: flex;
   align-items: center;
@@ -286,9 +287,8 @@ body{
   height: 5em;
   margin: 1em 0 0 0 ;
   transition: all .1s ease-in-out;
-  border: 1px solid $bg-grey;
   border-radius: 10px;
-  padding: 0 1em;
+  padding: 1em 1em;
   &:hover{
     background-color: $bg-grey;
     .btn-cta-market{
@@ -372,17 +372,14 @@ body{
 }
 /* ---- C ROW ---- */
 #col-info,#col-info-activity{
-  width: 100%;
+  max-width: auto;
   display: flex;
   color: rgb(135, 135, 135);
 }
 .col-i{
   font-size: 0.8em;
 }
-.rank{
-  margin: 1em;
-  margin-right: 4%;
-}
+
 .name{
   margin-right: 13%;
 }
@@ -464,11 +461,12 @@ body{
 .modal-box{
   max-width:40%;
   height: auto;
-  background-color: $light-color;
+  background-color: #F9F9F9;
   border-radius: 20px ;
   padding: 3em 3em;
   margin: 0 auto;
   z-index: 2;
+  
 }
 
 
@@ -505,7 +503,10 @@ body{
 .close-add-c:after {
   transform: rotate(-45deg);
 }
-
+.form-contact{
+  @include flex-center();
+  flex-direction: column;
+}
 .r-contact{
   display: flex;
   justify-content: space-between;
@@ -557,32 +558,24 @@ body{
 }
 /*  ---- ROW CONTACT ---- */
 /*  ---- ACTIVITY PAGE ---- */
-.a-rank{
-  margin: 0 5em 0 1em ;
+#activity-container{
+  display: flex;
+
 }
 .a-type{
-  margin: 0 4em 0 0 ;
-}
-.a-name{
-  margin: 0 5.5em 0 0 ;
-}
-.a-amount{
-  margin: 0 5em 0 0 ;
-  
-}
-.a-total{
-  margin: 0 16.5em 0 0 ;
-}
-.a-id{
-  margin: 0 9.5em 0 0 ;
-}
-.a-date{
-  margin: 0 0em 0 0 ;
+  margin: 0 11em 0 1em ;
 }
 
-.o-rank{
-  margin: 0 3.5em 0 0 ;
+.a-total{
+  margin: 0 19.5em 0 0 ;
 }
+.a-id{
+  margin: 0 0em 0 0 ;
+}
+.a-date{
+  margin: 0 8em 0 0 ;
+}
+
 .o-t-order{
   background-color: rgb(2, 164, 107);
 }
@@ -590,36 +583,36 @@ body{
   background-color: #ffc532;
 }
 .o-type{
-  margin: 0 10em 0 0 ;
+  margin: 0 .5em 0 0 ;
   border-radius: 3px;
-  padding: .2em 0.2em;
+  padding: .2em .2em;
   color: #fff;
-  width: 80px;
+  min-width: 50px;
   text-align: center;
   font-size: 0.8em;
 }
 .o-name{
-  margin: 0 9em 0 0 ;
+  margin: 0 2em 0 0 ;
   width: 130px;
 }
-.o-amount{
-  margin: 0 4.5em 0 0 ;
-  width: 80px;
-}
+
 .o-total{
-  margin: 0 3.5em 0 0 ;
+  margin: 0 9.5em 0 0 ;
   width: 80px;
 }
 .o-id{
-  margin: 0 9.8em 0 0 ;
+  margin: 0 0 0 0 ;
   width: 280px;
 }
 .o-date{
-  margin: 0 0em 0 0 ;
+  margin: 0 9em 0 0 ;
 }
 
 
 /*  ---- ACTIVITY PAGE ---- */
+#r-o-container{
+  transition: all 10s ease-in-out;
+}
 
 .grid {
   display: grid;
@@ -722,6 +715,9 @@ body{
     .header-image{
       background-color: red;
       width: 100%;
+    }
+    #container-dashboard{
+      flex-direction: column;
     }
 } 
 
