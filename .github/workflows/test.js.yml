@@ -30,6 +30,7 @@ jobs:
     - run: |
         cd ./client
         npm test
+        working-directory: 'client'
 
 
 
