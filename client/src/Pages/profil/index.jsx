@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Button } from "../../components/Button";
 import Div from "../../components/Div";
@@ -8,13 +8,10 @@ import  cube_white from '../../assets/cube_white.svg';
 import  cube_black  from '../../assets/cube_black.svg'
 
 const Profil = ({ state, token }) => {
-  const [render, setRender] = useState(1)
 
   const submitDelete = (e) => {
     delete_profil(e,token)
   }
-
-
 
   return(
     <PageContainer bg='#F8F8F9'>

@@ -8,13 +8,11 @@ import { ActivityStore } from "Pages/activity";
 import activity from "Actions/activity";
 import { DashLeftAside } from "components/Dashcomponent/DashLeftAside";
 import { ContactStore } from "Pages/contact/contact";
-import { getAllContact } from "Actions/contact";
 import { DashCenterPage } from "components/Dashcomponent/DashCenterComp";
 
 const Dashboard = ({ state, token }) =>{
   
   const [dashState, getDashState] = useState(state)
-  const storedUserEmail = state? state.user.email : null
   const storedUserName = state? state.user.username : null
   const storedContact = state? state.contact : null
   const storedUserInvestment = state? state.investment : null

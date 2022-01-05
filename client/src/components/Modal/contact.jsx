@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { addContact} from "../../Actions/contact";
 import { Input } from "../../components/Input/index";

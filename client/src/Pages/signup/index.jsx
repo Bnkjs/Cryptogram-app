@@ -10,8 +10,7 @@ import { PageContainer } from "../../components/PageContainer";
 import { Form } from "../../components/Form";
 import img_gradient_signup from '../../assets/FORM_SIGNUP_CARD_GRADIENT.svg'
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from 'framer-motion';
-import {myCustomNotif} from '../../components/notification/notif' 
+import { motion } from 'framer-motion';
 const Signup = ({ setAuth }) =>{
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
   const [inputs, setInputs] = useState({
