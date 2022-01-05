@@ -12,8 +12,6 @@ const Contact = ({ state, token }) => {
   const currentUserContactLength = state? state.length : null
   
   const [showModal, setShowModal] = useState(false)
-  const [existNotif,setExistNotif ] = useState(false)
-  const [userContact, setUserContact] = useState(currentUserContactLength)
 
   const displayContact = state? currentUserContact.map((el,index) => {
     return(

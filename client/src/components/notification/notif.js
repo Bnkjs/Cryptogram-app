@@ -21,5 +21,5 @@ export const myCustomNotif = (className, message) => {
           newMessageNotif.classList = 'message-notif'
     newDivNotif.appendChild(newMessageNotif)
     rootApp.appendChild(newDivNotif)
-    // setTimeout(()=>{rootApp.removeChild(newDivNotif)},5000)
+    setTimeout(()=>{rootApp.removeChild(newDivNotif)},5000)
 }

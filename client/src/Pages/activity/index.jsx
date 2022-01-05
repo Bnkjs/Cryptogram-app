@@ -5,7 +5,6 @@ import { RowOrder } from "../../components/order";
 import { RowTransfert } from "../../components/transfert";
 import { PageContainer } from "../../components/PageContainer";
 import { v4 as uuidv4 } from "uuid";
-import ShowDetail from "components/ShowDetail";
 
 const Activity = ({ state, token }) => {
   const [dashState, getDashState] = useState(state) 

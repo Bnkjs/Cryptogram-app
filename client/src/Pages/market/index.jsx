@@ -65,7 +65,7 @@ const Market = ({ state }) => {
          {getDatasMarketAll}
          </div>
       <div className="c-more-w">
-        {nthElement != 100?
+        {nthElement !== 100?
          <Button 
          black 
          className="c-more"

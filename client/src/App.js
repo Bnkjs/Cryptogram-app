@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Signup from "./Pages/signup";
 import Login from "./Pages/login";
 import { DashboardStore } from "./Pages/dashboard";
@@ -22,8 +22,8 @@ const App = () => {
   
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
-    
   }
+  
   return(
     <div id="container-app">
       <Router>

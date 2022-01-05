@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import { getAllContact } from "../../Actions/contact";
 import { getUserCoins } from "../../Actions/crypto";
-import dashboard from "../../Actions/dashboard";
 import TransfertModal from "../../components/Modal/transfert";
 
 const Transfert = ({ state, token }) => {
   const [showModal, setShowModal] = useState(false)
-  const currentUserCrypto = state? state : null
   const currentUserContact = useSelector(state => state.contactReducer)
 
   useEffect(()=>{

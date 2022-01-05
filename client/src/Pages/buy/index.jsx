@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState } from "react";
 import TransfertModal from "../../components/Modal/transfert";
 
 const BuyCrypto = ({ token }) => {
   const [showModal, setShowModal] = useState(false)
-
-  // useEffect(()=>{
-    
-  // }, [])
 
     return(
       <>
@@ -16,8 +11,6 @@ const BuyCrypto = ({ token }) => {
         <div className="overlay"onClick={()=> setShowModal(false)}> 
         </div>
       </div>
-        
-        
       </>
     )
   }

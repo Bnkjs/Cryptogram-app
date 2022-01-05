@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import { PageContainer } from "components/PageContainer";
+import React from "react";
 import 'components/Dashcomponent/style.scss';
 import { FaEthereum } from "react-icons/fa";
 import {RiFileUserLine } from "react-icons/ri";
@@ -9,7 +8,6 @@ import { MdHomeMax } from "react-icons/md";
 
 export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact}) => {
   
-  const [showLeftAside, setShowLeftAside] = useState(false)
   const backToHomeDash = () => {
     setShowActivity(false)
     setShowContact(false)

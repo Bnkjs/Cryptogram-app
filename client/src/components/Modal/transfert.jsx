@@ -1,10 +1,9 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "../../components/Button/index";
 import { Marged } from "../../components/Marged";
 import { Form } from "../../components/Form";
 import { PageContainer } from "../PageContainer";
-import { checkMesageInput } from "../../utils/checkInput";
 import Select from 'react-select';
 import { select } from "../../utils/select";
 import { getMappedContact, getMappedCrypto } from "../../utils/map";
