@@ -28,9 +28,9 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './client/package-lock.json'
     - run: |
+        cd ./client
         npm ci
         npm test
-        working-directory: 'client'
 
 
 
