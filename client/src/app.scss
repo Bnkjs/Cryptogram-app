@@ -372,7 +372,6 @@ body{
 }
 /* ---- C ROW ---- */
 #col-info,#col-info-activity{
-  max-width: auto;
   display: flex;
   color: rgb(135, 135, 135);
 }
@@ -441,6 +440,8 @@ body{
   border-radius: 50px;
   background-color: $dark-color;
   margin: 0.5em auto;
+  border: none;
+  outline: none;
   cursor: pointer;
   @include flex-center();
   color: $light-color;
@@ -451,22 +452,21 @@ body{
 }
 /*  ---- ROW CONTACT ---- */
 .modal-wrap{
-  position: absolute;
-  width: 100%;
+  position: relative;
+  width: auto;
   height: 100%;
   margin: 0 auto;
   z-index: 2;
   @include flex-center();
+  overflow: hidden;
 }
 .modal-box{
   max-width:40%;
-  height: auto;
   background-color: #F9F9F9;
   border-radius: 20px ;
   padding: 3em 3em;
   margin: 0 auto;
   z-index: 2;
-  
 }
 
 
@@ -479,13 +479,20 @@ body{
   z-index: -1;
 }
 .close-add-c {
-  position: absolute;
+  position: relative;
   width: 20px;
   height: 20px;
+  border-radius: 50px;
   @include flex-center();
   cursor: pointer;
-  margin: -2.2em 0 0 33em;
-  padding: 0;
+  background: white;
+  left: 420px;
+  margin: 0;
+  box-shadow: .1em 0 .1em rgb(223, 222, 222);
+  transition: all .2s ease-in-out;
+  &:hover{
+    transform: rotate(80deg);
+  }
 }
 
 .close-add-c:before, .close-add-c:after {
@@ -493,7 +500,7 @@ body{
   content: ' ';
   height: 15px;
   width: 2px;
-  background-color: grey;
+  background-color: rgb(91, 91, 91);
 }
 
 .close-add-c:before {
@@ -503,6 +510,7 @@ body{
 .close-add-c:after {
   transform: rotate(-45deg);
 }
+
 .form-contact{
   @include flex-center();
   flex-direction: column;
@@ -539,19 +547,19 @@ body{
   cursor: pointer;
 }
 .c-id{
-  margin: 0 4em 0  0.5em ;
+  margin: 0 3em 0  0.5em ;
 }
 .c-email{
-  margin: 0 23em 0  0.5em ;
+  margin: 0 10em 0  0.5em ;
 }
 .c-firstname{
-  margin: 0 9.2em 0  0.5em ;
+  margin: 0 5em 0  0.5em ;
 }
 .c-lastname{
-  margin: 0 4.7em 0  0.5em ;
+  margin: 0 10em 0  0.5em ;
 }
 .c-id-wallet{
-  margin: 0 10.8em 0  0.5em ;
+  margin: 0 10em 0  0.5em ;
 }
 .c-delete{
   margin: 0 0 ;

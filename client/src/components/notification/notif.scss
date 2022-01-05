@@ -83,21 +83,26 @@ $bg-destructive: #FCEDE9;
   color:#2fab50;
   border: .1em solid #C4E2CC;
   background-color: #EAF7EF;
+  border-left: 10px solid #2fab50;
 }
 .notif-info{
   color:#1b5fb1;
   border: .1em solid #C9DDF5;
   background-color: #E6EFFA;
+  border-left: 10px solid #1b5fb1;
 }
 .notif-warning{
   color: #edaa02;
   border: .1em solid #f0d7aa;
   background-color: #FEF7EA;
+  border-left: 10px solid #edaa02 ;
 }
 .notif-destruct{
   color: #e1390e;
   border: .1em solid #F9D8D0;
   background-color: #FCEDE9;
+  border-left: 10px solid #e1390e;
+
 }
 /* ---- NOTIF ------*/
 

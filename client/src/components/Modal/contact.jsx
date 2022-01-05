@@ -14,11 +14,7 @@ const initial = {
 
 const Modal = ({ showModal, token }) => {
   const [existModal,setExistModal ] = useState(false)
-  const [showNotifSuccess,setShowNotifSuccess ] = useState(false)
-  const [showNotifError,setShowNotifError ] = useState(false)
-  const [notifMessage,setNotifMessage ] = useState("")
-  const [existNotif,setExistNotif ] = useState(false)
-
+  
   const [inputs, setInputs] = useState({
     email: "",
     firstname: "",
@@ -61,14 +57,14 @@ const Modal = ({ showModal, token }) => {
         <div className="modal-box">
           <div className="close-add-c" onClick={()=> showModal(false)}></div>
           <h1 className="title-form">Ajouter un contact</h1>
-            <Form className="form-contact" method="POST" onSubmit={(e)=> onSubmitForm(e)}>
-              <Input type="text" placeholder="email" name="email" className="email-input input" value={email} onChange={(e)=>onChange(e)} required />
+            <Form role={'form'} className="form-contact" method="POST" onSubmit={(e)=> onSubmitForm(e)}>
+              <Input role={'textbox'} type="text" placeholder="email" name="email" className="email-input input" value={email} onChange={(e)=>onChange(e)} required />
               <Marged bottom="20px"/>
-              <Input type="text" placeholder="prénom" name="firstname" className="firstname-input input" value={firstname} onChange={(e)=>onChange(e)} required  />
+              <Input role={'textbox'} type="text" placeholder="prénom" name="firstname" className="firstname-input input" value={firstname} onChange={(e)=>onChange(e)} required  />
               <Marged bottom="20px" />
-              <Input type="text" placeholder="nom de famille" name="lastname" className="lastname-input input" value={lastname} onChange={(e)=>onChange(e)} required />
+              <Input role={'textbox'} type="text" placeholder="nom de famille" name="lastname" className="lastname-input input" value={lastname} onChange={(e)=>onChange(e)} required />
               <Marged bottom="20px"/>
-              <Button width="100%" primary_xl>Ajouter</Button>  
+              <Button role={'button'} width="100%" primary_xl>Ajouter</Button>  
             </Form>          
         </div>
              

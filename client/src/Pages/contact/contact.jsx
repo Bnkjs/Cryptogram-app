@@ -42,7 +42,7 @@ const Contact = ({ state, token }) => {
         </div>
       </div>
     }
-    <PageContainer>
+    <PageContainer id="contact-container">
      <h1>Liste des contacts</h1>
      <div id="col-info">
         <p className="c-id">#</p>
@@ -58,11 +58,13 @@ const Contact = ({ state, token }) => {
         :  displayContact 
       }
       <a href="#up">
-        <div 
+        <button 
           className="add-c" 
-          onClick={()=> setShowModal(!showModal)}>
+          onClick={()=> setShowModal(!showModal)}
+          
+          >
             +
-        </div> 
+        </button> 
       </a>
     </PageContainer>
   </>)
