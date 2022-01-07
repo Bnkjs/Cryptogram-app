@@ -29,10 +29,12 @@ const Login = ({ setAuth }) =>{
   const handleSubmit = (e, email, password) =>{
     login(e,email,password)
   }
-
+    const enableNav = () => {
+      navEnable()
+    }
   useEffect(()=>{
-   navEnable()
-   setAuth(userLogged)
+    window.onload = () => enableNav()
+    setAuth(userLogged)
   },[userLogged])
   
   
