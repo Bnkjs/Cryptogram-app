@@ -7,9 +7,10 @@ import { Marged } from "../../components/Marged";
 import { Form } from "../../components/Form";
 import { PageContainer } from "../PageContainer";
 import { checkContentInput } from "../../utils/checkInput";
-import { FiFeather, FiSend, FiUser } from "react-icons/fi";
+import { FiSend, FiUser } from "react-icons/fi";
 import animationFm from "utils/framer";
 import cubes from 'assets/cubes_gradients_b.svg'
+import { FaArrowLeft } from "react-icons/fa";
 
 
 const Modal = ({ showModal, token }) => {
@@ -51,8 +52,10 @@ const Modal = ({ showModal, token }) => {
        transition={{ duration: .4 }}          
     >
       <PageContainer id="form-container">
-        <div className="close-add-c" onClick={()=> showModal(false)}></div>
-        <div className="box-form box-form-dash">
+        <div className="box-form box-form-contact">
+         <div className="close-modal" onClick={()=> showModal(false)}>
+           <FaArrowLeft/>
+         </div>
         <div className="header-form">
          <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />
           <div className="text-header-form">
@@ -77,7 +80,7 @@ const Modal = ({ showModal, token }) => {
               <FiUser className="input-icn"/>
             </div>
             <Marged bottom="20px"/>
-            <Button className="btn-form" primary_xl>Ajouter</Button>
+            <Button width='100%' className="btn-form" primary_xl>Ajouter</Button>
             <Marged bottom="10px"/>
           </Form>
         </div>                

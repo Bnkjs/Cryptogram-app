@@ -7,7 +7,6 @@ import store from "./store";
 import { NavBarResStore, NavbarStore } from "./components/Navbar";
 import { useSelector } from "react-redux";
 import { ActivityStore } from "./Pages/activity";
-import BuyCrypto from "./Pages/buy";
 import { ProfilStore } from "./Pages/profil";
 import { ContactStore } from "./Pages/contact/contact";
 import { MarketStore } from "./Pages/market";
@@ -37,7 +36,6 @@ const App = () => {
         <Route exact path ="/contact" render={props => myStore ? <ContactStore {...props} token={currentUserInfo.token} /> : <Redirect to="/login"/>} />
         <Route exact path ="/dashboard" render={props => myStore ? <DashboardStore {...props} token={currentUserInfo.token} /> : <Redirect to="/login"/>} />
         <Route exact path="/activity" render={props => myStore? <ActivityStore {...props} token={currentUserInfo.token} /> : <Redirect to="/login"/>}/>
-        <Route exact path="/buy_crypto" render={props => myStore? <BuyCrypto {...props}/> : <Redirect to="/login"/>}/>
         <Route exact path="/transfert_crypto" render={props => myStore? <TransfertStore {...props}  token={currentUserInfo.token}/> : <Redirect to="/login"/>}/>      
       </Router>
 

@@ -47,7 +47,7 @@ const Market = ({ state }) => {
         <p>La capitalisation boursière globale du marché crypto est de €2.09T</p>
       </div>
     </PageContainer>
-    <PageContainer>
+    <PageContainer className="landing-market-content">
       <h1>Tendance du marché</h1>
       <div id="col-info">
         <p className="col-i rank">#</p>

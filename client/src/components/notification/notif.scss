@@ -52,6 +52,7 @@ $bg-destructive: #FCEDE9;
   animation: showNotif 5s ease-in-out 0s both ;
   margin: 6em 10em;
   opacity: 0;
+  z-index: 15;
 }
 .notif-bottom{
   min-width: 100px;

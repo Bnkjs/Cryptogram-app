@@ -9,6 +9,7 @@ import { makeTransfert } from "../../Actions/crypto";
 import './style.scss'
 import 'Pages/signup/style.scss'
 import animationFm from "utils/framer";
+import { FaArrowLeft } from "react-icons/fa";
 
 const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, storedCrypto }) => {
   const [selectedContact, setSelectedContact] = useState(null);
@@ -55,12 +56,14 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, 
        transition={{ duration: .4 }}          
     >
       <PageContainer id="form-container">
-        <div className="close-add-c" onClick={()=> showModalTransfert(false)}/>
         <div className="box-form form-transfert">
+          <div className="close-modal" onClick={()=> showModalTransfert(false)}>
+            <FaArrowLeft/>
+          </div>
           <div className="header-form">
           <img className="cubes_form" src={""} alt="deux cube avec un dégradé bleu transparent" />
             <div className="text-header-form">
-              <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Effectuez un transfert</h1>
+              <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Effectuer un transfert</h1>
               <h2>À vos contact <br/> partout dans le monde.</h2>
               <p>Vos crypto-monnaies transférées à vos contacts en quelques cliques!</p>
             </div>
@@ -119,7 +122,8 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, 
               onChange={(e)=> onChange(e)}
               value={message}
               />
-            </label> 
+            </label>
+            <Marged bottom="20px"/>
             <Button width="100%" primary_xl>Effectuer le transfert</Button>   
         </Form>
         </div>                

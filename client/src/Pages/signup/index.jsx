@@ -13,6 +13,7 @@ import './style.scss';
 import { BiLockAlt } from "react-icons/bi";
 import { FiFeather, FiSend } from "react-icons/fi";
 import animationFm from "utils/framer";
+import { navDisable, navEnable } from "utils/navUtils";
 
 const Signup = ({ setAuth }) =>{
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
@@ -28,27 +29,27 @@ const Signup = ({ setAuth }) =>{
   const handleSubmit = (e,email, password, username) =>{
     register(e,email,password,username)
   }    
-
   useEffect(()=>{
-   setAuth(userLogged)
+    navEnable()
+    setAuth(userLogged)
   },[userLogged])
   
   return(
-    <motion.div
-       variants={animationFm()}
-       initial={animationFm(0,50).hidden}
-       animate={animationFm(1,0).visible}
-       transition={{ duration: .4 }}          
-    >
       <PageContainer id="form-container">
+        <motion.div
+          variants={animationFm()}
+          initial={animationFm(0,50).hidden}
+          animate={animationFm(1,0).visible}
+          transition={{ duration: .4 }}          
+        >
         <div className="box-form">
-        <div className="header-form">
-         <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />
-          <div className="text-header-form">
-            <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Créez votre compte</h1>
-            <h2>Commencez <br/> dès maintenant.</h2>
-            <p>En profitant des meilleurs crypto-monnaies du marché.</p>
-          </div>
+          <div className="header-form">
+            <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />
+            <div className="text-header-form">
+              <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Créez votre compte</h1>
+              <h2>Commencez <br/> dès maintenant.</h2>
+              <p>En profitant des meilleurs crypto-monnaies du marché.</p>
+            </div>
         </div>
         <Form
          className="form-signup"
@@ -69,15 +70,15 @@ const Signup = ({ setAuth }) =>{
               <FiFeather className="input-icn"/>
             </div>
             <Marged bottom="20px"/>
-            <Button className="btn-form" primary_xl>Créer son compte</Button>
+            <Button width="100%" primary_xl>Créer son compte</Button>
             <Marged bottom="10px"/>
             <div className="switch-auth">Vous avez déjà un compte?
               <Link to='/login'><span className="link-redirect-auth"> Connectez-vous</span></Link>
             </div>
           </Form>
-        </div>                
-      </PageContainer>
-    </motion.div>    
+        </div> 
+        </motion.div>                
+      </PageContainer>   
   )
 }
 

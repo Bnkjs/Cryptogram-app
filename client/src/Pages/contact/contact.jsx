@@ -36,8 +36,6 @@ const Contact = ({ state, token }) => {
     {showModal &&
       <div className="modal-wrap" id="up">
         <Modal showModal={setShowModal} token={token}/>
-        <div className="overlay"onClick={()=> setShowModal(false)}> 
-        </div>
       </div>
     }
     <PageContainer id="contact-container">
@@ -59,7 +57,6 @@ const Contact = ({ state, token }) => {
         <button 
           className="add-c" 
           onClick={()=> setShowModal(!showModal)}
-          
           >
             +
         </button> 

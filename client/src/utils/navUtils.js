@@ -4,5 +4,12 @@ export const navDisable = (pathname) => {
   if(pathname === '/dashboard'){
     navBar.style.display='none'
     navBarRes.style.display='none'
+  } 
+}
+export const navEnable = () => {
+  window.onload = () => {
+    const navBar = document.getElementById('navbar')
+    const navBarRes = document.getElementById('navbar-res')
+    navBar.style.display=''
   }
 }
