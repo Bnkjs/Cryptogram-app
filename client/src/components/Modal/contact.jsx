@@ -77,7 +77,7 @@ const Modal = ({ showModal, token }) => {
               <FiUser className="input-icn"/>
             </div>
             <Marged bottom="20px"/>
-            <Button className="btn-form" primary_xl>Créer son compte</Button>
+            <Button className="btn-form" primary_xl>Ajouter</Button>
             <Marged bottom="10px"/>
           </Form>
         </div>                
