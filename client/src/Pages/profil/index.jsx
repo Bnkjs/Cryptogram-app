@@ -7,7 +7,7 @@ import { delete_profil } from "../../Actions/profil";
 import  cube_white from '../../assets/cube_white.svg';
 import  cube_black  from '../../assets/cube_black.svg'
 import { myCustomNotif } from "components/notification/notif";
-import { navEnable } from "utils/navUtils";
+import { navDisable, navEnable } from "utils/navUtils";
 
 const Profil = ({ state, token }) => {
 
@@ -18,11 +18,8 @@ const Profil = ({ state, token }) => {
     },800)
     
   }
-  const enableNav = () => {
-    navEnable()
-  }
   useEffect(()=>{
-    enableNav()
+    navEnable()
   },[])
   return(
     <PageContainer bg='#F8F8F9'>
