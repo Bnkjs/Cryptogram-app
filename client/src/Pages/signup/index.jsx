@@ -28,12 +28,9 @@ const Signup = ({ setAuth }) =>{
   }
   const handleSubmit = (e,email, password, username) =>{
     register(e,email,password,username)
-  }
-  const enableNav = () => {
-    navEnable()
-  }
+  }    
   useEffect(()=>{
-    window.onload = () => enableNav()
+    navEnable()
     setAuth(userLogged)
   },[userLogged])
   
