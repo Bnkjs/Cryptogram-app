@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
   }
 
   function validUserName(userName) {
-    return /^[0-9a-z\_]{3,20}$/.test(userName);
+    return /^[0-9a-z-A-Z\_]{3,20}$/.test(userName);
   }
 
   if (req.path === "/signup") {

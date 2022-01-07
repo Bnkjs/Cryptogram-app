@@ -2,7 +2,7 @@ module.exports = function (req,res,next) {
   const { amount, crypto_name, crypto_id_name, description} = req.body
 
   function validCrypto(cryptoAmount){
-    return /^[0-9-.\S]{1,15}$/.test(cryptoAmount);
+    return /^[0-9-.\S]{1,50}$/.test(cryptoAmount);
   }
   function validDescription(transfertDesc) {
     return /^[a-zA-Z0-9\-\s\!\?\.\,\()]{5,250}$/.test(transfertDesc);

@@ -41,7 +41,7 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
           // ---- ADD NEW INVESTMENT ----  //
           const newInvestment = await pool.query(`INSERT INTO user_investment (user_id,status,investment_tracking_id,wallet_adress,created_at) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
           [req.user,"* invested * ",generateTransactionId,checkUserExist.rows[0].wallet_adress,date])
-
+          
           //  ---- IF ITEM NOT EXIST ADD NEW INVESTMENT ITEM ----  //
           const newInvestmentItem = await pool.query(`
             INSERT INTO user_investment_item(  
@@ -64,7 +64,7 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
  
         // ---- UPDATE USER BALANCE AFTER NEW ORDER ITEM ----  //
       const newUserInvestment = await pool.query('UPDATE users SET investment = ($1) WHERE user_id = ($2) RETURNING *',[parseFloat(checkUserExist.rows[0].investment) + amountExchangeInUserCurrency, req.user])
-      const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING balance',[parseFloat(checkUserExist.rows[0].balance) - amountExchangeInUserCurrency, req.user])
+      const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING balance',[parseFloat(checkUserExist.rows[0].balance) + amountExchangeInUserCurrency, req.user])
       res.json({ order: newOrder.rows[0], order_item: newOrderItem.rows[0], user_balance: newUserBalance.rows[0]})
     }
 
