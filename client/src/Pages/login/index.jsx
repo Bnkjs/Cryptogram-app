@@ -9,11 +9,11 @@ import { PageContainer } from "../../components/PageContainer";
 import { Form } from "../../components/Form";
 import { Link } from "react-router-dom";
 import { BiLockAlt } from "react-icons/bi";
-import { FiFeather, FiSend } from "react-icons/fi";
+import {  FiSend } from "react-icons/fi";
 import animationFm from "utils/framer";
 import cubes from 'assets/cubes_gradients_o.svg';
-
 import 'Pages/signup/style.scss';
+import { navEnable } from "utils/navUtils";
 
 
 const Login = ({ setAuth }) =>{
@@ -31,18 +31,20 @@ const Login = ({ setAuth }) =>{
   }
 
   useEffect(()=>{
+   navEnable()
    setAuth(userLogged)
   },[userLogged])
   
   
   return(
-    <motion.div
+    
+      <PageContainer id="form-container">
+        <motion.div
        variants={animationFm()}
        initial={animationFm(0,50).hidden}
        animate={animationFm(1,0).visible}
        transition={{ duration: .4 }}          
-    >
-      <PageContainer id="form-container">
+      >
         <div className="box-form">
         <div className="header-form">
          <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />
@@ -66,15 +68,15 @@ const Login = ({ setAuth }) =>{
              <BiLockAlt className="input-icn"/>
             </div>
             <Marged bottom="20px"/>
-            <Button className="btn-form" primary_xl>Se connecter</Button>
+            <Button width="100%" className="btn-form" primary_xl>Se connecter</Button>
             <Marged bottom="10px"/>
             <div className="switch-auth">Vous n’avez pas encore de compte?
               <Link to='/signup'><span className="link-redirect-auth"> Inscrivez-vous</span></Link>
             </div>
           </Form>
-        </div>                
+        </div>
+        </motion.div>              
       </PageContainer>
-    </motion.div> 
   )
 }
 

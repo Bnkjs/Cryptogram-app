@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export const Button = styled.button`
     
-  border-radius: 50px;
+  border-radius: 10px;
   border: transparent;
   padding: 0.5em 1.6em;
   transition: all .1s ease-out;
@@ -30,6 +30,7 @@ export const Button = styled.button`
   Button.proptypes = {
     padding: PropTypes.string;
     width: PropTypes.string;
+    bg: PropTypes.string;
   }
   ${props => props.dark && css`
     background: #313131;
@@ -54,6 +55,18 @@ export const Button = styled.button`
     padding: 0.7em 6em;
     :hover{
      background: #FF4A3D ;
+    }
+  `}
+  ${props => props.dash_option && css`
+    background-color: #e8e8e8 ;
+    color: #fff;
+    transition: all .2s ease-out;
+    box-shadow: none;
+    width: 100%;
+    :hover{
+     background-color: ${({bg}) => bg};
+     box-shadow: 0px 2px 15px 0.5px rgba(0, 0, 0, 0.1);
+     transform: translateX(10px)
     }
   `}
 `

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Button } from "../../components/Button";
 import Div from "../../components/Div";
@@ -7,11 +7,9 @@ import { delete_profil } from "../../Actions/profil";
 import  cube_white from '../../assets/cube_white.svg';
 import  cube_black  from '../../assets/cube_black.svg'
 import { myCustomNotif } from "components/notification/notif";
-import { useHistory } from "react-router-dom";
+import { navDisable, navEnable } from "utils/navUtils";
 
 const Profil = ({ state, token }) => {
-
-  let history = useHistory()
 
   const submitDelete = (e) => {
     delete_profil(e,token)
@@ -20,7 +18,9 @@ const Profil = ({ state, token }) => {
     },800)
     
   }
-
+  useEffect(()=>{
+    navEnable()
+  },[])
   return(
     <PageContainer bg='#F8F8F9'>
       <h1 className="hone-center">Informations profil</h1>

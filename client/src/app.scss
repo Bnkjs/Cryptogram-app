@@ -6,6 +6,9 @@ $alert-color :#FF4A3D;
 $dark-color: #000;
 $light-color: #fff;
 $bg-grey:#eeeff0;
+$bg-grey-blue: #F4F6F8;
+$bg-dark:#34343e;
+
 @mixin flex-end {
   display: flex;
   justify-content: flex-end;
@@ -36,6 +39,7 @@ html {
 }
 a{
   text-decoration: none;
+  cursor: initial;
 }
 
 body{
@@ -43,6 +47,7 @@ body{
   font-size: 1rem;
   margin: 0;
   padding: 0;
+  background: $bg-grey-blue;
 }
 #container{
     display: grid;
@@ -263,9 +268,11 @@ body{
 }
 
 /*  ---- MARKET PAGE ---- */
+
 .landing-market{
   background-color: #FFDF8D;
 }
+
 /* ---- C ROW ---- */
 .link-redirect-buy{
   color: #000;
@@ -284,8 +291,11 @@ body{
   transition: all .1s ease-in-out;
   border-radius: 10px;
   padding: 1em 1em;
+  background-color: rgb(255, 255, 255);  
   &:hover{
-    background-color: $bg-grey;
+    background-color: #E7F0FF;
+    color: #1367d5;
+    border: none;
     .btn-cta-market{
       display: block;
     }
@@ -369,7 +379,41 @@ body{
 #col-info,#col-info-activity{
   display: flex;
   color: rgb(135, 135, 135);
+  width: auto;
+  background: $light-color;
+  padding: .5em;
+  border-radius: 10px;
 }
+.c-trash{
+  cursor: pointer;
+}
+.c-id{
+  margin: 0 3em 0  0.5em ;
+}
+.c-email{
+  margin: 0 8em 0  0.5em ;
+}
+.c-firstname{
+  margin: 0 5em 0  0.5em ;
+}
+.c-lastname{
+  margin: 0 3em 0  0.5em ;
+}
+.c-id-wallet{
+  margin: 0 7em 0  0.5em ;
+}
+.c-delete{
+  margin: 0 0 ;
+}
+/*  ---- ROW CONTACT ---- */
+.r-id{
+  margin: 0 0 0 0;
+}
+.r-email{
+  margin: 0 0 0 0 ;
+}
+
+
 .col-i{
   font-size: 0.8em;
 }
@@ -464,49 +508,14 @@ body{
   z-index: 2;
 }
 
-
-.overlay{
-  position: absolute;
-  background-color: $light-color;
-  width: 100%;
-  height: 100vh;
-  opacity: 0.9;
-  z-index: -1;
-}
-.close-add-c {
-  position: absolute;
-  right: 0;
-  margin: .8em 1em;
-  width: 20px;
-  height: 20px;
-  padding: .2em;
-  border-radius: 50px;
-  @include flex-center();
-  cursor: pointer;
-  background: $light-color;
-  box-shadow: .1em 0 .1em rgb(223, 222, 222);
-  transition: all .2s ease-in-out;
-  &:hover{
-    transform: rotate(80deg);
+#contact-container{
+  max-width: 90%;
+  margin: 2em;
+  h3{
+    text-align: center;
+    margin: 2em 0;
   }
 }
-
-.close-add-c:before, .close-add-c:after {
-  position: absolute;
-  content: ' ';
-  height: 15px;
-  width: 2px;
-  background-color: rgb(82, 82, 82);
-}
-
-.close-add-c:before {
-  transform: rotate(45deg);
-  
-}
-.close-add-c:after {
-  transform: rotate(-45deg);
-}
-
 .form-contact{
   @include flex-center();
   flex-direction: column;
@@ -519,9 +528,13 @@ body{
   margin: 1em 0;
   transition: all 50ms ease-out;
   font-size: 0.9em;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);  
   &:hover{
-    background-color: $bg-grey;
-    border-radius: 8px;
+    background-color: #E7F0FF;
+    color: #1367d5;
+    border: none;
   }
 }
 .r-email{
@@ -538,46 +551,6 @@ body{
   width: 150px;
   @include flex-end();
   margin: 0;
-}
-.c-trash{
-  cursor: pointer;
-}
-.c-id{
-  margin: 0 3em 0  0.5em ;
-}
-.c-email{
-  margin: 0 10em 0  0.5em ;
-}
-.c-firstname{
-  margin: 0 5em 0  0.5em ;
-}
-.c-lastname{
-  margin: 0 10em 0  0.5em ;
-}
-.c-id-wallet{
-  margin: 0 10em 0  0.5em ;
-}
-.c-delete{
-  margin: 0 0 ;
-}
-/*  ---- ROW CONTACT ---- */
-/*  ---- ACTIVITY PAGE ---- */
-#activity-container{
-  display: flex;
-
-}
-.a-type{
-  margin: 0 11em 0 1em ;
-}
-
-.a-total{
-  margin: 0 19.5em 0 0 ;
-}
-.a-id{
-  margin: 0 0em 0 0 ;
-}
-.a-date{
-  margin: 0 8em 0 0 ;
 }
 
 .o-t-order{

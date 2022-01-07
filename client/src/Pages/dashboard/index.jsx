@@ -14,7 +14,7 @@ import { getAllContact } from "Actions/contact";
 import { useSelector } from "react-redux";
 import { getMarket, getUserCoins } from "Actions/crypto";
 import BuyCrypto from "components/Modal/buy";
-import { navDisable } from "utils/path";
+import { navDisable } from "utils/navUtils";
 
 const Dashboard = ({ state, token }) =>{
   
@@ -47,7 +47,6 @@ const Dashboard = ({ state, token }) =>{
     getAllContact(token)
     getMarket()
     dashboard(token)
-    
  },[dashState, storedContact])
   
   return(

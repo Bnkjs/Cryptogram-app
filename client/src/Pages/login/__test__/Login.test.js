@@ -8,7 +8,6 @@ import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 describe('test Login component', () => {
   
   const mockedSetAuth = jest.fn() // fonction qui n'execute rien
-
   const signupComponent = (
     <Provider store={store}>
         <React.StrictMode>

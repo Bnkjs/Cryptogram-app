@@ -1,4 +1,5 @@
 $font-primary:'Poppins', sans-serif;
+$light-color: #fff;
 
 @mixin flex-justify-column-center {
   display: flex;
@@ -27,6 +28,7 @@ $font-primary:'Poppins', sans-serif;
   padding: 0 3em;
   font-family: $font-primary;
   border-right: .2px solid rgb(237, 237, 237);
+  background-color: $light-color ;
 }
 .ul-sidenav{
   list-style: none;
@@ -35,11 +37,10 @@ $font-primary:'Poppins', sans-serif;
   padding: 0
 }
 
-.cube-gradient{
-  transform: scale(.6);
-  padding: 1em 2em;
-  border-radius: 20px;
-  background: rgb(255, 198, 118);
+.logo{
+  border-radius: 50px;
+  transform: scale(2);
+  margin: 2em 0 3em 0;
 }
 
 .li-sidenav-icon{
@@ -58,7 +59,7 @@ $font-primary:'Poppins', sans-serif;
 .li-sidenav{
   @include flex-align-center();
   justify-content: center;
-  color: #c4c4c4;
+  color: rgb(82, 82, 82);
   margin: .5em 0;
   cursor: pointer;
   transition: all .2s ease-in-out;
@@ -78,22 +79,29 @@ $font-primary:'Poppins', sans-serif;
       background-image: linear-gradient(91.26deg, #3e52fe 15%, #e554ff 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
      -webkit-background-clip: text;
       color: transparent;
-      
     }
   }
 }
 
 .h-left-content{
-  text-align: center;
-  min-width: 150px;
+  min-width: 100%;
   max-height: auto;
   padding: .1em;
-  p{    
-    font-size: 1em;
-  }
+  margin: 0 auto;
+  @include flex-center();
+  margin: 2em 0;
 } 
 
 .aside-left-content{
   width: auto;
   height: 100%;
+  
+}
+.box-signout-profil{
+  @include flex-justify-column-center();
+  min-width: 120px;
+  min-height: 120px;
+  padding: 1em;
+  margin-top: 5em;
+  border-radius: 15px;
 }

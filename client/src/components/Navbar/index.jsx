@@ -174,11 +174,11 @@ export const NavbarRes = () => {
       </nav>
       {showNavRes && 
         <main>
-          <div className="p-close" onClick={()=> setShowNavRes(false)}>
-            <div className="li-close">+</div>
-          </div>
           {userLogged? 
             <div className="p-menu">
+              <div className="p-close" onClick={()=> setShowNavRes(false)}>
+                <div className="li-close">+</div>
+              </div>
               <ul className="ul-menu-res">
                 <Link to="/profil" onClick={()=> setShowNavRes(false)}>
                   <li className="li-menu-res">Mon profil</li>

@@ -5,7 +5,7 @@ import { RowOrder } from "../../components/order";
 import { RowTransfert } from "../../components/transfert";
 import { PageContainer } from "../../components/PageContainer";
 import { v4 as uuidv4 } from "uuid";
-
+import './style.scss';
 const Activity = ({ state, token }) => {
   const [dashState, getDashState] = useState(state) 
   const currentUserOrder = state? state.order : null
@@ -34,7 +34,6 @@ const Activity = ({ state, token }) => {
   const getTransferts = state? currentUserTransfert.map((el, index) => {
     return (
       <div key={uuidv4()} onClick={()=> setShowDetail(!showDetail)}>
-
         <RowTransfert
           key={el.id}
           amount_converted_in_coin={el.amount_converted_in_coin}
@@ -53,7 +52,7 @@ const Activity = ({ state, token }) => {
   return(
     <>
         <PageContainer id="activity-container">
-          <div>
+          <div className="activity-wrap">
             <h1>Récente activité</h1>
             <div id="col-info-activity">
               <p className="a-type">Type</p>
