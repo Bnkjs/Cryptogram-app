@@ -46,13 +46,6 @@ const Navbar = ({ setAuth, state }) =>{
               <Link to="/market"><p className="li-p">Marché</p></Link>
             </li>
             <li className="li-nav">
-              <Link to="/transfert_crypto"><p className="li-p">Transfert</p></Link>
-            </li>
-            
-            <li className="li-nav">
-              <Link to="/contact"><p className="li-p">Contact</p></Link>
-            </li>
-            <li className="li-nav">
              <div className="right-nav">
                <Link to="/activity">
                  <FiZap className="li-p li-icon" />
@@ -187,17 +180,14 @@ export const NavbarRes = () => {
           {userLogged? 
             <div className="p-menu">
               <ul className="ul-menu-res">
-                <Link to="#" onClick={()=> setShowNavRes(false)}>
-                  <li className="li-menu-res">Acheter</li>
+                <Link to="/profil" onClick={()=> setShowNavRes(false)}>
+                  <li className="li-menu-res">Mon profil</li>
                 </Link>
                 <Link to="/market" onClick={()=> setShowNavRes(false)}>
-                <li className="li-menu-res">Crypto-monnaies</li>
+                <li className="li-menu-res">Cours <br/> crypto-monnaies</li>
                 </Link>
                 <Link to="/dashboard" onClick={()=> setShowNavRes(false)}>
                   <li className="li-menu-res">Portefeuille</li>
-                </Link>
-                <Link to="" onClick={()=> setShowNavRes(false)}>
-                  <li className="li-menu-res">Découvrir</li>
                 </Link>
               </ul>
            </div>

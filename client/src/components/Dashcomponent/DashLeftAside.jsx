@@ -5,20 +5,39 @@ import {RiFileUserLine } from "react-icons/ri";
 import { FiZap } from "react-icons/fi";
 import  cube_gradient from 'assets/cube_gradient.svg';
 import { MdHomeMax } from "react-icons/md";
+import { BiTransferAlt } from "react-icons/bi";
 
-export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact}) => {
+export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, setShowTransfert, setShowBuyCrypto}) => {
   
   const backToHomeDash = () => {
     setShowActivity(false)
     setShowContact(false)
+    setShowTransfert(false)
+    setShowBuyCrypto(false)
   }
   const setActivity = () => {
     setShowActivity(true)
     setShowContact(false)
+    setShowTransfert(false)
+    setShowBuyCrypto(false)
   }
   const setContact = () => {
     setShowActivity(false)
+    setShowTransfert(false)
+    setShowBuyCrypto(false)
     setShowContact(true)
+  } 
+  const setTransfert = () => {
+    setShowActivity(false)
+    setShowContact(false)
+    setShowBuyCrypto(false)
+    setShowTransfert(true)
+  }
+  const setBuyCrypto = () => {
+    setShowActivity(false)
+    setShowContact(false)
+    setShowTransfert(false)
+    setShowBuyCrypto(true)
   }
   
   return(
@@ -35,7 +54,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact})
                       <div className="li-sidenav-icon">
                         <MdHomeMax className="li-icon-img"/>
                       </div>
-                        <p className="text-sidenave">Tableau de bord</p>
+                        <p className="text-sidenave">Portfeuille</p>
                     </li>
                     <li className="li-sidenav" onClick={()=> setActivity()}>
                       <div className="li-sidenav-icon">
@@ -49,12 +68,18 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact})
                         </div>
                         <p className="text-sidenave">Contact</p>
                       </li>
-                      <li className="li-sidenav">
+                      <li className="li-sidenav" onClick={()=> setBuyCrypto()}>
                         <div className="li-sidenav-icon">
                           <FaEthereum className="li-icon-img"/>
                         </div>
                         <p className="text-sidenave">Crypto</p>
                       </li>
+                      <li className="li-sidenav" onClick={()=> setTransfert()}>
+                        <div className="li-sidenav-icon">
+                          <BiTransferAlt className="li-icon-img"/>
+                        </div>
+                        <p className="text-sidenave">Transfert</p>
+                      </li> 
                 </ul>
               </nav>
             </aside>

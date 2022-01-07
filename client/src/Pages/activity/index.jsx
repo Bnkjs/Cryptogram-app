@@ -37,7 +37,6 @@ const Activity = ({ state, token }) => {
 
         <RowTransfert
           key={el.id}
-          rank={index + 1}
           amount_converted_in_coin={el.amount_converted_in_coin}
           amount_in_user_currency={el.amount_in_user_currency}
           transfert_id={el.transfert_id}

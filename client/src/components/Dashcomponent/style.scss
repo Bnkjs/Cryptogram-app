@@ -1,3 +1,5 @@
+$font-primary:'Poppins', sans-serif;
+
 @mixin flex-justify-column-center {
   display: flex;
   justify-content: center;
@@ -23,6 +25,8 @@
   @include flex-justify-column-center();
   margin: 0;
   padding: 0 3em;
+  font-family: $font-primary;
+  border-right: .2px solid rgb(237, 237, 237);
 }
 .ul-sidenav{
   list-style: none;
@@ -37,51 +41,55 @@
   border-radius: 20px;
   background: rgb(255, 198, 118);
 }
-.text-sidenave{
-  display: none;
-  min-width: none;
-}
+
 .li-sidenav-icon{
   @include flex-center();
   padding: 0 .5em 0 0 ;
   transform: scale(1.2);
+  color: #b0b0b0;
 }
 .li-icon-img{
-  transform: scale(1.2);
+  transform: scale(1);
   padding: .5em 1em;
-
+}
+.text-sidenave{
+  min-width: 100px;
 }
 .li-sidenav{
   @include flex-align-center();
   justify-content: center;
-  color: #767676;
-  padding: .8em 0;
+  color: #c4c4c4;
   margin: .5em 0;
   cursor: pointer;
   transition: all .2s ease-in-out;
+  font-family: 'Montserrat';
+  font-weight: 600;
   &:hover{
     transform: translateX(5px);
-    background-color: rgb(249, 249, 249);  
+    border-left: 6px solid #1367d5 ;
+    background-color: #E7F0FF;
     border-radius: 10px;
     justify-content: flex-start;
     .li-sidenav-icon{
-      color: #3859ff;
+      color: #1367d5;
     }
     .text-sidenave{
       display: initial;
-      color: black;
-      font-weight: 400;
+      background-image: linear-gradient(91.26deg, #3e52fe 15%, #e554ff 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
+     -webkit-background-clip: text;
+      color: transparent;
+      
     }
   }
 }
 
 .h-left-content{
   text-align: center;
-  min-width: 150px ;
+  min-width: 150px;
+  max-height: auto;
   padding: .1em;
   p{    
     font-size: 1em;
-    margin: 4em 0 0 0;
   }
 } 
 

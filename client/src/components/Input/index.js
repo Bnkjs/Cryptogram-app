@@ -1,28 +1,23 @@
-import styled,{ css } from 'styled-components'
+import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 export const Input = styled.input`
   width:100% ;
-  padding: 1.5em 1em ;
+  padding: 1.2em 0;
   border: none;
   border-radius: 8px;
-  position: relative;
   outline: none;
-  font-family: 'Montserrat light', sans-serif;
-  font-size: 1.01em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  transition: all .08s ease-in ;
+  background-color: ${({ bg }) => bg };
+
   &:focus{
     box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.1);
     border: 2px solid #2B59FF ;
   }
-  ${props => props.border_b && css`
-      border: none;
-      border-radius: 0 ;
-      border-bottom: 1px solid #E1E1E2;
-      margin: 0 0 2em 0;
-      padding: 0;
-      font-size: 1.5em;
-      text-align: center;
-      &:focus{
-        box-shadow: none;
-      }
-  `}
 `
+
+Input.propTypes = {
+  bg: PropTypes.string,
+}

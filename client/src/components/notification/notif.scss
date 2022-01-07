@@ -53,6 +53,23 @@ $bg-destructive: #FCEDE9;
   margin: 6em 10em;
   opacity: 0;
 }
+.notif-bottom{
+  min-width: 100px;
+  margin: 0 auto;
+  padding: 1em 1em;
+  border-radius: 10px;
+  text-align: left;
+  color: #2a2929;
+  @include flex-space-around();
+  flex-direction: row;
+  font-size: 0.8em;
+  position: absolute;
+  bottom: -10em;
+  right: -5em;
+  margin: 6em 10em;
+  animation: showNotif 5s ease-in-out 0s both ;
+  opacity: 0;
+}
 
 @keyframes showNotif {
 
@@ -102,7 +119,6 @@ $bg-destructive: #FCEDE9;
   border: .1em solid #F9D8D0;
   background-color: #FCEDE9;
   border-left: 10px solid #e1390e;
-
 }
 /* ---- NOTIF ------*/
 

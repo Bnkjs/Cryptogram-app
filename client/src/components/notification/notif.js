@@ -2,7 +2,6 @@ export const myCustomNotif = (className, message) => {
  
     const newDivNotif = document.createElement('div')
           newDivNotif.classList = className
-    const getNotif = document.getElementsByClassName('notif')
     const rootApp = document.getElementById('container-app')
     const img_notif = document.createElement('img')
           img_notif.classList = "img-notif"

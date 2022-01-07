@@ -6,11 +6,19 @@ import { PageContainer } from "../../components/PageContainer";
 import { delete_profil } from "../../Actions/profil";
 import  cube_white from '../../assets/cube_white.svg';
 import  cube_black  from '../../assets/cube_black.svg'
+import { myCustomNotif } from "components/notification/notif";
+import { useHistory } from "react-router-dom";
 
 const Profil = ({ state, token }) => {
 
+  let history = useHistory()
+
   const submitDelete = (e) => {
     delete_profil(e,token)
+    setTimeout(()=>{
+      myCustomNotif('notif notif-destruct','votre compte à bien été supprimé')
+    },800)
+    
   }
 
   return(
@@ -23,7 +31,6 @@ const Profil = ({ state, token }) => {
             <div className="avatar-p">
                 {state.username.toUpperCase()[0]}
             </div>
-
             <h2 className="user-name">{state.username}</h2>
             <p className="user-email">{state.email}</p>
             <p className="user">Inscrit depuis: {state.created_at}</p>

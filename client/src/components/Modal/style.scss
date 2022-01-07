@@ -1,0 +1,55 @@
+.form-signup{
+  position: relative;
+  label{
+    width: 100%;
+  }
+}
+.select-input{
+  width:100% ;
+  padding: 1.2em ;
+  border: none;
+  border-radius: 8px;
+  position: relative;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  transition: all .08s ease-in ;
+  background-color: #F4F6F8;
+  &:focus{
+    box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.1);
+    border: 2px solid #2B59FF ;
+  }
+}
+
+.input-message{
+  width:100% ;
+  padding: 1.2em 0;
+  border: none;
+  border-radius: 8px;
+  position: relative;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  transition: all .08s ease-in ;
+  background-color: #F4F6F8;
+  &:focus{
+    box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.1);
+    border: 2px solid #2B59FF ;
+  }
+}
+
+.amount-converted-wrap{
+  .a-c-box{
+    color: rgb(23, 22, 22);
+    border: 1px solid rgb(232, 232, 232);
+    max-width: 100%;
+    padding: .8em;
+    border-radius: 10px;
+  }
+  .a-c-result{
+    background-color: #E7F0FF;      border-radius: 5px;
+    color: #1367d5;
+    padding: .2em .3em;
+    font-weight: 600;
+  }
+}

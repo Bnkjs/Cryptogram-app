@@ -4,7 +4,6 @@ import { FcMoneyTransfer } from "react-icons/fc";
 import { FcCurrencyExchange } from "react-icons/fc";
 import { Button } from "components/Button";
 export const DashCenterPage = ({storedContact,storedUserBalance, storedUserInvestment}) => {
-
   return(
     <div className="center-content">
 
@@ -15,7 +14,8 @@ export const DashCenterPage = ({storedContact,storedUserBalance, storedUserInves
                       <p className="text-h">Solde total</p>
                       <FcMoneyTransfer className="img-h"/>
                      </div>
-                    <h3 className="balance-h">{storedUserBalance} €</h3>
+                    <h3 className="balance-h"> ≈ {parseFloat(storedUserBalance).toFixed(2)} €</h3>
+                    <p className="balance-small"> ({storedUserBalance} €)</p>
                   </div>
                   <div className="btn-cta">
                     <Button gradient>Acheter</Button>
