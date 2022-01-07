@@ -27,6 +27,10 @@ $bg-grey:#eeeff0;
   margin: 0;
   padding: 0;
 }
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -177,18 +181,9 @@ body{
   padding: 1em 4em;
   border-radius: 1em;
 }
-/* ---- FORM ---- */
 
-.title-form{
-  font-size: 2em;
-  margin: 0 0 1em 0;
-}
-.link-redirect{
-  color: #0d15ff;
-}
-.n-login-signup{
-  font-size: 0.8em;
-}
+
+
 /* ----- CARD --- */
 
 .h-card{
@@ -472,22 +467,23 @@ body{
 
 .overlay{
   position: absolute;
-  background-color: $dark-color;
+  background-color: $light-color;
   width: 100%;
   height: 100vh;
   opacity: 0.9;
   z-index: -1;
 }
 .close-add-c {
-  position: relative;
+  position: absolute;
+  right: 0;
+  margin: .8em 1em;
   width: 20px;
   height: 20px;
+  padding: .2em;
   border-radius: 50px;
   @include flex-center();
   cursor: pointer;
-  background: white;
-  left: 420px;
-  margin: 0;
+  background: $light-color;
   box-shadow: .1em 0 .1em rgb(223, 222, 222);
   transition: all .2s ease-in-out;
   &:hover{
@@ -500,7 +496,7 @@ body{
   content: ' ';
   height: 15px;
   width: 2px;
-  background-color: rgb(91, 91, 91);
+  background-color: rgb(82, 82, 82);
 }
 
 .close-add-c:before {
@@ -629,80 +625,12 @@ body{
   margin: auto;
 }
 
-// .l-rows--3 {
-//   // forcing row height since I have no content
-//   grid-template-rows: repeat(2, 550px);
-//   background-color: #0d15ff;
-// }
 
-/*  ---- TRANSFERT PAGE ---- */
-.modal-box-transfert{
-  max-width:60%;
-  height: auto;
-  background-color: $light-color;
-  border-radius: 20px ;
-  padding: 2em 3em;
-  margin: 0 auto;
-  z-index: 2;
-}
-.m-form-wrap{
-  @include flex-center();
-  flex-direction: row;
-  width: 100%;
-  margin: 0 auto;
-}
-.m-content-wrap{
-  width: 50%;
-  margin: .5em 1em;
-}
-.m-form-wrap:nth-child(3){
-  margin: 0 0 1.5em 0;
-}
-#m-header{
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  .m-header-text,.m-header-title{
-    margin: 0 0 .3em 0;
-  }
-  .m-header-title{
-    font-size: 1.8em;
-  }
-  .m-header-text{
-    font-size: .9em;
-    color: grey;
-  }
-}
-.message-input{
-  height: auto;
-  padding: .5em .5em;
-  width: 97%;
-  font-family: $primary-font;
-  border: .5px solid rgb(196, 196, 196);
-  border-radius: 5px;
-  overflow-x: scroll;
-  font-size: .9em;
-}
-.m-content-input{
-  width: auto;
-  text-align: center;
-  
-  .m-content-input-text{
-    border-radius: 10px;
-    padding: .5em .7em;
-    background-color: rgb(43, 43, 43);
-    color: $light-color;
-    font-size: .9em;
-  }
-  .m-amount-input{
-    margin: 2em 0 2em 0 ;
-  }
-}
-/*  ---- TRANSFERT PAGE ---- */
+
 
 // display grid layout for 750px or wider
 @media screen and (min-width: 250px) and (max-width:880px){
-
+    
     .l-rows--3 {
         grid-template-columns:repeat(auto-fill, 450px);
     }

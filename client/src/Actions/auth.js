@@ -1,7 +1,6 @@
 import types from "../Types/types";
 import AuthService from "../services/auth.service";
 import store from "../store";
-import { myCustomNotif } from "../components/notification/notif";
 
 export const register = (e,email, password, username) => {
   
@@ -17,20 +16,18 @@ export const register = (e,email, password, username) => {
           store.dispatch({
             type: types.REGISTER_FAIL
           })
-          myCustomNotif('notif notif-warning',response);
-
         }
     })
    } catch (error) {
-     myCustomNotif('notif notif-warning',error.response.data);
+     console.log(error);
    }  
 };
 
 export const login = (e, email, password) => {
-  try {
+  
     return AuthService.login(e, email, password)
     .then((response) => {
-      if(response.user){
+      if(response){
         store.dispatch({
           type: types.LOGIN_SUCCESS,
           payload: response,
@@ -39,16 +36,11 @@ export const login = (e, email, password) => {
         store.dispatch({
           type: types.LOGIN_FAIL,
         }); 
-        myCustomNotif('notif notif-warning',response);
-        console.log('oula');
       }  
     })
-  } catch (error) {
-    console.log('oula');
-     myCustomNotif('notif notif-warning',error.response.data);
-  }
+  } 
 
-  }
+  
     
 
 export const logout = () => {

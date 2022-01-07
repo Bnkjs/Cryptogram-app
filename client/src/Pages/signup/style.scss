@@ -2,6 +2,7 @@ $dark-color: rgb(47, 47, 47);
 $light-color: #fff;
 $bg-grey-blue: #F4F6F8;
 $bg-grey:#8c8c8c;
+$font-primary:'Poppins', sans-serif;
 
 @mixin flex-end {
   display: flex;
@@ -19,11 +20,15 @@ $bg-grey:#8c8c8c;
   justify-content: center;
   align-items: center;
 }
-#signup-container{
+#form-container{
   width: 100%;
   height: 100vh;
+  font-family: $font-primary ;
+  top: 50px;
+  position: relative;
 }
-.box-form-auth{
+
+.box-form{
   max-width: 40%;
   margin: 0 auto;
   background: $bg-grey-blue;
@@ -31,34 +36,72 @@ $bg-grey:#8c8c8c;
   padding: 3em 5em;
   h1,h2,p{
     max-width: 500px;
+    margin: .5em 0;
   }
   h1{
     font-size: 1em;
-    color: $dark-color;
+    font-family: $font-primary;
   }
   h2{
-    font-size: 2.2em;
-    background-image: linear-gradient(91.26deg, #5566fe 15%, #EB76FF 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
+    font-size: 2.5em;
+    background-image: linear-gradient(91.26deg, #3e52fe 15%, #e554ff 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
     -webkit-background-clip: text;
     color: transparent;
+    font-family: $font-primary;
+    line-height: 1.2em;
   }
   p{
-    margin-bottom: 3em;
-    color: #8c8c8c;
+    color: #6f6f6f;
+    font-weight: 400;
   }
 }
-.header-form-auth{
+.box-form-dash{
+  max-width: 80%;
+}
+.title-form{
+  display: flex;
+  align-items: center;
+}
+.title-signup{
+  color: #3e52fe;
+}
+.title-login{
+  color: #FD9B24;
+}
+.header-form{
   display: flex;
   justify-content: center;
   align-items: center; 
   flex-direction: row-reverse;
+  margin-bottom: 1.5em;
+}
+.hr-header{
+  position: relative;
+  width: 25px;
+  height: 20px;
+  margin: 0;
+  @include flex-center();
+}
+
+.hr-header:before{
+  position: absolute;
+  content: ' ';
+  height: 15px;
+  width: 2px;
+  transform: rotate(90deg);
+}
+.hr-signup:before{
+  background-color: #3e52fe
+}
+.hr-login:before{
+  background-color: #FD9B24
 }
 .form-signup{
   @include flex-center();
   flex-direction: column;
 }
 .cubes_form{
-  max-width: 120px;
+  max-width: 100px;
   margin: 0 0 5em 0;
 }
 .input-form-icn{
@@ -68,23 +111,76 @@ $bg-grey:#8c8c8c;
   display: flex;
   align-items: center;
   position: relative;
-  .form-icn{
+  .input-icn{
     position: absolute;
     right: 0;
     margin: 0 1em 0 0;
     transform: scale(1.2);
-    color: rgb(38, 38, 38);
+    color: #282727;
   }
 }
+.switch-auth{
+  color: $dark-color;
+  font-size: .8em;
+}
+.link-redirect{
+ color: #3e52fe ;
+ font-weight: 600;
+}
+
+.form-transfert{
+  background-color: white;
+}
 // -----MEDIA QUERIES------------
-@media screen and (min-width: 250px) and (max-width: 880px){
-  .header-form-auth{
+@media screen and (min-width: 250px) and (max-width: 880px) and (max-height: 1440px){
+  #signup-container{
+    font-size: .8em;
+  }
+  .box-form{
+    max-width: 60%;
+  }
+  .header-form{
     @include flex-center();
     flex-direction: column;
     text-align: center;
   }
   .cubes_form{
-    margin: 0;
+    margin: 0 0 1em 0;
     transform: scale(.8);
   }
+  .hr-header{
+    display: none;
+  }
+  .title-form{
+    display: block;
+  }
+  .cubes_form{
+    transform: scale(.6);
+  }
+}
+// -----MEDIA QUERIES IPAD------------
+
+@media screen and (min-width: 760px) and (max-width: 1024px) and (min-height: 1000px) and (max-height: 1366px){
+  #signup-container{
+    font-size: 1em;
+    height: 100%;
+  }
+  .box-form{
+    max-width: 60%;
+  }
+  .header-form{
+    @include flex-center();
+    flex-direction: column;
+    text-align: center;
+  }
+  .cubes_form{
+    margin: 0 0 1em 0;
+    transform: scale(.8);
+  }
+  .hr-header{
+    display: none;
+  }
+  .title-form{
+    display: none;
+   }
 }

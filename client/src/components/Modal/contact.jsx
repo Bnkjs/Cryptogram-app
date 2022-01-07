@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { addContact} from "../../Actions/contact";
 import { Input } from "../../components/Input/index";
 import { Button } from "../../components/Button/index";
@@ -7,13 +7,12 @@ import { Marged } from "../../components/Marged";
 import { Form } from "../../components/Form";
 import { PageContainer } from "../PageContainer";
 import { checkContentInput } from "../../utils/checkInput";
-const initial = {
-  visible: { opacity: 1, y: -50},
-  hidden: { opacity: 0, y: 50 },
-}
+import { FiFeather, FiSend, FiUser } from "react-icons/fi";
+import animationFm from "utils/framer";
+import cubes from 'assets/cubes_gradients_b.svg'
+
 
 const Modal = ({ showModal, token }) => {
-  const [existModal,setExistModal ] = useState(false)
   
   const [inputs, setInputs] = useState({
     email: "",
@@ -45,33 +44,47 @@ const Modal = ({ showModal, token }) => {
   }
 
   return (
-      <PageContainer className="div-add-contact">
-        <AnimatePresence>
-        <motion.div
-          variants={initial}
-          initial={initial}
-          animate={!existModal? "visible" : "hidden"}
-          transition={{ duration: .2 }}          
-          exit="hidden"
-        >
-        <div className="modal-box">
-          <div className="close-add-c" onClick={()=> showModal(false)}></div>
-          <h1 className="title-form">Ajouter un contact</h1>
-            <Form role={'form'} className="form-contact" method="POST" onSubmit={(e)=> onSubmitForm(e)}>
-              <Input role={'textbox'} type="text" placeholder="email" name="email" className="email-input input" value={email} onChange={(e)=>onChange(e)} required />
-              <Marged bottom="20px"/>
-              <Input role={'textbox'} type="text" placeholder="prénom" name="firstname" className="firstname-input input" value={firstname} onChange={(e)=>onChange(e)} required  />
-              <Marged bottom="20px" />
-              <Input role={'textbox'} type="text" placeholder="nom de famille" name="lastname" className="lastname-input input" value={lastname} onChange={(e)=>onChange(e)} required />
-              <Marged bottom="20px"/>
-              <Button role={'button'} width="100%" primary_xl>Ajouter</Button>  
-            </Form>          
+    <motion.div
+       variants={animationFm()}
+       initial={animationFm(0,50).hidden}
+       animate={animationFm(1,0).visible}
+       transition={{ duration: .4 }}          
+    >
+      <PageContainer id="form-container">
+        <div className="close-add-c" onClick={()=> showModal(false)}></div>
+        <div className="box-form box-form-dash">
+        <div className="header-form">
+         <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />
+          <div className="text-header-form">
+            <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Ajoutez un contact</h1>
+            <h2>Votre <br/> carnet d'adresse.</h2>
+            <p>Une fois ajouté, vous pourrez lui envoyer des crypto-monnaies</p>
+          </div>
         </div>
-             
-        </motion.div>
-      </AnimatePresence>
-    </PageContainer> 
-)}
+        <Form role={'form'} className="form-contact" method="POST" onSubmit={(e)=> onSubmitForm(e)}> 
+            <div className="input-form-icn">            
+              <Input role={'textbox'} type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} required />
+              <FiSend className="input-icn"/>
+            </div>
+            <Marged bottom="20px"/>
+            <div className="input-form-icn">
+             <Input role={'textbox'} type="text" placeholder="prénom" name="firstname" className="firstname-input input" value={firstname} onChange={(e)=>onChange(e)} required  />
+             <FiUser className="input-icn"/>
+            </div>
+            <Marged bottom="20px" />
+            <div className="input-form-icn">
+              <Input role={'textbox'} type="text" placeholder="nom de famille" name="lastname" className="lastname-input input" value={lastname} onChange={(e)=>onChange(e)} required />
+              <FiUser className="input-icn"/>
+            </div>
+            <Marged bottom="20px"/>
+            <Button className="btn-form" primary_xl>Ajouter</Button>
+            <Marged bottom="10px"/>
+          </Form>
+        </div>                
+      </PageContainer>
+    </motion.div>
+  )
+}
     
 
 export default Modal;

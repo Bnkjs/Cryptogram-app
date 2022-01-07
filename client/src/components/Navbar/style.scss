@@ -45,18 +45,18 @@ $bg-grey:#F4F5F6;
 
 .l-logo{
   font-family: $font-logo;
+  font-weight: 600;
   color: rgb(26, 26, 26);
   font-size: 1.6em;
   @include flex-items-center;
   gap: 10px;
   margin-left: -1.4em;
-  transition: all .2s ease-out;
-
+  transition: all .2s ease-in-out;
 }
 
 .l-logo:hover{
   transform: translateY(2px);
-  background-image: linear-gradient(91.26deg, #5566fe 15%, #EB76FF 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
+  background-image: linear-gradient(91.26deg, #3e52fe 15%, #e554ff 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
   -webkit-background-clip: text;
   color: transparent;
   .l-img{
@@ -277,6 +277,15 @@ $bg-grey:#F4F5F6;
   }
 }
 
+@media screen and (min-width:1051px){
+  #navbar{
+    display: flex;
+  }
+  #navbar-res{
+    display: none;
+  }
+
+}
 @media screen and (min-width: 250px) and (max-width:1050px){
   #navbar{
     display: none;
@@ -286,3 +295,4 @@ $bg-grey:#F4F5F6;
   }
 
 }
+

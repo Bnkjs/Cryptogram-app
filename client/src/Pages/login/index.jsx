@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { login } from "../../Actions/auth";
 import { useSelector } from "react-redux";
+import { motion } from 'framer-motion';
 import { Button } from "../../components/Button/index";
 import { Input } from "../../components/Input/index";
-import { Card } from "../../components/Card";
-import Div from "../../components/Div";
 import { Marged } from "../../components/Marged";
 import { PageContainer } from "../../components/PageContainer";
 import { Form } from "../../components/Form";
-import img_gradient_login from '../../assets/FORM_LOGIN_CARD_GRADIENT.svg'
 import { Link } from "react-router-dom";
+import { BiLockAlt } from "react-icons/bi";
+import { FiFeather, FiSend } from "react-icons/fi";
+import animationFm from "utils/framer";
+import cubes from 'assets/cubes_gradients_o.svg';
+
+import 'Pages/signup/style.scss';
+
 
 const Login = ({ setAuth }) =>{
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
@@ -30,33 +35,47 @@ const Login = ({ setAuth }) =>{
   },[userLogged])
   
   
-  return(<>
-    <PageContainer>
-      <Marged/>
-      <Div gg="40px" display="grid" gtc="repeat(auto-fill, 550px)" justifyContent='center'  id="class">
-        <Card className="card-form">
-          <img width="450px" height="auto" src={img_gradient_login} alt="" />
-         <div className="h-card">
-           <span className="h-card-title">Re-Bonjour !</span>
-           <p className="h-card-text">Content de vous revoir.</p>
-         </div>
-        </Card>
-        <Div  width="550px" display="flex" justifyContent='center' alignItems='start' flexDirection='column'>
-          <h1 className="title-form">Connectez-vous</h1>
-          <Form onSubmit={(e)=> handleSubmit(e,email,password)}>
-            <Input role={"textbox"} type="text" placeholder="email" name="email" className="email-input i-form" value={email} onChange={(e)=>onChange(e)} required />
+  return(
+    <motion.div
+       variants={animationFm()}
+       initial={animationFm(0,50).hidden}
+       animate={animationFm(1,0).visible}
+       transition={{ duration: .4 }}          
+    >
+      <PageContainer id="form-container">
+        <div className="box-form">
+        <div className="header-form">
+         <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />
+          <div className="text-header-form">
+            <h1 className="title-form title-login"><span className="hr-header hr-login"></span>Connectez-vous</h1>
+            <h2>Ravi de vous <br/> revoir parmis nous</h2>
+            <p>Vos crypto-monnaies vous attendent!</p>
+          </div>
+        </div>
+        <Form
+         className="form-signup"
+         onSubmit={(e)=> handleSubmit(e,email,password)}
+        >    
+            <div className="input-form-icn">            
+              <Input role={'textbox'} type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} required />
+              <FiSend className="input-icn"/>
+            </div>
             <Marged bottom="20px"/>
-            <Input role={"textbox"} type="password" placeholder="mot de passe" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} required  />
-            <Marged bottom="20px" />
-            <Button primary_xl>Se connecter</Button>
-            <p className="n-login-signup">Vous avez un compte?
-            <Link to='/signup'><span className="link-redirect"> Inscrivez-vous</span></Link>
-            </p>
+            <div className="input-form-icn">
+             <Input role={'textbox'} type="password" placeholder="mot de passe" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} required  />
+             <BiLockAlt className="input-icn"/>
+            </div>
+            <Marged bottom="20px"/>
+            <Button className="btn-form" primary_xl>Se connecter</Button>
+            <Marged bottom="10px"/>
+            <div className="switch-auth">Vous n’avez pas encore de compte?
+              <Link to='/signup'><span className="link-redirect-auth"> Inscrivez-vous</span></Link>
+            </div>
           </Form>
-        </Div>  
-      </Div>
-    </PageContainer>
-  </>)
+        </div>                
+      </PageContainer>
+    </motion.div> 
+  )
 }
 
 export default Login;

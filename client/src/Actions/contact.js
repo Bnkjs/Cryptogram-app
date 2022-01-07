@@ -51,9 +51,9 @@ export const addContact = async (e,token,email,firstname,lastname) => {
                 type: types.ADD_CONTACT_SUCCESS,
                 payload: response.data              
               })
+             setTimeout(()=>{
               myCustomNotif('notif notif-success', 'Contact ajouté');
-
-
+             }, 300)
           }else{
             store.dispatch({
               type: types.ADD_CONTACT_FAIL,
@@ -97,8 +97,7 @@ export const deleteContact = async (e,token,email) => {
         }
       })
   } catch (error) {
-      myCustomNotif('notif notif-warning',error.response.data);
-      myCustomNotif('notif notif-warning', error.response.data)
+      myCustomNotif('notif notif-warning', error.response.data);
   }
 }
 

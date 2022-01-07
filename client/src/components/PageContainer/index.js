@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 export const PageContainer = styled.div`
   height: ${({height})=> height};
-  width:90%;
-  
+  width:100%;
   margin: 0px auto;
   background: ${({bg})=> bg} ;
   position: relative;

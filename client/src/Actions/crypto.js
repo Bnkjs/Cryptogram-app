@@ -2,6 +2,7 @@ import axios from "axios";
 import store from "../store";
 import types from "../Types/types";
 import apiUrls from "../services/ApiUrls";
+import { myCustomNotif } from "components/notification/notif";
 
 export const getMarket = async () => {
   try {
@@ -16,7 +17,7 @@ export const getMarket = async () => {
       store.dispatch({
         type: types.GET_MARKET_CRYPTO_FAIL
       })
-      console.log(error.response.data);
+      myCustomNotif('notif notif-warning',error.response.data);
   }
 }
 export const getUserCoins = async (token) => {
@@ -37,6 +38,36 @@ export const getUserCoins = async (token) => {
       store.dispatch({
         type: types.GET_USER_CRYPTO_FAIL
       })
+      myCustomNotif('notif notif-warning',error.response.data);
+  }
+}
+
+export const buyCrypto = async (crypto_name,amount,token) => {
+  try {
+      return await axios.post(apiUrls.buy_crytpo,{
+          crypto_name: crypto_name,
+          amount: amount},
+          {
+          headers: {
+            'Content-Type': 'application/json',
+            token: token
+        }       
+      }).then(response => {       
+           if(response){
+            store.dispatch({
+              type: types.BUY_CRYPTO_SUCCESS,
+              payload: response.data
+        });
+          myCustomNotif('notif notif-sucess','Votre achat a bien été effectué');
+        } else{
+          store.dispatch({
+            type: types.BUY_CRYPTO_FAIL
+          }) 
+          myCustomNotif('notif notif-warning',response.data); 
+        }
+      })
+  } catch (error) {
+      myCustomNotif('notif notif-warning',error.response.data);
       console.log(error.response.data);
   }
 }
@@ -53,16 +84,22 @@ export const makeTransfert = async (contact_id,crypto_name,description,amount,to
             'Content-Type': 'application/json',
             token: token
         }       
-      })
-        .then(response => {       
+      }).then(response => {       
+           if(response){
             store.dispatch({
               type: types.MAKE_TRANSFERT_SUCCESS,
               payload: response.data
         });
+          myCustomNotif('notif notif-warning','transfert éffectué');
+        } else{
+          store.dispatch({
+            type: types.MAKE_TRANSFERT_FAIL
+          }) 
+          myCustomNotif('notif notif-warning',response.data); 
+        }
       })
   } catch (error) {
-      store.dispatch({
-        type: types.MAKE_TRANSFERT_FAIL
-      })  
+      myCustomNotif('notif notif-warning',error.response.data);
+      console.log(error.response.data);
   }
 }
