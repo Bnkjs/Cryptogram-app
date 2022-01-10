@@ -72,7 +72,7 @@ $light-color: #fff;
   margin: 2em auto;
   cursor: pointer;
   transition: all .1s ease-in-out;
-  width:50px;
+  max-width:50px;
   &:hover{
     background-color: #242424;
     box-shadow: .1em .1em .2em #e6e7e8;

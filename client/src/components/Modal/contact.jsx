@@ -9,7 +9,6 @@ import { PageContainer } from "../PageContainer";
 import { checkContentInput } from "../../utils/checkInput";
 import { FiSend, FiUser } from "react-icons/fi";
 import animationFm from "utils/framer";
-import cubes from 'assets/cubes_gradients_b.svg'
 import { FaArrowLeft } from "react-icons/fa";
 import add_svg from 'assets/add.svg'
 
