@@ -8,6 +8,7 @@ import { PageContainer } from "../PageContainer";
 import animationFm from "utils/framer";
 import { buyCrypto } from "Actions/crypto";
 import { FaArrowLeft } from "react-icons/fa";
+import buy_svg from 'assets/buy.svg'
 
 
 const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
@@ -50,10 +51,10 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
             <FaArrowLeft/>
           </div>
           <div className="header-form">
-          <img className="cubes_form" src={""} alt="deux cube avec un dégradé bleu transparent" />
+          <img className="cubes_form" src={buy_svg} alt="logo crypto-monnaie de l'ethereum de couleur dégradé bleue au dessus d'un cube blanc" />
             <div className="text-header-form">
-              <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Effectuer achat </h1>
-              <h2>Profiter <br/> des meilleurs taux du marché.</h2>
+              <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Effectuez achat </h1>
+              <h2>Profitez <br/> des meilleurs taux du marché.</h2>
               <p>C'est simple, rapide et votre portefeuille numerique n'attend que ça!</p>
             </div>
           </div>
@@ -94,10 +95,12 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
                  </div>
                  <Marged bottom="10px"/>
                  <div className="a-c-box">
-                   <p>Vous obtiendrez: </p> 
-                   <span className="a-c-result">
-                     {amount / coinCurrentPrice[0].current_price} {coinCurrentPrice[0].symbol.toUpperCase()} 
-                   </span> 
+                   <p>Vous obtiendrez:  
+                      <span className="a-c-result">
+                        {amount / coinCurrentPrice[0].current_price} {coinCurrentPrice[0].symbol.toUpperCase()} 
+                      </span> 
+                   </p> 
+                   
                  </div>
               </div>
               :

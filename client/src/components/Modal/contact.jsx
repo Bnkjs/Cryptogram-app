@@ -11,6 +11,7 @@ import { FiSend, FiUser } from "react-icons/fi";
 import animationFm from "utils/framer";
 import cubes from 'assets/cubes_gradients_b.svg'
 import { FaArrowLeft } from "react-icons/fa";
+import add_svg from 'assets/add.svg'
 
 
 const Modal = ({ showModal, token }) => {
@@ -57,7 +58,7 @@ const Modal = ({ showModal, token }) => {
            <FaArrowLeft/>
          </div>
         <div className="header-form">
-         <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />
+         <img className="cubes_form" src={add_svg} alt="cercle avec le sign plus de couleur dégradé bleue au dessus d'un cube blanc" />
           <div className="text-header-form">
             <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Ajoutez un contact</h1>
             <h2>Votre <br/> carnet d'adresse.</h2>

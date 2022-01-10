@@ -3,7 +3,6 @@ import 'components/Dashcomponent/style.scss';
 import { FaEthereum } from "react-icons/fa";
 import {RiFileUserLine } from "react-icons/ri";
 import { FiLogOut, FiUser, FiZap } from "react-icons/fi";
-import  cube_gradient from 'assets/cube_gradient.svg';
 import { MdHomeMax } from "react-icons/md";
 import { BiTransferAlt } from "react-icons/bi";
 import logo from 'assets/logo.svg'
@@ -48,7 +47,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
   
   return(
       <div id="container-dashboard" height="100vh">
-          <div className="left-content" id="up">
+          <div className="left-content">
             <div className="h-left-content">
              <img className="logo" src={logo} alt="cube blanc" />
             </div>
@@ -63,7 +62,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                         <p className="text-sidenave">Portfeuille</p>
                     </li>
                   </a>
-                  <a href="#up">
+                  <a href="#app">
                     <li className="li-sidenav" onClick={()=> setActivity()}>
                       <div className="li-sidenav-icon">
                         <FiZap className="li-icon-img"/>
@@ -71,7 +70,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                       <p className="text-sidenave">Activité</p>
                     </li>
                   </a>
-                  <a href="#up">
+                  <a href="#app">
                     <li className="li-sidenav" onClick={()=> setContact()}>
                         <div className="li-sidenav-icon">
                           <RiFileUserLine className="li-icon-img"/>
@@ -79,7 +78,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                         <p className="text-sidenave">Contact</p>
                     </li>
                   </a>
-                  <a href="#up">
+                  <a href="#app">
                     <li className="li-sidenav" onClick={()=> setBuyCrypto()}>
                       <div className="li-sidenav-icon">
                         <FaEthereum className="li-icon-img"/>
@@ -87,7 +86,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                       <p className="text-sidenave">Crypto</p>
                     </li>
                   </a>
-                  <a href="#up">
+                  <a href="#app">
                     <li className="li-sidenav" onClick={()=> setTransfert()}>
                       <div className="li-sidenav-icon">
                         <BiTransferAlt className="li-icon-img"/>
@@ -103,7 +102,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                         </Button>
                       </Link>
                       <Marged bottom='10px'/>
-                      <a href="#up">
+                      <a href="#app">
                         <Button dash_option bg='#161616' onClick={()=> logout()}>
                           <FiLogOut/>
                         </Button>

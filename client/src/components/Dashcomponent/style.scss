@@ -4,6 +4,7 @@ $light-color: #fff;
 @mixin flex-justify-column-center {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 @mixin flex-center {
@@ -21,11 +22,14 @@ $light-color: #fff;
   align-items: center;
 }
 .left-content{
-  width: 100%;
+  max-width: 80px;
   height: 100vh;
-  @include flex-justify-column-center();
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   margin: 0;
-  padding: 0 3em;
   font-family: $font-primary;
   border-right: .2px solid rgb(237, 237, 237);
   background-color: $light-color ;
@@ -34,74 +38,67 @@ $light-color: #fff;
   list-style: none;
   height: auto;
   margin: 0;
-  padding: 0
+  padding: 0;
+  width: 100%;
+  position: relative;
+  a{
+    max-width: 100%;
+  }
+  
 }
 
 .logo{
   border-radius: 50px;
   transform: scale(2);
-  margin: 2em 0 3em 0;
+  margin: 0 auto;
 }
 
 .li-sidenav-icon{
   @include flex-center();
-  padding: 0 .5em 0 0 ;
   transform: scale(1.2);
   color: #b0b0b0;
 }
 .li-icon-img{
-  transform: scale(1);
-  padding: .5em 1em;
+  transform: scale(1.1);
+  padding: .5em .3em;
 }
 .text-sidenave{
   min-width: 100px;
+  display: none;
 }
 .li-sidenav{
-  @include flex-align-center();
-  justify-content: center;
-  color: rgb(82, 82, 82);
-  margin: .5em 0;
+  color: rgb(149, 149, 149);
+  @include flex-center();
+  margin: 2em auto;
   cursor: pointer;
-  transition: all .2s ease-in-out;
-  font-family: 'Montserrat';
-  font-weight: 600;
+  transition: all .1s ease-in-out;
+  width:50px;
   &:hover{
-    transform: translateX(5px);
-    border-left: 6px solid #1367d5 ;
-    background-color: #E7F0FF;
+    background-color: #242424;
+    box-shadow: .1em .1em .2em #e6e7e8;
     border-radius: 10px;
-    justify-content: flex-start;
     .li-sidenav-icon{
-      color: #1367d5;
-    }
-    .text-sidenave{
-      display: initial;
-      background-image: linear-gradient(91.26deg, #3e52fe 15%, #e554ff 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
-     -webkit-background-clip: text;
-      color: transparent;
+      color: $light-color;
     }
   }
 }
 
 .h-left-content{
   min-width: 100%;
-  max-height: auto;
-  padding: .1em;
-  margin: 0 auto;
-  @include flex-center();
+  max-height: 3em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   margin: 2em 0;
 } 
 
 .aside-left-content{
   width: auto;
   height: 100%;
-  
 }
+
 .box-signout-profil{
   @include flex-justify-column-center();
-  min-width: 120px;
-  min-height: 120px;
-  padding: 1em;
-  margin-top: 5em;
   border-radius: 15px;
+  margin: 5em auto;
 }

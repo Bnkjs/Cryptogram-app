@@ -67,17 +67,17 @@ const Dashboard = ({ state, token }) =>{
             />
           }
           {showActivity &&
-            <div className="center-content">
+            <div className="center-content" id="app">
               <ActivityStore/>
             </div>  
           }
           {showContact &&
-          <div className="center-content">
+          <div className="center-content" id="app">
             <ContactStore token={token}/>
           </div>
           }
           {showTransfert &&
-          <div className="center-content">
+          <div className="center-content" id="app">
             <TransfertModal 
               showModalTransfert={showModalTransfert} 
               storedContactDatas={storedContactDatas}
@@ -86,7 +86,7 @@ const Dashboard = ({ state, token }) =>{
           </div>
           }
           {showBuyCrypto &&
-          <div className="center-content">
+          <div className="center-content" id="app">
             <BuyCrypto 
               showModalBuyCrypto={showModalBuyCrypto} 
               storedMarket={storedMarket}

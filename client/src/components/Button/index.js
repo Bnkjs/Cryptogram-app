@@ -62,7 +62,7 @@ export const Button = styled.button`
     color: #fff;
     transition: all .2s ease-out;
     box-shadow: none;
-    width: 100%;
+    margin:0 1em;
     :hover{
      background-color: ${({bg}) => bg};
      box-shadow: 0px 2px 15px 0.5px rgba(0, 0, 0, 0.1);

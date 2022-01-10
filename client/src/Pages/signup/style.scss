@@ -26,6 +26,7 @@ $font-primary:'Poppins', sans-serif;
   font-family: $font-primary ;
   position: relative;
   padding: 5em 0;
+  background: url('../../assets/illu-form.svg') no-repeat fixed center;
 }
 
 .box-form{
@@ -35,6 +36,7 @@ $font-primary:'Poppins', sans-serif;
   padding: 2em 5em;
   position: relative;
   background-color: $bg-grey-blue;
+  box-shadow: .1em .1em 1em rgb(220, 218, 218);
   h1,h2,p{
     max-width: 500px;
     margin: .5em 0;
@@ -57,7 +59,7 @@ $font-primary:'Poppins', sans-serif;
   }
 }
 .box-form-contact{
-  max-width: 100%;
+  max-width: 50%;
   background: $light-color;
   input{
     background: #F4F6F8;
@@ -78,7 +80,6 @@ $font-primary:'Poppins', sans-serif;
   justify-content: space-between;
   align-items: center; 
   flex-direction: row-reverse;
-  margin-bottom: 1.5em;
 }
 .hr-header{
   position: relative;
@@ -101,10 +102,7 @@ $font-primary:'Poppins', sans-serif;
 .hr-login:before{
   background-color: #FD9B24
 }
-.form-signup{
-  @include flex-center();
-  flex-direction: column;
-}
+
 .cubes_form{
   max-width: 100px;
   margin: 0 0 5em 0;
@@ -194,11 +192,7 @@ $font-primary:'Poppins', sans-serif;
   .box-form{
     max-width: 60%;
   }
-  .header-form{
-    @include flex-center();
-    flex-direction: column;
-    text-align: center;
-  }
+  
   .cubes_form{
     margin: 0 0 1em 0;
     transform: scale(.8);
