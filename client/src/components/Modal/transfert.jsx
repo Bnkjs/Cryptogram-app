@@ -4,12 +4,12 @@ import { Button } from "../../components/Button/index";
 import { Marged } from "../../components/Marged";
 import { Form } from "../../components/Form";
 import { PageContainer } from "../PageContainer";
-import { Input } from "../../components/Input/index";
 import { makeTransfert } from "../../Actions/crypto";
 import './style.scss'
 import 'Pages/signup/style.scss'
 import animationFm from "utils/framer";
 import { FaArrowLeft } from "react-icons/fa";
+import transfert_svg from 'assets/transfert.svg'
 
 const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, storedCrypto }) => {
   const [selectedContact, setSelectedContact] = useState(null);
@@ -61,17 +61,17 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, 
             <FaArrowLeft/>
           </div>
           <div className="header-form">
-          <img className="cubes_form" src={""} alt="deux cube avec un dégradé bleu transparent" />
+          <img className="cubes_form" src={transfert_svg} alt="deux flèches de sens opposées avec un dégr&dé bleue au dessus d'un cube blanc" />
             <div className="text-header-form">
-              <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Effectuer un transfert</h1>
-              <h2>À vos contact <br/> partout dans le monde.</h2>
+              <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Effectuez un transfert</h1>
+              <h2>À vos contacts <br/> partout dans le monde.</h2>
               <p>Vos crypto-monnaies transférées à vos contacts en quelques cliques!</p>
             </div>
           </div>
         <Form className="form-signup" method="POST" onSubmit={(e)=> onSubmitForm(e)}>
           <label>De quel compte?
               <select className="select-input">
-                <option defaultValue="#">Mon compte</option>
+                <option defaultValue="#" disabled={false}>Mon compte</option>
               </select>   
             </label>
             <Marged bottom="20px"/>
@@ -102,25 +102,26 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, 
             </label>
             <Marged bottom="20px"/>
             <label>Pour quel montant?
-              <Input 
+              <input 
                 bg='#F4F6F8' 
                 type="number" 
-                name="amount" 
+                name="amount"
+                className="select-input"
                 placeholder="Indiquez un montant en euro €"
                 onChange={(e)=> onChange(e)}
+                autoComplete="off"
                 value={amount}
                 />
             </label> 
             <Marged bottom="20px"/>
             <label>Quel est votre message?
               <textarea 
-              className="input-message" 
-              bg='#F4F6F8' 
-              type="text" 
-              name="message" 
-              placeholder="Cadeau d'anniversaire 🎉🎉.."
-              onChange={(e)=> onChange(e)}
-              value={message}
+                className="input-message" 
+                type="text" 
+                name="message" 
+                placeholder="Cadeau d'anniversaire 🎉🎉.."
+                onChange={(e)=> onChange(e)}
+                value={message}
               />
             </label>
             <Marged bottom="20px"/>

@@ -6,6 +6,10 @@ import { RowTransfert } from "../../components/transfert";
 import { PageContainer } from "../../components/PageContainer";
 import { v4 as uuidv4 } from "uuid";
 import './style.scss';
+import binoculars from 'assets/binoculars.svg';
+import animationFm from "utils/framer";
+import { motion } from "framer-motion";
+
 const Activity = ({ state, token }) => {
   const [dashState, getDashState] = useState(state) 
   const currentUserOrder = state? state.order : null
@@ -62,13 +66,31 @@ const Activity = ({ state, token }) => {
             </div>
             <div className="hr"></div>
               {currentUserOrderLength === 0 || currentUserOrderLength === null?
-                <p>vous n'avez pas encore effectué d'achat</p>
+                 null
                 : getOrders
               }
             {currentUserTransfertLength === 0 || currentUserTransfertLength === null?
-                <p>vous n'avez pas encore effectué de transfert </p>
+                null
                 : getTransferts
               }
+              {currentUserOrderLength === 0 || currentUserOrderLength === null && 
+              currentUserTransfertLength === 0 || currentUserTransfertLength === null ?
+                <motion.div
+                  variants={animationFm()}
+                  initial={animationFm(0,50).hidden}
+                  animate={animationFm(1,0).visible}
+                  transition={{ duration: .7 }}          
+                >
+               <div className="door-activity">
+                  <h3>Vous n'avez pas encore d'activité...</h3>
+                    <div className="illu">
+                      <div className="stars-ac" alt="" />
+                      <img className="bino-ac" src={binoculars} alt="" />
+                    </div>
+               </div> 
+               </motion.div>: null
+              }
+              
           </div>
           
         </PageContainer>

@@ -58,7 +58,7 @@ export const buyCrypto = async (crypto_name,amount,token) => {
               type: types.BUY_CRYPTO_SUCCESS,
               payload: response.data
         });
-          myCustomNotif('notif notif-sucess','Votre achat a bien été effectué');
+          myCustomNotif('notif notif-success','Votre achat a bien été effectué');
         } else{
           store.dispatch({
             type: types.BUY_CRYPTO_FAIL
