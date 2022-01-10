@@ -34,73 +34,36 @@ $bg-destructive: #FCEDE9;
   display: flex;
   padding: 0 ;
   width: 100%;
+  margin: 0;
 }
 
 .center-content{
-  min-width: 95%;
+  min-width: 94%;
   max-width: auto;
   height: 120vh;
   margin: 0 auto;
-  
 }
-
-.div-recap{
-  max-width: 90%;
-  margin: 0  auto;
-  padding: 1em 0;
-  margin-top: 3em;
+.aside-right-dash{
+  max-width: 20%;
+  background-color: red;
+}
+.recap{
+  position: relative;
+  color: white;
+  min-width: 76%;
+  max-height: 25%;
+  margin: 1em auto;
+  padding: 0;
   border-radius: 20px;
-  box-shadow: .5em .5em  rgb(247, 246, 246);
-  background: linear-gradient(90deg, rgba(181,118,243,1) 0%, rgba(117,96,215,1) 47%, rgba(104,89,203,1) 100%);
-  display: flex;
-  flex-direction: column;
+  @include flex-justify-column-center();
+  background: url('https://images.unsplash.com/photo-1626544827763-d516dce335e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1934&q=80'), no-repeat fixed center;
+  background-size:cover;
 }
-.h-center-content{
-  width: 95%;
-  margin: 0 auto;
-  @include flex-align-center();
-  justify-content: space-between;
-  h1{
-    font-size: 1.1em;
-    font-weight: 400;
-  }
-  color: $light-color;
- }
-.balance-h{
-  font-size: 2.2em;
-  margin: 0;
-}
-
-.row-recap{
-  width: 95%;
-  margin: 0 auto;
-  @include flex-center();
-  gap: 5em;
-}
-
-.h-b-row{
-  @include flex-align-center();
-  gap: 15px;
-  justify-content: center;
-  .img-h{
-    transform: scale(1.8);
-  }
-}
-.stored-v{
-  font-size: 2em;
-  margin: 0;
-}
-
-
-.card-r{
-  min-width: 100px;
-  padding: 1.5em 3em;
-  border-radius: 15px;
-  text-align: center;
-}
-.card-r:nth-child(1){
-  background-color: $bg-success;
-}
-.card-r:nth-child(2){
-  background-color: $bg-warning;
+.header-recap{
+  background: rgb(30, 30, 30);
+  opacity: 0.2;
+  width: 100% ;
+  position: absolute;
+  bottom: 0;
+  padding: 2.5em 0;
 }
