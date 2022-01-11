@@ -134,3 +134,50 @@ $light-color: #fff;
   background-color: royalblue;
   margin: 0;
 }
+
+.wrap-crypto{
+  background: #2b2929; /* fallback for old browsers */
+  min-width: 150px;
+  max-width: 200px;
+  height: 120px;
+  padding: 2em 1.5em;
+  margin: 0 1em;
+  border-radius: 15px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  p, h4{
+    margin: 0em;
+  }
+  .crypto-name{
+    font-size: 1.3em;
+    border-radius: 5px ;
+  }
+  .crypto-id{
+    font-size: .8em;
+    color: #b7b7b7;
+  }
+  .crypto-price{
+    font-size: 1.8em;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: .1em;
+    font-weight: 600;
+  }
+  .crypto-rate-up{
+    background: seagreen;
+    border-radius: 50px;
+    span{
+      font-size: 1.3em;
+    }
+  }
+  .crypto-rate-down{
+    background: rgb(247, 38, 38);
+    border-radius: 50px;
+    span{
+      font-size: 1.3em;
+    }
+  }
+
+}
