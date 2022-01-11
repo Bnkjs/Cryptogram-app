@@ -54,7 +54,12 @@ const Activity = ({ state, token }) => {
   },[dashState])
 
   return(
-    <>
+      <motion.div
+        variants={animationFm()}
+        initial={animationFm(0,50).hidden}
+        animate={animationFm(1,0).visible}
+        transition={{ duration: .4 }}        
+      >
         <PageContainer id="activity-container">
           <div className="activity-wrap">
             <h1>Récente activité</h1>
@@ -79,22 +84,21 @@ const Activity = ({ state, token }) => {
                   variants={animationFm()}
                   initial={animationFm(0,50).hidden}
                   animate={animationFm(1,0).visible}
-                  transition={{ duration: .7 }}          
-                >
-               <div className="door-activity">
-                  <h3>Vous n'avez pas encore d'activité...</h3>
-                    <div className="illu">
-                      <div className="stars-ac" alt="" />
-                      <img className="bino-ac" src={binoculars} alt="" />
-                    </div>
-               </div> 
+                  transition={{ duration: .7, delay: .25 }}          
+                  >
+                  <div className="door-activity">
+                    <h3>Vous n'avez pas encore d'activité...</h3>
+                      <div className="illu">
+                        <div className="stars-ac" alt="" />
+                        <img className="bino-ac" src={binoculars} alt="" />
+                      </div>
+                  </div> 
                </motion.div>: null
               }
               
-          </div>
-          
-        </PageContainer>
-    </>
+          </div>   
+        </PageContainer>    
+    </motion.div>
   )
 }
 

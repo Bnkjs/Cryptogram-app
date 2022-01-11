@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Signup from "./Pages/signup";
 import Login from "./Pages/login";
@@ -14,6 +14,7 @@ import './app.scss'
 import './components/notification/notif.scss'
 import Landing from "./Pages/Landing";
 import { TransfertStore } from "./Pages/transfert/transfert";
+
 const App = () => {
   const myStore = store.getState().authReducer.isLoggedIn
   const [isAuthenticated, setIsAuthenticated] = useState(myStore)
@@ -22,6 +23,9 @@ const App = () => {
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
   }
+  useEffect(()=>{
+
+  },[])
   
   return(
     <div id="container-app">

@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Button } from "../../components/Button";
 
 const Market = ({ state }) => {
-  const [nthElement, setNthElement] = useState(20)
+  const [nthElement, setNthElement] = useState(5)
   const storeMarket = state? state : null
  
   const marketSliced = state? storeMarket.slice(0,nthElement) : null

@@ -29,9 +29,9 @@ const Login = ({ setAuth }) =>{
   const handleSubmit = (e, email, password) =>{
     login(e,email,password)
   }
-
+  
+  
   useEffect(()=>{
-   navEnable()
    setAuth(userLogged)
   },[userLogged])
   

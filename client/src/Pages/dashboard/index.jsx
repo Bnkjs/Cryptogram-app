@@ -17,7 +17,7 @@ import BuyCrypto from "components/Modal/buy";
 import { navDisable } from "utils/navUtils";
 
 const Dashboard = ({ state, token }) =>{
-  
+
   const [dashState, getDashState] = useState(state)
   const storedUserName = state? state.user.username : null
   const storedContact = state? state.contact : null
@@ -64,6 +64,9 @@ const Dashboard = ({ state, token }) =>{
               storedContact={storedContact}
               storedUserBalance={storedUserBalance}
               storedUserInvestment={storedUserInvestment}
+              storedUserTransfert={storedUserTransfert}
+              storedCrypto={storedCrypto}
+              state={state}
             />
           }
           {showActivity &&
