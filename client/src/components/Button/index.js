@@ -7,7 +7,7 @@ export const Button = styled.button`
   border: transparent;
   padding: 0.5em 1.6em;
   transition: all .1s ease-out;
- 
+  cursor: pointer;
   font-size: 1em;
   font-family: 'Raleway', sans-serif;  
   font-weight: 600;
