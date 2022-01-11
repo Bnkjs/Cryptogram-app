@@ -5,6 +5,9 @@ import { PageContainer } from "../../components/PageContainer";
 import Modal from "../../components/Modal/contact";
 import RowContact from "../../components/Contact";
 import { v4 as uuidv4 } from "uuid";
+import { motion } from "framer-motion";
+import animationFm from "utils/framer";
+import binoculars from 'assets/binoculars.svg';
 
 const Contact = ({ state, token }) => {
  
@@ -38,30 +41,51 @@ const Contact = ({ state, token }) => {
         <Modal showModal={setShowModal} token={token}/>
       </div>
     }
-    <PageContainer id="contact-container">
-     <h1>Liste des contacts</h1>
-     <div id="col-info">
-        <p className="c-id">#</p>
-        <p className="c-email">email</p>
-        <p className="c-firstname">Prénom</p>
-        <p className="c-lastname">N. famille</p>
-        <p className="c-id-wallet">N° de portefeuille</p>
-        <div className="c-delete">Supprimer</div>
-      </div>
-      <div className="hr"></div>
-      {currentUserContactLength === null ?
-        <h3>Vous n'avez aucun contact enregistré pour le moment</h3>
-        :  displayContact 
-      }
-      <a href="#up">
-        <button 
-          className="add-c" 
-          onClick={()=> setShowModal(!showModal)}
-          >
-            +
-        </button> 
-      </a>
-    </PageContainer>
+      <motion.div
+        variants={animationFm()}
+        initial={animationFm(0,50).hidden}
+        animate={animationFm(1,0).visible}
+        transition={{ duration: .4 }}
+        className="center-content"         
+      >
+        <PageContainer id="contact-container">
+          <h1>Liste des contacts</h1>
+          <div id="col-info">
+              <p className="c-id">#</p>
+              <p className="c-email">email</p>
+              <p className="c-firstname">Prénom</p>
+              <p className="c-lastname">N. famille</p>
+              <p className="c-id-wallet">N° de portefeuille</p>
+              <div className="c-delete">Supprimer</div>
+            </div>
+            <div className="hr"></div>
+            {currentUserContactLength === null ?
+              <motion.div
+                variants={animationFm()}
+                initial={animationFm(0,50).hidden}
+                animate={animationFm(1,0).visible}
+                transition={{ duration: .7, delay: .25 }}          
+              >
+              <div className="door-activity ">
+                <h3 >Vous n'avez pas encore de contact...</h3>
+                  <div className="illu">
+                    <div className="stars-ac" alt="" />
+                    <img className="bino-ac" src={binoculars} alt="" />
+                  </div>
+              </div> 
+            </motion.div>
+              : displayContact 
+            }
+              <a href="#up">
+                <button 
+                  className="add-c" 
+                  onClick={()=> setShowModal(!showModal)}
+                  >
+                    +
+                </button> 
+            </a>
+        </PageContainer>
+    </motion.div>
   </>)
 }
 

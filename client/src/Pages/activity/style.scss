@@ -29,18 +29,24 @@
 
 .door-activity{
   min-width: 100%;
+  position: relative;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column-reverse;
-  
+  flex-direction: column;
+ 
   img{
     max-width: 20%;
     padding: 2em 0;
   }
   h3{
-    margin: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    color: #ffff;
+    font-size: 1.8em;
+    margin: 2em 0;
   }
   .illu{
     min-width: 80%;

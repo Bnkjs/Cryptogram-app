@@ -484,7 +484,8 @@ body{
   height: 50px;
   border-radius: 50px;
   background-color: $dark-color;
-  margin: 0.5em auto;
+  margin: 0 auto;
+  position: relative;
   border: none;
   outline: none;
   cursor: pointer;
@@ -495,6 +496,7 @@ body{
     background-color: $primary-color;
   }
 }
+
 /*  ---- ROW CONTACT ---- */
 .modal-wrap{
   max-width: 100%;
@@ -512,11 +514,7 @@ body{
 
 #contact-container{
   max-width: 90%;
-  margin: .7em auto;
-  h3{
-    text-align: center;
-    margin: 2em 0;
-  }
+  margin: 2em auto;
 }
 .form-contact{
   @include flex-center();

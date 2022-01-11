@@ -38,13 +38,14 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
 
   useEffect(()=>{
   },[amount])
+  
   return (
         <motion.div
-        variants={animationFm()}
-        initial={animationFm(0,50).hidden}
-        animate={animationFm(1,0).visible}
-        transition={{ duration: .4 }}          
-      >
+          variants={animationFm()}
+          initial={animationFm(0,50).hidden}
+          animate={animationFm(1,0).visible}
+          transition={{ duration: .4 }}          
+        >
     <PageContainer id="form-container">
         <div className="box-form form-transfert">
           <div className="close-modal" onClick={()=> showModalBuyCrypto(false)}>
