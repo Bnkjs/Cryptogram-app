@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Button } from "../../components/Button";
-import Div from "../../components/Div";
-import { PageContainer } from "../../components/PageContainer";
-import { delete_profil } from "../../Actions/profil";
+import { Button } from "components/Button";
+import Div from "components/Div";
+import { PageContainer } from "components/PageContainer";
+import { delete_profil }from "Actions/profil";
 import { myCustomNotif } from "components/notification/notif";
 import { navDisable, navEnable } from "utils/navUtils";
 

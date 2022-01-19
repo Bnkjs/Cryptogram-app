@@ -1,9 +1,9 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
-import activity from "../../Actions/activity";
-import { RowOrder } from "../../components/order";
-import { RowTransfert } from "../../components/transfert";
-import { PageContainer } from "../../components/PageContainer";
+import activity from "Actions/activity";
+import { RowOrder } from "components/order";
+import { RowTransfert } from "components/transfert";
+import { PageContainer } from "components/PageContainer";
 import { v4 as uuidv4 } from "uuid";
 import './style.scss';
 import binoculars from 'assets/binoculars.svg';

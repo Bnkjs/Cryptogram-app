@@ -1,7 +1,7 @@
 import React,{useEffect, useMemo, useState} from "react";
 import { connect } from "react-redux";
-import dashboard from "../../Actions/dashboard";
-import { PageContainer } from "../../components/PageContainer";
+import dashboard from "Actions/dashboard";
+import { PageContainer } from "components/PageContainer";
 import 'Pages/dashboard/style.scss';
 
 import { ActivityStore } from "Pages/activity";
@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 import { getMarket, getUserCoins } from "Actions/crypto";
 import BuyCrypto from "components/Modal/buy";
 import { navDisable } from "utils/navUtils";
-import { myCustomNotif } from "components/notification/notif";
 
 const Dashboard = ({ state, token, contact,crypto }) =>{
   const [dashState, getDashState] = useState(state)

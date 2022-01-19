@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store";
 import types from "../Types/types";
 import apiUrls from "../services/ApiUrls";
-import { myCustomNotif } from "../components/notification/notif";
+import { myCustomNotif } from "components/notification/notif";
 
 export const getAllContact = async (token) => {
   store.dispatch({type: types.LOADING_SUCCESS})

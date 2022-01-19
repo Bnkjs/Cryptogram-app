@@ -1,9 +1,9 @@
 import React,{useEffect, useState} from "react";
 import { connect } from "react-redux";
-import {getAllContact } from "../../Actions/contact";
-import { PageContainer } from "../../components/PageContainer";
-import Modal from "../../components/Modal/contact";
-import RowContact from "../../components/Contact";
+import {getAllContact } from "Actions/contact";
+import { PageContainer } from "components/PageContainer";
+import Modal from "components/Modal/contact";
+import RowContact from "components/Contact";
 import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
 import animationFm from "utils/framer";

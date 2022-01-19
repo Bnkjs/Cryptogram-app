@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { login } from "../../Actions/auth";
+import { login }from "Actions/auth";
 import { connect } from "react-redux";
 import { motion } from 'framer-motion';
-import { Button } from "../../components/Button/index";
-import { Input } from "../../components/Input/index";
-import { Marged } from "../../components/Marged";
-import { PageContainer } from "../../components/PageContainer";
-import { Form } from "../../components/Form";
+import { Button } from "components/Button/index";
+import { Input } from "components/Input/index";
+import { Marged } from "components/Marged";
+import { PageContainer } from "components/PageContainer";
+import { Form }from "components/Form";
 import { Link } from "react-router-dom";
 import { BiLockAlt } from "react-icons/bi";
 import {  FiSend } from "react-icons/fi";

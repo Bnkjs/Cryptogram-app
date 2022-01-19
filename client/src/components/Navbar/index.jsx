@@ -2,8 +2,8 @@ import React,{useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { logout } from "../../Actions/auth";
-import { Button } from "../Button/index"
+import { logout }from "Actions/auth";
+import { Button } from "components/Button/index"
 import "../Navbar/style.scss"
 import { FiLogOut, FiUser, FiZap } from "react-icons/fi";
 import logo from '../../assets/logo.svg'

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { DashboardStore } from "./Pages/dashboard";
 import store from "./store";
-import { NavBarResStore, NavbarStore } from "./components/Navbar";
+import { NavBarResStore, NavbarStore } from "components/Navbar";
 import { useSelector } from "react-redux";
 import { ActivityStore } from "./Pages/activity";
 import { ProfilStore } from "./Pages/profil";
 import { ContactStore } from "./Pages/contact/contact";
 import { MarketStore } from "./Pages/market";
 import './app.scss'
-import './components/notification/notif.scss'
+import 'components/notification/notif.scss'
 import Landing from "./Pages/Landing";
 import { TransfertStore } from "./Pages/transfert/transfert";
 import { SignupStore } from "Pages/signup";

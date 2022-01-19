@@ -1,10 +1,10 @@
 import React,{ useEffect, useState } from "react";
 import { motion } from 'framer-motion';
-import { Button } from "../../components/Button/index";
-import { Marged } from "../../components/Marged";
-import { Form } from "../../components/Form";
+import { Button } from "components/Button/index";
+import { Marged } from "components/Marged";
+import { Form }from "components/Form";
 import { PageContainer } from "../PageContainer";
-import { makeTransfert } from "../../Actions/crypto";
+import { makeTransfert }from "Actions/crypto";
 import './style.scss'
 import 'Pages/signup/style.scss'
 import animationFm from "utils/framer";

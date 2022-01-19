@@ -1,6 +1,6 @@
 import React from "react";
 import { FiTrash2 } from "react-icons/fi";
-import { deleteContact } from "../../Actions/contact";
+import { deleteContact }from "Actions/contact";
 
 const RowContact = (props) => {
 

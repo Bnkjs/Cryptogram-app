@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Input } from "../../components/Input/index";
-import { register } from "../../Actions/auth";
+import { Input } from "components/Input/index";
+import { register }from "Actions/auth";
 import { connect } from "react-redux";
-import { Button } from "../../components/Button/index";
-import { Marged } from "../../components/Marged";
-import { PageContainer } from "../../components/PageContainer";
-import { Form } from "../../components/Form";
+import { Button } from "components/Button/index";
+import { Marged } from "components/Marged";
+import { PageContainer } from "components/PageContainer";
+import { Form }from "components/Form";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import cubes from 'assets/cubes_gradients_b.svg'

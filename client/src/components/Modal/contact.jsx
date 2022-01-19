@@ -1,12 +1,12 @@
 import React,{ useState } from "react";
 import { motion } from 'framer-motion';
-import { addContact} from "../../Actions/contact";
-import { Input } from "../../components/Input/index";
-import { Button } from "../../components/Button/index";
-import { Marged } from "../../components/Marged";
-import { Form } from "../../components/Form";
+import { addContact}from "Actions/contact";
+import { Input } from "components/Input/index";
+import { Button } from "components/Button/index";
+import { Marged } from "components/Marged";
+import { Form }from "components/Form";
 import { PageContainer } from "../PageContainer";
-import { checkContentInput } from "../../utils/checkInput";
+import { checkContentInput }from "utils/checkInput";
 import { FiSend, FiUser } from "react-icons/fi";
 import animationFm from "utils/framer";
 import { FaArrowLeft } from "react-icons/fa";

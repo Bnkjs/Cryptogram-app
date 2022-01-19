@@ -1,9 +1,9 @@
 import React,{ useEffect, useState } from "react";
 import { motion } from 'framer-motion';
-import { Input } from "../../components/Input/index";
-import { Button } from "../../components/Button/index";
-import { Marged } from "../../components/Marged";
-import { Form } from "../../components/Form";
+import { Input } from "components/Input/index";
+import { Button } from "components/Button/index";
+import { Marged } from "components/Marged";
+import { Form }from "components/Form";
 import { PageContainer } from "../PageContainer";
 import animationFm from "utils/framer";
 import { buyCrypto } from "Actions/crypto";
