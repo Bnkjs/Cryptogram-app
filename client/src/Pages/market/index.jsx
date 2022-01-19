@@ -11,25 +11,25 @@ const Market = ({ state }) => {
  
   const marketSliced = state? storeMarket.slice(0,nthElement) : null
 
-  const getDatasMarketAll = state? marketSliced.map((el,index)=>{
-    return (
-      <Link key={uuidv4()}  className="link-redirect-buy" to='/buy_crypto'>
-          <RowMarket
-          rank={el.market_cap_rank}
-          image={el.image}
-          name={el.name}
-          nameid={el.symbol.toUpperCase()}
-          price={el.current_price}
-          evday_prct={el.price_change_percentage_24h.toFixed(4)}
-          evday_prc={ el.price_change_24h.toFixed(4)}
-          marketcap={el.market_cap}
-          market_cap_prc={el.market_cap_change_24h}
-          market_cap_prct={el.market_cap_change_percentage_24h}
-          total_volum={el.total_volume}
-        />
-      </Link>
-    )
-  }) : null
+  // const getDatasMarketAll = state? marketSliced.map((el,index)=>{
+  //   return (
+  //     <Link key={uuidv4()}  className="link-redirect-buy" to='/buy_crypto'>
+  //         <RowMarket
+  //         rank={el.market_cap_rank}
+  //         image={el.image}
+  //         name={el.name}
+  //         nameid={el.symbol.toUpperCase()}
+  //         price={el.current_price}
+  //         evday_prct={el.price_change_percentage_24h.toFixed(4)}
+  //         evday_prc={ el.price_change_24h.toFixed(4)}
+  //         marketcap={el.market_cap}
+  //         market_cap_prc={el.market_cap_change_24h}
+  //         market_cap_prct={el.market_cap_change_percentage_24h}
+  //         total_volum={el.total_volume}
+  //       />
+  //     </Link>
+  //   )
+  // }) : null
   
 
   useEffect(()=>{
@@ -60,7 +60,7 @@ const Market = ({ state }) => {
       </div>
       <div className="hr"></div>
          <div className="market-result">
-         {getDatasMarketAll}
+         {/* {getDatasMarketAll} */}
          </div>
       <div className="c-more-w">
         {nthElement !== 100?
