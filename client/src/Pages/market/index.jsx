@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getMarket } from "Actions/crypto";
 import { v4 as uuidv4 } from "uuid";
-import { RowMarket } from "components/Market";
-
+import RowMarket  from "components/Market";
+import { Button } from "components/Button";
 const Market = ({ state }) => {
   const [nthElement, setNthElement] = useState(5)
   const storeMarket = state? state : null

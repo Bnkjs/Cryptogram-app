@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../Button";
 
-export const RowMarket =  (props) =>{
+const RowMarket =  (props) =>{
 
   return(<>
     <div className="c-row-container">
@@ -25,3 +25,5 @@ export const RowMarket =  (props) =>{
    
   </>)
 }
+
+export default RowMarket
