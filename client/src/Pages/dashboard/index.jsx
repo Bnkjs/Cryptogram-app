@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React,{useEffect, useMemo, useState} from "react";
 import { connect } from "react-redux";
 import dashboard from "../../Actions/dashboard";
 import { PageContainer } from "../../components/PageContainer";
@@ -15,22 +15,21 @@ import { useSelector } from "react-redux";
 import { getMarket, getUserCoins } from "Actions/crypto";
 import BuyCrypto from "components/Modal/buy";
 import { navDisable } from "utils/navUtils";
+import { myCustomNotif } from "components/notification/notif";
 
-const Dashboard = ({ state, token }) =>{
-
+const Dashboard = ({ state, token, contact,crypto }) =>{
   const [dashState, getDashState] = useState(state)
   const storedUserName = state? state.user.username : null
-  const storedContact = state? state.contact : null
-  const storedUserInvestment = state? state.investment : null
+  const storedContact = contact? contact : null
+  const storedUserInvestment = crypto? crypto : null
   const storedUserTransfert = state? state.transfert : null
   const storedUserBalance = state? state.user.balance : null
   const [showActivity, setShowActivity] = useState(false)
   const [showContact, setShowContact] = useState(false)
   const [showTransfert, setShowTransfert] = useState(false)
   const [showBuyCrypto, setShowBuyCrypto] = useState(false)
-
-  const storedContactDatas = useSelector(state => state.contactReducer.contactInfos)
-  const storedCrypto = useSelector(state => state.cryptoReducer.userCoins)
+  const contactLength = contact ? contact.length : null
+  const investmentLength = crypto? crypto.length : null
   const storedMarket = useSelector(state => state.cryptoReducer.coinsMarket)
   const showModalTransfert = (boolean) => {
     setShowTransfert(boolean)
@@ -38,19 +37,19 @@ const Dashboard = ({ state, token }) =>{
   const showModalBuyCrypto = (boolean) => {
     setShowBuyCrypto(boolean)
   }
-  const pathname = window.location.pathname //returns the current url minus the domain name
-
   useEffect(()=>{
+    const pathname = window.location.pathname //returns the current url minus the domain name
     navDisable(pathname)
     activity(token)
     getUserCoins(token)
     getAllContact(token)
     getMarket()
     dashboard(token)
- },[dashState, storedContact])
+ },[contactLength,investmentLength])
   
   return(
     <>
+    
         <PageContainer id="container-dashboard" height="100vh">
           <DashLeftAside 
             storedUserName={storedUserName} 
@@ -65,8 +64,9 @@ const Dashboard = ({ state, token }) =>{
               storedUserBalance={storedUserBalance}
               storedUserInvestment={storedUserInvestment}
               storedUserTransfert={storedUserTransfert}
-              storedCrypto={storedCrypto}
+              storedCrypto={storedUserInvestment}
               state={state}
+              token={token}
             />
           }
           {showActivity &&
@@ -83,8 +83,8 @@ const Dashboard = ({ state, token }) =>{
           <div className="center-content" id="app">
             <TransfertModal 
               showModalTransfert={showModalTransfert} 
-              storedContactDatas={storedContactDatas}
-              storedCrypto={storedCrypto} 
+              storedContact={storedContact}
+              storedCrypto={storedUserInvestment} 
               token={token}/>
           </div>
           }
@@ -104,7 +104,9 @@ const Dashboard = ({ state, token }) =>{
 
 export const DashboardStore = connect(
   (state) => ({
-    state: state.dashboardReducer.dashboardInfos
+    state: state.dashboardReducer.dashboardInfos,
+    contact: state.contactReducer.contactInfos,
+    crypto: state.cryptoReducer.userCoins
   })
 )(Dashboard)
 

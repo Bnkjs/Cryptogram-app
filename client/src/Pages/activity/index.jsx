@@ -16,7 +16,7 @@ const Activity = ({ state, token }) => {
   const currentUserTransfert = state? state.transfert : null
   const currentUserTransfertLength = state? state.transfert.length : null
   const currentUserOrderLength = state? state.order.length : null
-  const [showDetail, setShowDetail] = useState(false)
+
 
   const getOrders = state? currentUserOrder.map((el, index) => {
 
@@ -24,7 +24,6 @@ const Activity = ({ state, token }) => {
       <div key={uuidv4()}>
         <RowOrder
           key={el.id}
-          rank={index + 1}
           order_id={el.order_id}
           crypto_name={el.crypto_name}
           amount_in_user_currency={el.amount_in_user_currency}
@@ -37,7 +36,7 @@ const Activity = ({ state, token }) => {
 
   const getTransferts = state? currentUserTransfert.map((el, index) => {
     return (
-      <div key={uuidv4()} onClick={()=> setShowDetail(!showDetail)}>
+      <div key={uuidv4()}>
         <RowTransfert
           key={el.id}
           amount_converted_in_coin={el.amount_converted_in_coin}
@@ -72,11 +71,11 @@ const Activity = ({ state, token }) => {
             <div className="hr"></div>
               {currentUserOrderLength === 0 || currentUserOrderLength === null?
                  null
-                : getOrders
+                : getOrders.reverse()
               }
             {currentUserTransfertLength === 0 || currentUserTransfertLength === null?
                 null
-                : getTransferts
+                : getTransferts.reverse()
               }
               {currentUserOrderLength === 0 || currentUserOrderLength === null && 
               currentUserTransfertLength === 0 || currentUserTransfertLength === null ?

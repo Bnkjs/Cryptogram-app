@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from "../../components/Button/index";
 import { Marged } from "../../components/Marged";
 import { Form } from "../../components/Form";
@@ -10,8 +10,9 @@ import 'Pages/signup/style.scss'
 import animationFm from "utils/framer";
 import { FaArrowLeft } from "react-icons/fa";
 import transfert_svg from 'assets/transfert.svg'
+import { myCustomNotif } from "components/notification/notif";
 
-const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, storedCrypto }) => {
+const TransfertModal = ({ state, token, showModalTransfert, storedContact, storedCrypto }) => {
   const [selectedContact, setSelectedContact] = useState(null);
   const [selectedCrypto, setSelectedCrypto] = useState(null);
   const selectedCryptoValue = selectedCrypto ? selectedCrypto.toLowerCase() : null
@@ -46,7 +47,12 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, 
   }
 
   useEffect(()=>{
-  },[storedContactDatas])
+    if(storedContact <= 0){
+      setTimeout(()=>
+        myCustomNotif('notif notif-warning','vous devez ajouter un contact pour effectuer un transfert')
+      ,[500])
+    }
+  },[storedContact])
 
   return (<>
          <motion.div
@@ -91,7 +97,7 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContactDatas, 
             <label>Qui est le destinataire?
               <select className="select-input" onChange={(e)=> onChangeSelectContact(e)}>
                 <option defaultValue="grapefruit">Selectionner un contact</option>
-                {storedContactDatas? storedContactDatas.map((info,index) => {
+                {storedContact? storedContact.map((info,index) => {
                   return <option 
                   key={index} 
                   value={info.contact_id}>

@@ -271,6 +271,31 @@ body{
 
 .landing-market{
   background-color: #FFDF8D;
+  width: 90%;
+}
+.landing-market-content{
+  width: 90%;
+  margin: 0 auto;
+  header{
+    min-height: 60vh;
+    width: 100%;
+    background: url('https://images.unsplash.com/photo-1638913970895-d3df59be1466?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2062&q=80');
+    background-size:cover;
+    background-position: left bottom ;
+    display: flex;
+    align-items: center;
+    h1,p{
+      margin: 0;
+    }
+    h1{
+      font-size: 3em;
+      margin-bottom: .2em;
+    }
+    .header-text-market{
+      max-width: 45%;
+      margin: 0 1em;
+    }
+  }
 }
 
 /* ---- C ROW ---- */
@@ -369,7 +394,8 @@ body{
 }
 .c-more{
   position: relative;
-  margin: 2em auto;
+  margin: 0;
+  margin-bottom: 2em;
   text-align: center;
   background-color: #000;
   color: #fff;
@@ -554,10 +580,20 @@ body{
 }
 
 .o-t-order{
-  background-color: rgb(2, 164, 107);
+  transform: rotate(90deg);
+  background-color: rgb(183, 209, 255);
+  margin: 0 .7em 0 0 ;
+  padding: .7em;
+  border-radius: 20px;
+  display: flex;
 }
 .o-t-transfert{
-  background-color: #ffc532;
+  background-color: #ffcf56;
+  transform: rotate(90deg);
+  margin: 0 .7em 0 0 ;
+  padding: .7em;
+  border-radius: 20px;
+  display: flex;
 }
 .o-type{
   margin: 0 .5em 0 0 ;
@@ -599,7 +635,24 @@ body{
 }
 
 
-
+.is-loading{
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  @include flex-center();
+  img{
+    animation: .2s linear 0s infinite alternate slidein;
+    animation-name: loader;
+  }
+}
+@keyframes loader {
+  0%{
+      transform: rotate(-50deg);
+  }
+  100%{
+      transform: rotate(0deg);  
+  }
+}
 
 // display grid layout for 750px or wider
 @media screen and (min-width: 250px) and (max-width:880px){

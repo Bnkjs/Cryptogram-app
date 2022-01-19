@@ -4,7 +4,6 @@ import types from "../Types/types";
 import apiUrls from "../services/ApiUrls";
 
 const dashboard = async (token) => {
- 
     try {
       if(token){
         return await axios.get(apiUrls.dashboard,{

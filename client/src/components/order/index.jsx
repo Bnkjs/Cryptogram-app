@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from "react";
 import ShowDetail from "components/ShowDetail";
+import { FiLogIn } from "react-icons/fi";
 
 export const RowOrder =  (props) =>{
   const [showDetail, setShowDetail] = useState(false)
@@ -10,7 +11,7 @@ export const RowOrder =  (props) =>{
   return(
     <div id="r-o-container">
       <div className="c-row-container key" key={props.key} onClick={()=> setShowDetail(!showDetail)}>
-        <p className="o-type o-t-order">Achats</p>
+        <div className="o-t-order"><FiLogIn/></div>
         <p className="o-name">{props.crypto_name}</p>
         <p className="o-date">{props.created_at}</p>
         <p className="o-total">{props.amount_in_user_currency} €</p>
@@ -18,7 +19,7 @@ export const RowOrder =  (props) =>{
       </div>
       <div className="toggle-s-d">
         {showDetail &&
-          <ShowDetail type="achat" total={props.amount_in_user_currency} date={props.created_at} transactionId={props.order_id} amount={props.amount_converted_in_coin}/>
+          <ShowDetail spanContactOrderId='Id Achat' type="achat" total={props.amount_in_user_currency} date={props.created_at} transactionId={props.order_id} amount={props.amount_converted_in_coin}/>
         }
       </div>
   </div>)

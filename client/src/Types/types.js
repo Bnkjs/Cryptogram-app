@@ -1,5 +1,9 @@
 
 const types = {
+  // ---isLoading---- //
+  LOADING: "LOADING",
+  LOADING_SUCCESS: "LOADING_SUCCESS",
+
   // --- AUTH ---- //
   REGISTER_SUCCESS : "REGISTER_SUCCESS",
   REGISTER_FAIL : "REGISTER_FAIL",

@@ -49,8 +49,6 @@ const register =  async (e,email, password, username) => {
 const logout = () => {
   localStorage.removeItem("user_info");
   localStorage.removeItem("token");
-  myCustomNotif('notif notif-info', 'À bientôt 👋')
-
 };
 
 

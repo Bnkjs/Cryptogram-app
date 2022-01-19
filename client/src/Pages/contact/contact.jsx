@@ -8,8 +8,9 @@ import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
 import animationFm from "utils/framer";
 import binoculars from 'assets/binoculars.svg';
+import CustomLoader from "components/Loader";
 
-const Contact = ({ state, token }) => {
+const Contact = ({ state, token, isLoading }) => {
  
   const currentUserContact = state? state : null
   const currentUserContactLength = state? state.length : null
@@ -36,7 +37,11 @@ const Contact = ({ state, token }) => {
   },[showModal,currentUserContactLength,])
 
   return(<>
-    {showModal &&
+    { isLoading?
+        <CustomLoader/>
+        :
+      <>
+      {showModal &&
       <div className="modal-wrap" id="up">
         <Modal showModal={setShowModal} token={token}/>
       </div>
@@ -86,6 +91,9 @@ const Contact = ({ state, token }) => {
             </a>
         </PageContainer>
     </motion.div>
+      </>
+    }
+    
   </>)
 }
 
@@ -93,7 +101,8 @@ const Contact = ({ state, token }) => {
 
 export const ContactStore = connect(
   (state) => ({
-    state: state.contactReducer.contactInfos
+    state: state.contactReducer.contactInfos,
+    isLoading: state.contactReducer.isLoading
   })
 )(Contact)
 

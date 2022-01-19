@@ -18,7 +18,7 @@ const Board = ({state,storedUserInvestment, storedUserTransfert, storedContact,s
           <h4>{state? state.user.username : null}</h4>
           <div className="col-header">
             <div className="col-recap"> 
-              <h4>{storedUserInvestment}</h4>         
+              <h4>{storedUserInvestment === null? 0 : storedUserInvestment.length}</h4>         
               <p>
                 {storedUserInvestment <= 1 ?
                 'Crypto' : 'Cryptos'
@@ -33,7 +33,11 @@ const Board = ({state,storedUserInvestment, storedUserTransfert, storedContact,s
               </p>
             </div>
             <div className="col-recap">
-              <h4> {storedContact}</h4>
+              <h4> 
+                {
+                storedContact === null? 0 : storedContact.length
+                }
+              </h4>
               <p>{storedContact <= 1 ?
                 "Contact" : "Contacts"
                   }

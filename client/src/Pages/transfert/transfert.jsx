@@ -7,7 +7,6 @@ import TransfertModal from "../../components/Modal/transfert";
 const Transfert = ({ state, token }) => {
   const [showModal, setShowModal] = useState(false)
   const currentUserContact = useSelector(state => state.contactReducer)
-
   useEffect(()=>{
     getAllContact(token)
     getUserCoins(token)

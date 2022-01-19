@@ -9,7 +9,6 @@ export const navDisable = (pathname) => {
 export const navEnable = () => {
   window.onload = () => {
     const navBar = document.getElementById('navbar')
-    const navBarRes = document.getElementById('navbar-res')
     navBar.style.display=''
   }
 }
