@@ -20,7 +20,7 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
   } else{
  
       // amount converted
-      const amountExchangeInUserCurrency = await cryptoService.cryptoExchange(crypto_name,amount).then(res => res)
+      const amountExchangeInUserCurrency = await cryptoService.cryptoExchange(crypto_name).then(res => res)
       //get crypto id
       const cryptoSymbol = await cryptoService.getCryptoSymbol(crypto_name).then(res => res)
       // crypto_name
@@ -32,8 +32,7 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
       [req.user,generateTransactionId,"paid",checkUserExist.rows[0].wallet_adress,date])
       // ---- ADD NEW ORDER ITEM ----  //
       const newOrderItem = await pool.query('INSERT INTO user_order_item (order_id,crypto_name,crypto_id_name,amount_in_user_currency,amount_converted_in_coin) VALUES ($1,$2,$3,$4,$5) RETURNING *',
-      [newOrder.rows[0].order_id,cryptoName, cryptoSymbol.toUpperCase(),amountExchangeInUserCurrency,amount])
-      
+      [newOrder.rows[0].order_id,cryptoName, cryptoSymbol.toUpperCase(), parseInt(amount), amount / amountExchangeInUserCurrency ])
       // ---- CHECK IF USER HAVE THE COIN ----  //
       const checkIfUserHaveCoin = await pool.query('SELECT * FROM user_investment_item WHERE (crypto_name) = ($1)',[cryptoName])
 
@@ -48,8 +47,9 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
                 crypto_name, crypto_id_name, amount_in_user_currency, amount_converted_in_coin, 
                 total_amount_of_coin_in_user_currency, total_amount_of_converted_coin, investment_id)
             VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *`,
-            [cryptoName,cryptoSymbol.toUpperCase(),amountExchangeInUserCurrency,amount,amountExchangeInUserCurrency,
+            [cryptoName,cryptoSymbol.toUpperCase(),parseInt(amount),amount / amountExchangeInUserCurrency , amountExchangeInUserCurrency,
             amount,newInvestment.rows[0].investment_id])
+            console.log(amount, amount / amountExchangeInUserCurrency  );
         } else{
           // ---- IF ALREADY EXITS UPDATE INVESTMENT ITEM ----  //
             const updateInvestmentItem = await pool.query(`
@@ -61,10 +61,9 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
             // UPDATE USER_INVESTMENT DATE
             const updateInvestmentDate = await pool.query('UPDATE user_investment SET updated_at = ($1) WHERE (user_id) = ($2)',[date,req.user])
         }
- 
         // ---- UPDATE USER BALANCE AFTER NEW ORDER ITEM ----  //
-      const newUserInvestment = await pool.query('UPDATE users SET investment = ($1) WHERE user_id = ($2) RETURNING *',[parseFloat(checkUserExist.rows[0].investment) + amountExchangeInUserCurrency, req.user])
-      const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING balance',[parseFloat(checkUserExist.rows[0].balance) + amountExchangeInUserCurrency, req.user])
+      const newUserInvestment = await pool.query('UPDATE users SET investment = ($1) WHERE user_id = ($2) RETURNING *',[parseFloat(checkUserExist.rows[0].investment) + parseInt(amount), req.user])
+      const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING balance',[parseFloat(checkUserExist.rows[0].balance) + parseInt(amount), req.user])
       res.json({ order: newOrder.rows[0], order_item: newOrderItem.rows[0], user_balance: newUserBalance.rows[0]})
     }
 

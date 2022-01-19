@@ -8,7 +8,7 @@ module.exports = function (req,res,next) {
     return /^[a-zA-Z0-9\-\s\!\?\.\,\()]{5,250}$/.test(transfertDesc);
   }
   function validCryptoName (crypto_name){
-    return /^[a-zA-Z\S\-]{3,50}$/.test(crypto_name)
+    return /^[a-zA-Z\s\-]{3,50}$/.test(crypto_name)
   }
   function validCryptoIDName (crypto_id_name){
     return /^[A-Z\S]{3,30}$/.test(crypto_id_name)

@@ -47,13 +47,14 @@ router.post('/', validInfosContact, authorization , async(req,res)=>{
     if(findContactByEmail.rows[0] === undefined){
       const newContact = await pool.query('INSERT INTO user_contact (email,first_name,last_name,user_id,created_at) VALUES ($1,$2,$3,$4,$5) RETURNING *',
         [email,firstname,lastname,req.user,date ])
-        res.json(getUserContact.rows)
+        res.json(newContact.rows)
     }  else if(findContactByEmail.rows[0].first_name === firstname){
         res.status(403).json('Ce prénom est déjà présent dans votre liste!')
       } 
   } catch (error) {
         console.error('⛔ error ⛔: '+ error.message);
     }
+
   })
   
 
