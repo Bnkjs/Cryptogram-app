@@ -29,7 +29,7 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
           return el
         }
   }) : null
-  const amountConvertedInCoin = selectedCrypto? amount / coinCurrentPrice[0].current_price : null
+  const amountConvertedInCoin = selectedCrypto? amount : null
   const onSubmitForm = (e) => {
     e.preventDefault()
     buyCrypto(selectedCrypto, amountConvertedInCoin, token)
@@ -47,7 +47,7 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
           transition={{ duration: .4 }}          
         >
     <PageContainer id="form-container">
-        <div className="box-form form-transfert">
+        <div className="box-form form-transfert" id='app'>
           <div className="close-modal" onClick={()=> showModalBuyCrypto(false)}>
             <FaArrowLeft/>
           </div>
@@ -73,12 +73,12 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
               </select>   
             </label>
             <Marged bottom="20px"/>
-            <label>Pour quelle quantité?
+            <label>Pour quel Montant?
               <Input 
                 bg='#F4F6F8' 
                 type="number" 
                 name="amount" 
-                placeholder="Indiquer le montant en euros"
+                placeholder="Indiquer le montant en € 🇪🇺"
                 onChange={(e)=> onChange(e)}
                 value={amount}
                 autoComplete="off"
@@ -87,21 +87,22 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
             </label>
             <Marged bottom="20px"/>
             <div className="amount-converted-wrap">
-              {selectedCrypto != null ?
-              <div>
-                 <div className="a-c-box">1 {coinCurrentPrice[0].symbol.toUpperCase()} = 
-                  <span className="a-c-result">
-                  {coinCurrentPrice[0].current_price} Euro (EUR) 
-                  </span>
-                 </div>
-                 <Marged bottom="10px"/>
+              {selectedCrypto ?
+              <div className="row-converted">      
                  <div className="a-c-box">
-                   <p>Vous obtiendrez:  
+                      <p>
+                        <span className="market-price">
+                          1 {coinCurrentPrice[0].symbol.toUpperCase()} = {coinCurrentPrice[0].current_price} € 🇪🇺
+                        </span>
+                      </p>
+                   <p>Recevez</p> 
+                    <p className="amount-result">
+                      {amount / coinCurrentPrice[0].current_price} 
                       <span className="a-c-result">
-                        {amount / coinCurrentPrice[0].current_price} {coinCurrentPrice[0].symbol.toUpperCase()} 
-                      </span> 
-                   </p> 
-                   
+                        {coinCurrentPrice[0].symbol.toUpperCase()} 
+                        <img src={coinCurrentPrice[0].image} alt="" />
+                      </span>
+                    </p> 
                  </div>
               </div>
               :
@@ -109,7 +110,9 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
             }
             </div>
             <Marged bottom="20px"/>
-            <Button width="100%" primary_xl>Acheter</Button>   
+            <a href="#app">
+              <Button width="100%" primary_xl>Acheter</Button> 
+            </a>  
         </Form>
         </div>                
       </PageContainer>

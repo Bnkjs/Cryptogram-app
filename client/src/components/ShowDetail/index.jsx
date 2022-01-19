@@ -4,7 +4,7 @@ import { FaCoins } from 'react-icons/fa'
 import { FiCheckCircle } from 'react-icons/fi'
 import './style.scss'
 
-const ShowDetail = ({type, date ,amount, total, status, transactionId}) => {
+const ShowDetail = ({spanContactOrderId,spanContactAdress,amount, total, transactionId}) => {
   return(
     <div id="s-d-container">
       <div className='datas-s-d'>
@@ -32,7 +32,7 @@ const ShowDetail = ({type, date ,amount, total, status, transactionId}) => {
         <div className="d-rows">
           <div className="r-rows-h">
             <CgDatabase/> 
-            <span>Id achat</span>
+            <span>{spanContactOrderId}</span>
           </div>
             <p>{transactionId}</p>
         </div>

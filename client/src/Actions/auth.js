@@ -4,45 +4,54 @@ import store from "../store";
 
 export const register = (e,email, password, username) => {
   
-   try {
+  store.dispatch({type: types.LOADING })
+  try {
       return AuthService.register(e,email, password, username) 
       .then((response) => {
+        
         if(response){
           store.dispatch({
             type: types.REGISTER_SUCCESS,
             payload: response
-          });
+          })
+          store.dispatch({type: types.LOADING_SUCCESS})
         } else{
           store.dispatch({
             type: types.REGISTER_FAIL
           })
+          store.dispatch({type: types.LOADING_SUCCESS})
         }
     })
    } catch (error) {
      console.log(error);
+     store.dispatch({
+      type: types.LOADING,
+      payload: false
+    })
    }  
 };
 
 export const login = (e, email, password) => {
   
+    store.dispatch({ type: types.LOADING }) 
     return AuthService.login(e, email, password)
     .then((response) => {
       if(response){
         store.dispatch({
           type: types.LOGIN_SUCCESS,
           payload: response,
-        });   
+        })
+        store.dispatch({ type: types.LOADING_SUCCESS })
       }else{
         store.dispatch({
-          type: types.LOGIN_FAIL,
+          type: types.LOGIN_FAIL
         }); 
+        store.dispatch({ type: types.LOADING_SUCCESS })
       }  
     })
   } 
 
   
-    
-
 export const logout = () => {
   
   AuthService.logout();

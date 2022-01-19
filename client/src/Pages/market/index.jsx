@@ -39,15 +39,15 @@ const Market = ({ state }) => {
   },[nthElement])
  
   return(<>
-    <PageContainer className="landing-market"height="70vh">
-      <div>
-        <h1>Top 100 Crypto-monnaies par capitalisation de marché</h1>
+      
+    
+    <div className="landing-market-content">
+      <header>
+        <div className="header-text-market">
+          <h1>Les prix des <br /> crypto-monnaies</h1>
+          <p>La capitalisation boursière globale du marché crypto est de €2.09T</p>
         </div>
-      <div>
-        <p>La capitalisation boursière globale du marché crypto est de €2.09T</p>
-      </div>
-    </PageContainer>
-    <PageContainer className="landing-market-content">
+      </header>
       <h1>Tendance du marché</h1>
       <div id="col-info">
         <p className="col-i rank">#</p>
@@ -75,7 +75,7 @@ const Market = ({ state }) => {
          </Button> : null
         }
       </div>
-    </PageContainer>
+    </div>
   </>)
 }
 

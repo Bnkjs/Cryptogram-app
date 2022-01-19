@@ -5,6 +5,7 @@ import apiUrls from "../services/ApiUrls";
 import { myCustomNotif } from "../components/notification/notif";
 
 export const getAllContact = async (token) => {
+  store.dispatch({type: types.LOADING_SUCCESS})
   try {
       return await axios.get(apiUrls.contact,{
           headers: {
@@ -17,15 +18,17 @@ export const getAllContact = async (token) => {
               type: types.GET_ALL_CONTACT_SUCCESS,
               payload: response.data
             });
-           
+            store.dispatch({type: types.LOADING_SUCCESS})
         }else{
           store.dispatch({
             type: types.GET_ALL_CONTACT_FAIL,
             payload: response.data
           })
+          store.dispatch({type: types.LOADING_SUCCESS})
         }
       })
   } catch (error) {
+      store.dispatch({type: types.LOADING_SUCCESS})
       myCustomNotif('notif notif-warning',error.response.data);
   }
 }
@@ -33,8 +36,8 @@ export const getAllContact = async (token) => {
 export const addContact = async (e,token,email,firstname,lastname) => {
   
     e.preventDefault()
+    store.dispatch({type: types.LOADING})
     try {
-      
         return await axios.post(apiUrls.contact,{
           email: email,
           firstname: firstname,
@@ -51,6 +54,7 @@ export const addContact = async (e,token,email,firstname,lastname) => {
                 type: types.ADD_CONTACT_SUCCESS,
                 payload: response.data              
               })
+              store.dispatch({type: types.LOADING_SUCCESS})
              setTimeout(()=>{
               myCustomNotif('notif notif-success', 'Contact ajouté');
              }, 300)
@@ -59,16 +63,20 @@ export const addContact = async (e,token,email,firstname,lastname) => {
               type: types.ADD_CONTACT_FAIL,
               payload: response.data
             }) 
+            store.dispatch({type: types.LOADING_SUCCESS})
             myCustomNotif('notif notif-warning', response.data)     
           }
         })
     } catch (error) {
+        store.dispatch({type: types.LOADING_SUCCESS})
         myCustomNotif('notif notif-warning', error.response.data)
     }
 }
 
 export const deleteContact = async (e,token,email) => {
   e.preventDefault()
+  store.dispatch({type: types.LOADING})
+
   try {
       return await axios.delete(apiUrls.contact,
         
@@ -87,16 +95,20 @@ export const deleteContact = async (e,token,email) => {
             store.dispatch({
               type: types.DELETE_CONTACT_SUCCESS,
             })
+          store.dispatch({type: types.LOADING_SUCCESS})
           myCustomNotif('notif notif-success', response.data)
         }else{
           store.dispatch({
             type: types.DELETE_CONTACT_FAIL,
             payload: response.data
           })
+          store.dispatch({type: types.LOADING_SUCCESS})
           myCustomNotif('notif notif-warning', response.data)
         }
       })
   } catch (error) {
+      store.dispatch({type: types.LOADING})
+      store.dispatch({type: types.LOADING_SUCCESS})
       myCustomNotif('notif notif-warning', error.response.data);
   }
 }

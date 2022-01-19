@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "../../components/Input/index";
 import { register } from "../../Actions/auth";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { Button } from "../../components/Button/index";
 import { Marged } from "../../components/Marged";
 import { PageContainer } from "../../components/PageContainer";
@@ -14,9 +14,10 @@ import { BiLockAlt } from "react-icons/bi";
 import { FiFeather, FiSend } from "react-icons/fi";
 import animationFm from "utils/framer";
 import { navDisable, navEnable } from "utils/navUtils";
+import CustomLoader from "components/Loader";
 
-const Signup = ({ setAuth }) =>{
-  const userLogged = useSelector(state => state.authReducer.isLoggedIn)
+const Signup = ({ setAuth, isLoading, userLogged }) =>{
+
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -35,12 +36,16 @@ const Signup = ({ setAuth }) =>{
   },[userLogged])
   
   return(
+    <>
+      { isLoading?
+        <CustomLoader/>
+        :
       <PageContainer id="form-container">
         <motion.div
           variants={animationFm()}
           initial={animationFm(0,50).hidden}
           animate={animationFm(1,0).visible}
-          transition={{ duration: .4 }}          
+          transition={{ duration: .4 }}    
         >
         <div className="box-form">
           <div className="header-form">
@@ -51,9 +56,9 @@ const Signup = ({ setAuth }) =>{
               <p>En profitant des meilleurs crypto-monnaies du marché.</p>
             </div>
         </div>
-        <Form
-         className="form-signup"
-         onSubmit={(e)=> handleSubmit(e,email,password,username)}
+        <Form 
+        className="form-signup"
+        onSubmit={(e)=> handleSubmit(e,email,password,username)}
         >    
             <div className="input-form-icn">            
               <Input role={'textbox'} type="text" placeholder="email" name="email" className="email-input" value={email} onChange={(e)=>onChange(e)} required />
@@ -61,8 +66,8 @@ const Signup = ({ setAuth }) =>{
             </div>
             <Marged bottom="20px"/>
             <div className="input-form-icn">
-             <Input role={'textbox'} type="password" placeholder="mot de passe" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} required  />
-             <BiLockAlt className="input-icn"/>
+            <Input role={'textbox'} type="password" placeholder="mot de passe" name="password" className="mdp-input" value={password} password={password} onChange={(e)=>onChange(e)} required  />
+            <BiLockAlt className="input-icn"/>
             </div>
             <Marged bottom="20px" />
             <div className="input-form-icn">
@@ -72,15 +77,24 @@ const Signup = ({ setAuth }) =>{
             <Marged bottom="20px"/>
             <Button width="100%" primary_xl>Créer son compte</Button>
             <Marged bottom="10px"/>
-            <div className="switch-auth">Vous avez déjà un compte?
-              <Link to='/login'><span className="link-redirect-auth"> Connectez-vous</span></Link>
+            <div className="switch-auth">Vous avez déjà un compte? 
+              <Link to='/login'>
+                  <span className="link-redirect-auth"> Connectez-vous</span>
+              </Link>
             </div>
           </Form>
         </div> 
         </motion.div>                
-      </PageContainer>   
+        </PageContainer> 
+      }
+    </>
   )
 }
 
-
+export const SignupStore = connect(
+  (state) => ({
+    userLogged: state.authReducer.isLogged,
+    isLoading: state.authReducer.isLoading
+  })
+)(Signup)
 export default Signup;

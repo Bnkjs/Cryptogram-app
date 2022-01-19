@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import 'components/Dashcomponent/style.scss';
 import { FaEthereum } from "react-icons/fa";
 import {RiFileUserLine } from "react-icons/ri";
@@ -11,8 +11,11 @@ import { Marged } from "components/Marged";
 import { logout } from "Actions/auth";
 import { Link } from "react-router-dom";
 
+export const handleLogout = () => {
+  logout()
+  window.location.reload()
+}
 export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, setShowTransfert, setShowBuyCrypto}) => {
-  
   const backToHomeDash = () => {
     setShowActivity(false)
     setShowContact(false)
@@ -43,18 +46,19 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
     setShowTransfert(false)
     setShowBuyCrypto(true)
   }
-
+  
+  
   
   return(
       <div id="container-dashboard" height="100vh">
-          <div className="left-content">
+          <div className="left-content" >
             <div className="h-left-content">
-             <img className="logo" src={logo} alt="cube blanc" />
+             <img className="logo" src={logo} alt="cube blanc"  onClick={()=> backToHomeDash()}/>
             </div>
             <aside className="aside-left-content">
               <nav className="nav-dashboard">
                 <ul className="ul-sidenav ">
-                  <a href="#up">
+                  <a href="#container-dashboard">
                     <li className="li-sidenav" onClick={()=> backToHomeDash()}>
                       <div className="li-sidenav-icon">
                         <MdHomeMax className="li-icon-img"/>
@@ -103,7 +107,7 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                       </Link>
                       <Marged bottom='10px'/>
                       <a href="#app">
-                        <Button dash_option bg='#161616' onClick={()=> logout()}>
+                        <Button dash_option bg='#161616' onClick={()=> handleLogout()}>
                           <FiLogOut/>
                         </Button>
                       </a>

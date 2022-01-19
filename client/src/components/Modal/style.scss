@@ -34,18 +34,59 @@
 }
 
 .amount-converted-wrap{
-  text-align: center;
-  .a-c-box{
-    color: rgb(23, 22, 22);
-    border: 1px solid rgb(232, 232, 232);
+  .row-converted{
+    display: flex;
+    background: #F4F6F8; /* fallback for old browsers */
+    padding: 2em 0;
+    border-radius: 20px;
     max-width: 100%;
-    padding: .8em;
-    border-radius: 10px;
+    position: relative;
+
+
+    .a-c-box{
+      color: rgb(23, 22, 22);
+      background-color: white;
+      border-radius: 10px;
+      min-width: 50%;
+      margin: 0 auto;
+      display: flex;
+      justify-content:center;
+      flex-direction: column;
+      text-align: center;
+      padding: 1em;
+      position: relative;
+    }
+  }
+  .amount-result{
+    font-size: 1.3em;
+    color: rgb(20, 21, 20);
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
   }
   .a-c-result{
-    background-color: #E7F0FF;      border-radius: 5px;
-    color: #1367d5;
+    border-radius: 5px;
+    color: #2B59FF;
+    border: 1px solid rgb(210, 210, 210);
     padding: .2em .3em;
     font-weight: 600;
+    margin: 0 .5em;
+    box-shadow: .1em .1em .5em rgb(240, 240, 240);
+    img{
+      position: relative;
+      max-width: 20px;
+      margin: -.15em .3em;
+    }
   }
+  
+}
+
+
+.market-price{
+  background: rgb(43, 43, 43);
+  color: white;
+  max-width: 100px;
+  padding: .2em .6em;
+  border-radius: 20px;
+  margin: 0 .2em;
 }
