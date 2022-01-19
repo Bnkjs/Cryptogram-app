@@ -32,10 +32,10 @@ app.use('/contact', require('./routes/contact'))
 app.use('/activity', require('./routes/activity'))
 app.use('/my_crypto', require('./routes/user_crypto'))
 
-
-
-
-
 app.listen(PORT, () => {
   console.log('🤖 ↝ 🔌• connecté sur le Port 5000 •🔌');
+})
+
+app.get("*", (req,res)=> {
+  res.sendFile(path.join(__dirname, "client/build/index.htlm"))
 })
