@@ -8,7 +8,7 @@
     "npm": "8.1.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "heroku-postbuild": "cd client && npm run test && npm install && npm run build"
   },
   "author": "",
