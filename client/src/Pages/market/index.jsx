@@ -2,7 +2,7 @@ import React,{useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getMarket } from "Actions/crypto";
-import { RowMarket } from "components/Market/index";
+import { RowMarket } from "../../components/Market/index";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "components/Button";
 
