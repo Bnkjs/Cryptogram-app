@@ -2,6 +2,15 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
+// process.env.PORT
+const PORT = process.env.PORT || 5000;
+// process.env.Node_ENV
+if (process.env.NODE_ENV === "production") {
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
 //Middleware
 app.use(express.json())//req.body
 app.use(cors())
@@ -27,6 +36,6 @@ app.use('/my_crypto', require('./routes/user_crypto'))
 
 
 
-app.listen('5000', () => {
+app.listen(PORT, () => {
   console.log('🤖 ↝ 🔌• connecté sur le Port 5000 •🔌');
 })

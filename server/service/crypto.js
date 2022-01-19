@@ -1,13 +1,13 @@
 const axios = require('axios')
 const apiUrlCoinByID = require('../service/apiUrls')
 
-const cryptoExchange = (crypto_name, amount) => {
+const cryptoExchange = (crypto_name) => {
   return axios.get(apiUrlCoinByID.coinsById('eur') + crypto_name)
     .then((response) => {
         if(response.data[0]){
-          return amount * response.data[0].current_price
+          return response.data[0].current_price
         } else{
-          res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
+          return 'Cette crypto-monnaie n\'éxiste pas'
         }
     })
 }
@@ -18,7 +18,7 @@ const getAllCrypto = (crypto_name) => {
         if(response.data[0]){
            return response.data
         } else{
-            res.status(404).json('une erreur s\'est glissée..')
+            'une erreur s\'est glissée..'
           }
     })
 }
@@ -31,7 +31,7 @@ const getCryptoSymbol = (crypto_name) => {
         if(response.data[0]){
            return response.data[0].symbol
         } else{
-            res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
+            return 'Cette crypto-monnaie n\'éxiste pas'
           }
     })
 }
@@ -43,7 +43,7 @@ const getCryptoName = (crypto_name) => {
     if(response.data[0]){
       return response.data[0].name
     } else{
-      res.status(404).json('Cet cryptomonnaie n\'éxiste pas')
+      return 'Cette crypto-monnaie n\'éxiste pas'
     }
   })
 } 
