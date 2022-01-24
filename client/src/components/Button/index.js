@@ -1,11 +1,10 @@
 import styled,{ css } from 'styled-components'
-import PropTypes from 'prop-types';
 
 export const Button = styled.button`
     
   border-radius: 10px;
   border: transparent;
-  padding: 0.5em 1.6em;
+  padding: ${({padding}) => padding};
   transition: all .1s ease-out;
   cursor: pointer;
   font-size: 1em;
@@ -19,7 +18,7 @@ export const Button = styled.button`
       background-image: linear-gradient(91.26deg, #5364fc 30%, #EB76FF 21.74%, #FF56A9 54.03%, #FF9B52 85.28%);
       -webkit-background-clip: text;
       color: transparent;
-      padding: ${({padding}) => padding};
+      padding: .8em 2em;
       box-shadow: 0px 2px 15px 0.5px rgba(0, 0, 0, 0.1);
       transition: all 100ms ease-out;
       :hover{
@@ -36,6 +35,7 @@ export const Button = styled.button`
     background: #313131;
     color: #fff;
     transition: all .2s ease-out;
+    padding: .8em 2em;
     :hover{
      background: #161616;
     }
@@ -68,6 +68,7 @@ export const Button = styled.button`
     transition: all .2s ease-out;
     box-shadow: none;
     margin:0 1em;
+    padding: 0.5em 1.6em;
     :hover{
      background-color: ${({bg}) => bg};
      box-shadow: 0px 2px 15px 0.5px rgba(0, 0, 0, 0.1);

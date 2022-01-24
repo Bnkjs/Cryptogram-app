@@ -4,7 +4,8 @@ const initialState =  {
   cryptoInfos: null ,
   userCoins: null,
   coinsMarket: null,
-  transfertInfos: null,
+  coinOrdered: null,
+  coinTransfered: null,
   isLoading: false
 }
 
@@ -47,14 +48,14 @@ export default function(state = initialState, action) {
     case types.BUY_CRYPTO_SUCCESS:
       return {
         ...state, 
-        transfertInfos: payload
+        coinOrdered: payload
       }
     case types.BUY_CRYPTO_FAIL:
       return state
     case types.MAKE_TRANSFERT_SUCCESS:
       return {
         ...state, 
-        transfertInfos: payload
+        coinTransfered: payload
       }
     case types.MAKE_TRANSFERT_FAIL:
       return state

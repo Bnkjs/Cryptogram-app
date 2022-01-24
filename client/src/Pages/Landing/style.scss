@@ -1,0 +1,107 @@
+$primary-font:'Poppins', sans-serif;
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+#landing-page{
+  width: 90%;
+  min-height: 80vh;
+  max-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  @include flex-center();
+  justify-content: space-between;
+  
+}
+.header-landing{
+  margin: auto;
+  h1,p{
+    margin: 0;
+  }
+  h1{
+    font-size: 3.6rem;
+    font-family: $primary-font;
+    color: #161616;
+    line-height: 1.2em;
+  }
+  p{
+    margin: 1em 0 2em 0;
+    color: rgb(123, 123, 123);
+    font-size: 1.1em;
+  }
+  span{
+    background: #3406EA; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0062FF, #c934ff); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0062FF, #ce46ff);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+.btn-cta{
+  min-width: 2%;
+  padding: 1em 5em;
+  border-radius: .4em;
+  background: #000000;
+  color: #fff;
+  border: none;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.illu{
+  position: relative;
+  max-width: 100%;
+  @include flex-center();
+  justify-content: center;
+}
+.phone-illu{
+  margin: 1em auto;
+  max-width: 40%;
+}
+.stars-notif-illu{
+  position: absolute;
+  width: 80%;
+}
+
+// display grid layout for 750px or wider
+
+@media screen and (min-width: 250px) and (max-width:880px){
+  #landing-page{
+    display: block;
+  }
+  .header-landing{
+    margin: 3em 0;
+    text-align: center;
+    h1{
+      font-size: 2.5em;
+    }
+  }
+  .phone-illu{
+    max-width: 40%;
+    margin: 0 0 4em 0;
+  }
+  .stars-notif-illu{
+    max-width: 70%;
+    margin: 0 0 4em 0;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 400px) and (max-height:850px){
+  #landing-page{
+    display: block;
+  }
+  .header-landing{
+    text-align: center;
+    h1{
+      font-size: 2.1em;
+      line-height: 1.2em;
+      margin: 1em 0;
+    }
+  }
+  .phone-illu{
+    max-width: 50%;
+  }
+  .stars-notif-illu{
+    max-width: 70%;
+  }
+}
+// end media query

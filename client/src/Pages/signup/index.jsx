@@ -13,7 +13,7 @@ import './style.scss';
 import { BiLockAlt } from "react-icons/bi";
 import { FiFeather, FiSend } from "react-icons/fi";
 import animationFm from "utils/framer";
-import { navDisable, navEnable } from "utils/navUtils";
+import { navEnable } from "utils/navUtils";
 import CustomLoader from "components/Loader";
 
 const Signup = ({ setAuth, isLoading, userLogged }) =>{

@@ -541,6 +541,8 @@ body{
 #contact-container{
   max-width: 90%;
   margin: 2em auto;
+  h3{
+text-align: center  }
 }
 .form-contact{
   @include flex-center();

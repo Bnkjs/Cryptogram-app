@@ -5,16 +5,13 @@ import Div from "components/Div";
 import { PageContainer } from "components/PageContainer";
 import { delete_profil }from "Actions/profil";
 import { myCustomNotif } from "components/notification/notif";
-import { navDisable, navEnable } from "utils/navUtils";
+import { navEnable } from "utils/navUtils";
 
 const Profil = ({ state, token }) => {
 
   const submitDelete = (e) => {
     delete_profil(e,token)
-    setTimeout(()=>{
-      myCustomNotif('notif notif-destruct','votre compte à bien été supprimé')
-    },800)
-    
+    window.location.reload()
   }
   useEffect(()=>{
     navEnable()

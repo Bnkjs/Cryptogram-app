@@ -17,7 +17,6 @@ const Activity = ({ state, token }) => {
   const currentUserTransfertLength = state? state.transfert.length : null
   const currentUserOrderLength = state? state.order.length : null
 
-
   const getOrders = state? currentUserOrder.map((el, index) => {
 
     return (
@@ -48,9 +47,11 @@ const Activity = ({ state, token }) => {
       </div>
       )
   }) : null
+
+  const getActivity = () => activity(token)
   useEffect(()=>{
-    activity(token)
-  },[dashState])
+    getActivity()
+  },[])
 
   return(
       <motion.div
@@ -59,6 +60,7 @@ const Activity = ({ state, token }) => {
         animate={animationFm(1,0).visible}
         transition={{ duration: .4 }}        
       >
+        
         <PageContainer id="activity-container">
           <div className="activity-wrap">
             <h1>Récente activité</h1>
@@ -77,8 +79,7 @@ const Activity = ({ state, token }) => {
                 null
                 : getTransferts.reverse()
               }
-              {currentUserOrderLength === 0 || currentUserOrderLength === null && 
-              currentUserTransfertLength === 0 || currentUserTransfertLength === null ?
+              {(currentUserOrderLength === 0 || currentUserOrderLength === null) && (currentUserTransfertLength === 0 || currentUserTransfertLength === null )?
                 <motion.div
                   variants={animationFm()}
                   initial={animationFm(0,50).hidden}
@@ -93,10 +94,9 @@ const Activity = ({ state, token }) => {
                       </div>
                   </div> 
                </motion.div>: null
-              }
-              
+              } 
           </div>   
-        </PageContainer>    
+        </PageContainer>  
     </motion.div>
   )
 }

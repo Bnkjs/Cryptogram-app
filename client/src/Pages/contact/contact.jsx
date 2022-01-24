@@ -81,6 +81,7 @@ const Contact = ({ state, token, isLoading }) => {
             </motion.div>
               : displayContact 
             }
+            <h3>Ajouter un contact</h3>
               <a href="#up">
                 <button 
                   className="add-c" 

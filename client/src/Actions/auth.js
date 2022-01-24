@@ -1,6 +1,7 @@
 import types from "../Types/types";
 import AuthService from "../services/auth.service";
 import store from "../store";
+import { myCustomNotif } from "components/notification/notif";
 
 export const register = (e,email, password, username) => {
   

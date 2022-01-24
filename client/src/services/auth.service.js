@@ -4,7 +4,6 @@ import apiUrls from './ApiUrls';
 
 const register =  async (e,email, password, username) => {
   e.preventDefault()
-  
     try {
       return await axios.post(apiUrls.signup,{
         email: email,
@@ -17,10 +16,11 @@ const register =  async (e,email, password, username) => {
           localStorage.setItem("token", JSON.stringify(response.data.token));
           return response.data
         }else(
-          myCustomNotif('notif-bottom notif-warning',response.data)
+          myCustomNotif('notif notif-warning',response.data)
         )
       }) 
     } catch (error) {
+      console.log('salut');
       myCustomNotif('notif notif-warning',error.response.data);
     }              
 }

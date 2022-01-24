@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 import 'components/Dashcomponent/style.scss';
 import { FaEthereum } from "react-icons/fa";
 import {RiFileUserLine } from "react-icons/ri";
@@ -67,14 +67,6 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                     </li>
                   </a>
                   <a href="#app">
-                    <li className="li-sidenav" onClick={()=> setActivity()}>
-                      <div className="li-sidenav-icon">
-                        <FiZap className="li-icon-img"/>
-                      </div>
-                      <p className="text-sidenave">Activité</p>
-                    </li>
-                  </a>
-                  <a href="#app">
                     <li className="li-sidenav" onClick={()=> setContact()}>
                         <div className="li-sidenav-icon">
                           <RiFileUserLine className="li-icon-img"/>
@@ -97,6 +89,14 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                       </div>
                       <p className="text-sidenave">Transfert</p>
                       </li> 
+                  </a>
+                  <a href="#app">
+                    <li className="li-sidenav" onClick={()=> setActivity()}>
+                      <div className="li-sidenav-icon">
+                        <FiZap className="li-icon-img"/>
+                      </div>
+                      <p className="text-sidenave">Activité</p>
+                    </li>
                   </a>
                 </ul>
                 <div className="box-signout-profil">

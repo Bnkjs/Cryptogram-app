@@ -1,4 +1,4 @@
-import React,{useEffect, useMemo, useState} from "react";
+import React,{useEffect, useState} from "react";
 import { connect } from "react-redux";
 import dashboard from "Actions/dashboard";
 import { PageContainer } from "components/PageContainer";
@@ -16,8 +16,7 @@ import { getMarket, getUserCoins } from "Actions/crypto";
 import BuyCrypto from "components/Modal/buy";
 import { navDisable } from "utils/navUtils";
 
-const Dashboard = ({ state, token, contact,crypto }) =>{
-  const [dashState, getDashState] = useState(state)
+const Dashboard = ({ state, token, contact,crypto, userCryptoWallet }) =>{
   const storedUserName = state? state.user.username : null
   const storedContact = contact? contact : null
   const storedUserInvestment = crypto? crypto : null
@@ -28,8 +27,9 @@ const Dashboard = ({ state, token, contact,crypto }) =>{
   const [showTransfert, setShowTransfert] = useState(false)
   const [showBuyCrypto, setShowBuyCrypto] = useState(false)
   const contactLength = contact ? contact.length : null
-  const investmentLength = crypto? crypto.length : null
+  const investmentLength = state? userCryptoWallet : null
   const storedMarket = useSelector(state => state.cryptoReducer.coinsMarket)
+  
   const showModalTransfert = (boolean) => {
     setShowTransfert(boolean)
   }
@@ -44,12 +44,14 @@ const Dashboard = ({ state, token, contact,crypto }) =>{
     getAllContact(token)
     getMarket()
     dashboard(token)
- },[contactLength,investmentLength])
+    console.log('salut');
+ },[contactLength, investmentLength])
   
   return(
     <>
-    
+       
         <PageContainer id="container-dashboard" height="100vh">
+         
           <DashLeftAside 
             storedUserName={storedUserName} 
             setShowActivity={setShowActivity}
@@ -96,6 +98,7 @@ const Dashboard = ({ state, token, contact,crypto }) =>{
           </div>
           }
         </PageContainer>
+       
     </>
   )
 }
@@ -105,6 +108,7 @@ export const DashboardStore = connect(
   (state) => ({
     state: state.dashboardReducer.dashboardInfos,
     contact: state.contactReducer.contactInfos,
+    userCryptoWallet: state.cryptoReducer.coinOrdered,
     crypto: state.cryptoReducer.userCoins
   })
 )(Dashboard)
