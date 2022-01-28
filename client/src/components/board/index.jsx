@@ -4,7 +4,7 @@ const Board = ({state,storedUserInvestment, storedUserTransfert, storedContact,s
   
   return(<>
       <div className="recap">
-      <div className="circle-balance">
+          <div className="circle-balance">
               <h3>{parseFloat(storedUserBalance).toFixed(2)} €</h3>
                <p>
                   {storedCrypto? storedCrypto.map((crypto,index) => 

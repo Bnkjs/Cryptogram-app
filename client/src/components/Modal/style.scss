@@ -253,3 +253,29 @@
   bottom: 0;
   margin: 2.5em 0;
 }
+
+@media screen and (min-width: 250px) and (max-width: 880px) and (max-height: 1440px){
+  #form-container{
+    z-index: 6;
+  }
+  .header-form{
+    img{
+      margin: 0;
+    }
+    .text-header-form{
+      margin: 0 0 2em 0;
+      h2{
+        font-size: 1.8em;
+      }
+    }
+  }
+  #contact-container{
+    h1{
+      display: none;
+    }
+  }
+ #modal-valid{
+   z-index: 10;
+  max-width: 100%;
+ }
+}

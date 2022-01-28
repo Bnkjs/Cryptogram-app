@@ -8,7 +8,6 @@ import { myCustomNotif } from "components/notification/notif";
 import { navEnable } from "utils/navUtils";
 
 const Profil = ({ state, token }) => {
-
   const submitDelete = (e) => {
     delete_profil(e,token)
     window.location.reload()

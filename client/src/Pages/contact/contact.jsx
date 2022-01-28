@@ -57,7 +57,7 @@ const Contact = ({ state, token, isLoading }) => {
           <h1>Liste des contacts</h1>
           <div id="col-info">
               <p className="c-id">#</p>
-              <p className="c-email">email</p>
+              <p className="c-email">Email</p>
               <p className="c-firstname">Prénom</p>
               <p className="c-lastname">N. famille</p>
               <p className="c-id-wallet">N° de portefeuille</p>

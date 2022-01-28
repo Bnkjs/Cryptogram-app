@@ -191,6 +191,7 @@ $light-color: #fff;
 .h-menu{
   width: 40px;
   height: 40px;
+  margin: 0 2.5em;
   @include flex-center();
   flex-direction: column;
   cursor: pointer;
@@ -253,12 +254,10 @@ $light-color: #fff;
   cursor: pointer;
   margin: 2em 1em;
   width: auto;
-  color: $primary-color;
+  color: gray;
   transition: all .1s ease-out;
   &:hover{
-    background-image: linear-gradient(30.26deg, #5566fe 5%, #EB76FF 10.74%, #FF56A9 4.03%, #FF9B52 15.28%);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: $primary-color;
   }
 }
 .icon-wallet{
@@ -296,7 +295,20 @@ $light-color: #fff;
   }
   #navbar-res{
     display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 11;
   }
+  #landing-page{
+    position: relative;
+    top: 5vh;
+  }
+ .ul-menu-res{
+    margin: 10em 0; 
+  }
+ 
 
 }
 

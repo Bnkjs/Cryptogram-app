@@ -49,10 +49,7 @@ $light-color: #fff;
   background-size:cover;
   overflow: hidden;
 }
-.aside-right-dash{
-  max-width: 20%;
-  background-color: #ffffff;
-}
+
 .header-recap{
   display: flex;
   justify-content: space-around;
@@ -219,3 +216,36 @@ $light-color: #fff;
   }
 }
 
+@media only screen and (min-width:250px) and (max-width:400px) and (max-height:815px){
+ .center-content{
+   max-height: auto;
+ }
+ .recap{
+   .header-recap{
+     h4{
+       font-size: 1.1em;
+     }
+     .col-recap{
+       margin: 0;
+     }
+   }
+ }
+ #r-o-container{
+   .o-t-order,.o-name,.o-date,.o-total{
+     margin: 0;
+   }
+  .o-id{
+    display: none;
+   }
+  .o-t-order{
+    margin: 0 .3em 0 0;
+  }
+  .o-date{
+    max-width: 15em;
+    margin: 0 5em 0 0 ;
+  }
+  .o-total{
+    margin:  0;
+  }
+ }
+}

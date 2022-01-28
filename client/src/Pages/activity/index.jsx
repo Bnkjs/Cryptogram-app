@@ -89,8 +89,8 @@ const Activity = ({ state, token }) => {
                   <div className="door-activity">
                     <h3>Vous n'avez pas encore d'activité...</h3>
                       <div className="illu">
-                        <div className="stars-ac" alt="" />
-                        <img className="bino-ac" src={binoculars} alt="" />
+                        <div className="stars-ac" alt="Fond noir avec des étoiles blanches représentant l'espace" />
+                        <img className="bino-ac" src={binoculars} alt="Jumelles avec contours blancs, avec sur chaque verre un logo de crypto-monnaie" />
                       </div>
                   </div> 
                </motion.div>: null

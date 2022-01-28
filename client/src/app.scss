@@ -531,7 +531,7 @@ body{
 }
 .modal-box{
   max-width:40%;
-  background-color: #F9F9F9;
+  background-color: #551c1c;
   border-radius: 20px ;
   padding: 3em 3em;
   margin: 0 auto;
@@ -643,21 +643,21 @@ text-align: center  }
   margin: 0 auto;
   @include flex-center();
   img{
-    animation: .2s linear 0s infinite alternate slidein;
+    animation: 1s ease-in-out 0s infinite alternate slidein;
     animation-name: loader;
   }
 }
 @keyframes loader {
   0%{
-      transform: rotate(-50deg);
+      transform: rotate(0deg);
   }
   100%{
-      transform: rotate(0deg);  
+      transform: rotate(360deg);  
   }
 }
 
 // display grid layout for 750px or wider
-@media screen and (min-width: 250px) and (max-width:880px){
+@media only screen and (min-width:250px) and (max-width:400px) and (max-height:815px){
     
     .l-rows--3 {
         grid-template-columns:repeat(auto-fill, 450px);
@@ -681,14 +681,55 @@ text-align: center  }
       width: 100%;
     }
     #container-dashboard{
+      display: flex;
       flex-direction: column;
     }
-} 
-
+  } 
 .panel{
   width: 150px;
   height: 150px;
   background-color: rebeccapurple;
   margin: 0 1em;
 }
+.r-contact{
+  font-size: .7em;
+}
+.c-id, .c-email,.c-firstname,.c-lastname, .c-delete{
+margin: 0 0;
+font-size: .7em;
+}
+.c-id, .c-email{
+  margin: 0em;
+}
+.c-id{
+  margin: 0 1em 0 0;
+}
+.c-email{
+  margin: 0 7em 0 0;
+}
+.c-firstname{
+  margin: 0 1em 0 0;
+}
+.c-lastname{
+  margin: 0 1em 0 0;
+}
+.c-id-wallet{
+  display: none;
+}
+.r-firstname,.r-lastname{
+  margin: 0;
+}
+.r-email{
+  margin: 0 0 0 1.4em;
+}
+.r-firstname, .r-lastname{
+  margin: 0 2em 0 0;
+}
+.c-trash{
+  transform: scale(2);
+}
+.r-wallet{
+  display: none;
+}
+
 // end media query

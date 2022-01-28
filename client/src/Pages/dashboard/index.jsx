@@ -16,7 +16,7 @@ import { getMarket, getUserCoins } from "Actions/crypto";
 import BuyCrypto from "components/Modal/buy";
 import { navDisable } from "utils/navUtils";
 
-const Dashboard = ({ state, token, contact,crypto, userCryptoWallet }) =>{
+const Dashboard = ({ state, token, contact,crypto, userCryptoWallet, userCryptoTransfered }) =>{
   const storedUserName = state? state.user.username : null
   const storedContact = contact? contact : null
   const storedUserInvestment = crypto? crypto : null
@@ -28,6 +28,7 @@ const Dashboard = ({ state, token, contact,crypto, userCryptoWallet }) =>{
   const [showBuyCrypto, setShowBuyCrypto] = useState(false)
   const contactLength = contact ? contact.length : null
   const investmentLength = state? userCryptoWallet : null
+  const transfertLength = state? userCryptoTransfered : null
   const storedMarket = useSelector(state => state.cryptoReducer.coinsMarket)
   
   const showModalTransfert = (boolean) => {
@@ -45,7 +46,7 @@ const Dashboard = ({ state, token, contact,crypto, userCryptoWallet }) =>{
     getMarket()
     dashboard(token)
     console.log('salut');
- },[contactLength, investmentLength])
+ },[contactLength, investmentLength,transfertLength])
   
   return(
     <>
@@ -109,6 +110,7 @@ export const DashboardStore = connect(
     state: state.dashboardReducer.dashboardInfos,
     contact: state.contactReducer.contactInfos,
     userCryptoWallet: state.cryptoReducer.coinOrdered,
+    userCryptoTransfered: state.cryptoReducer.coinTransfered,
     crypto: state.cryptoReducer.userCoins
   })
 )(Dashboard)

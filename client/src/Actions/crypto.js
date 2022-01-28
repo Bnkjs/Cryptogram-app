@@ -91,7 +91,7 @@ export const makeTransfert = async (contact_id,crypto_name,description,amount,to
               type: types.MAKE_TRANSFERT_SUCCESS,
               payload: response.data
         });
-          myCustomNotif('notif notif-warning','transfert éffectué');
+          myCustomNotif('notif notif-success','transfert éffectué');
         } else{
           store.dispatch({
             type: types.MAKE_TRANSFERT_FAIL
