@@ -170,37 +170,40 @@ export const Navres = ({backToHomeDash, setBuyCrypto, setContact, setActivity, s
   return(
     <div id="aside-container">
 
-              {showDropDown &&           
-                <div className="dropdown-res" onClick={()=> setShowDropDown(!showDropDown)}>
-                   <a href="#app">
-                    <li className="li-sidenav" onClick={()=> setMarket()}>
-                      <div className="li-sidenav-icon">
-                        <HiOutlineChartSquareBar className="li-icon-img"/>
-                      </div>
+              {showDropDown &&
+                <div className="dropdown-container">
+                  <div className="dropdown-res" onClick={()=> setShowDropDown(!showDropDown)}>
+                    <a href="#app">
+                      <li className="li-sidenav" onClick={()=> setMarket()}>
+                        <div className="li-sidenav-icon">
+                          <HiOutlineChartSquareBar className="li-icon-img"/>
+                        </div>
+                      </li>
+                    </a>
+                    <a href="#app">
+                      <li className="li-sidenav" onClick={()=> setBuyCrypto()}>
+                        <div className="li-sidenav-icon">
+                          <FaEthereum className="li-icon-img"/>
+                        </div>
+                      </li>
+                    </a>
+                    <a href="#app">
+                      <li className="li-sidenav" onClick={()=> setTransfert()}>
+                        <div className="li-sidenav-icon">
+                          <BiTransferAlt className="li-icon-img"/>
+                        </div>
+                        </li> 
+                    </a>
+                    <a href="#app">
+                    <li className="li-sidenav" onClick={()=> setActivity()}>
+                        <div className="li-sidenav-icon">
+                        <FiZap className="li-icon-img"/>
+                        </div>
                     </li>
                   </a>
-                  <a href="#app">
-                    <li className="li-sidenav" onClick={()=> setBuyCrypto()}>
-                      <div className="li-sidenav-icon">
-                        <FaEthereum className="li-icon-img"/>
-                      </div>
-                    </li>
-                  </a>
-                  <a href="#app">
-                    <li className="li-sidenav" onClick={()=> setTransfert()}>
-                      <div className="li-sidenav-icon">
-                        <BiTransferAlt className="li-icon-img"/>
-                      </div>
-                      </li> 
-                  </a>
-                  <a href="#app">
-                   <li className="li-sidenav" onClick={()=> setActivity()}>
-                      <div className="li-sidenav-icon">
-                      <FiZap className="li-icon-img"/>
-                      </div>
-                   </li>
-                </a>
-                </div>
+                  </div>
+                </div>        
+                
               }
           <a href="#container-dashboard">
             <li className="li-sidenav" onClick={()=> backToHomeDash()}>

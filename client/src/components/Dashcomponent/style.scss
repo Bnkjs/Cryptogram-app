@@ -109,20 +109,33 @@ $light-color: #fff;
   max-width: 100%;
   max-height: 88vh;
   overflow-y: scroll;
-
+}
+.dropdown-container{
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: -3.35em;
 }
 .dropdown-res{
-  background-color: rgb(40, 38, 38);
+  background-color: rgb(198, 198, 198);
   border-radius: .5em;
   @include flex-align-center();
   justify-content: space-around;
-  position: absolute;
-  min-width: 70%;
-  min-height: 15%;
-  top: -3em;
-  margin: 0 1em;
+  max-width: 50%;
+  min-height: 7vh;
+  margin: auto;
+  .li-sidenav{
+    &:hover{
+      background: initial;
+      box-shadow: initial;
+    }
+  }
   .li-icon-img{
-   color: #fff;
+   color: #000;
+   &:hover{
+     background-color: #e6e7e8;
+     border-radius: .5em;
+   }
   }
 }
 .d-activity-page::-webkit-scrollbar{
