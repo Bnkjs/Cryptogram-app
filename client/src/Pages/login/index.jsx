@@ -42,11 +42,12 @@ const Login = ({ setAuth, isLoading, userLogged }) =>{
       :
         <PageContainer id="form-container">
         <motion.div
-      variants={animationFm()}
-      initial={animationFm(0,50).hidden}
-      animate={animationFm(1,0).visible}
-      transition={{ duration: .4 }}      
-      >
+          variants={animationFm()}
+          initial={animationFm(0,50).hidden}
+          animate={animationFm(1,0).visible}
+          transition={{ duration: .4 }}    
+          id="app"  
+        >
         <div className="box-form">
         <div className="header-form">
         <img className="cubes_form" src={cubes} alt="deux cube avec un dégradé bleu transparent" />

@@ -25,8 +25,8 @@ const App = () => {
   }
   useEffect(()=>{
 
-  },[])
-  
+  },[myStore])
+  console.log(myStore);
   return(
     <div id="container-app">
       <Router>

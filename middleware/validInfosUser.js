@@ -5,7 +5,7 @@ module.exports = function(req, res, next) {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail);
   }
   function validPswd(userPswd) {
-    return /^[a-z]{5,60}$/.test(userPswd);
+    return /^[0-9a-z-A-Z\_]{5,60}$/.test(userPswd);
   }
 
   function validUserName(userName) {

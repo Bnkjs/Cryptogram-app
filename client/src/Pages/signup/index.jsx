@@ -45,7 +45,8 @@ const Signup = ({ setAuth, isLoading, userLogged }) =>{
           variants={animationFm()}
           initial={animationFm(0,50).hidden}
           animate={animationFm(1,0).visible}
-          transition={{ duration: .4 }}    
+          transition={{ duration: .4 }} 
+          id="app"   
         >
         <div className="box-form">
           <div className="header-form">

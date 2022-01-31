@@ -9,14 +9,11 @@ import logo from 'assets/logo.svg'
 import { Button } from "components/Button";
 import { Marged } from "components/Marged";
 import { logout } from "Actions/auth";
-import { Link } from "react-router-dom";
 import { HiOutlineChartSquareBar } from "react-icons/hi";
-import { motion } from "framer-motion";
-import animationFm from "utils/framer";
+
 
 export const handleLogout = () => {
   logout()
-  window.location.reload()
 }
 export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, setShowTransfert, setShowBuyCrypto, setShowMarket, setShowProfil}) => {
 
@@ -131,7 +128,9 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                            </li>
                   </a>
                 </ul>
+               
                 <div className="box-signout-profil" onClick={()=> setProfil()}>
+                  <a href="#app">
                       <div className="link-profil">
                         <div>
                           <Button dash_option bg='#3e52fe'>
@@ -139,8 +138,9 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
                           </Button>
                         </div>
                       </div>
+                      </a>
                       <Marged bottom='10px'/>
-                      <a href="#app">
+                      <a href="#form-container">
                         <Button dash_option bg='#161616' onClick={()=> handleLogout()}>
                           <FiLogOut/>
                         </Button>
@@ -209,7 +209,7 @@ export const Navres = ({backToHomeDash, setBuyCrypto, setContact, setActivity, s
               </div>
             </li>
           </a>
-          <a href="#">
+          <a href="#app">
             <li className="li-sidenav" onClick={()=> setShowDropDown(!showDropDown)}>
               <div className="li-sidenav-icon">
                 <FiPackage className="li-icon-img"/>
