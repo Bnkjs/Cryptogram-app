@@ -5,25 +5,20 @@ import { Link } from "react-router-dom";
 import { logout }from "Actions/auth";
 import { Button } from "components/Button/index"
 import "../Navbar/style.scss"
-import { FiLogOut, FiUser, FiZap } from "react-icons/fi";
 import logo from '../../assets/logo.svg'
-import { motion, AnimatePresence } from 'framer-motion';
 import { BiWallet } from "react-icons/bi";
+import NavDropdown from "components/dropdown";
+import { FiZap } from "react-icons/fi";
 
 
 const Navbar = ({ setAuth, state }) =>{
 
   const userLogged = useSelector(state => state.authReducer.isLoggedIn)
-  const [showDropDown,setShowDropDown] = useState(false)
+  const [showDropDown,setShowDropDown] = useState(true)
 
-  const initial = {
-    visible: { opacity: 1, y: -10},
-    hidden: { opacity: 0, y: 10 },
+  const isVisible = (boolean) => {
+    setShowDropDown(boolean)
   }
-  const submitLogout = () => {
-    setShowDropDown(!showDropDown)
-    logout()
-  } 
 
   useEffect(()=>{
     setAuth(userLogged)
@@ -31,7 +26,7 @@ const Navbar = ({ setAuth, state }) =>{
 
   return(
     <>
-        {userLogged ? 
+      {userLogged ? 
         <nav id="navbar">
           <ul className="nav-ul">
             <li className="li-nav">
@@ -66,46 +61,7 @@ const Navbar = ({ setAuth, state }) =>{
              </div>
             </li>
               {showDropDown &&
-                <AnimatePresence>
-                  <motion.div
-                    className="motion-div"
-                    variants={initial}
-                    initial={initial}
-                    animate={showDropDown? "visible" : "hidden"}
-                    transition={{ duration: .2 }}
-                    exit="hidden"
-                  >
-                  <div 
-                    className="menu-dropdown"
-                    onMouseLeave={()=> setShowDropDown(false)}
-                    >
-                    <div className="d-menu">
-                      <li 
-                        className="li-d-menu"
-                        onClick={()=> setShowDropDown(!showDropDown)}
-                        >
-                          <div className="fi-i">
-                            <FiUser/>
-                          </div>
-                            <Link to="/profil">
-                              <p className="d-text">Profil</p>
-                            </Link>
-                        </li>
-                        <div className="hr"></div>
-                      <li 
-                        className="li-d-menu"
-                        onClick={()=> submitLogout()}
-                        >
-                        <div className="fi-i" >
-                          <FiLogOut />
-                        </div>
-                        <p className="d-text">Se déconnecter</p>
-                      </li>
-                    </div>
-                    <div className="d-menu"></div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                <NavDropdown dropdown={setShowDropDown}/>
               }
           </ul>
          </nav>
@@ -138,10 +94,8 @@ const Navbar = ({ setAuth, state }) =>{
                 </li>
               </div>
             </ul>
-          </nav>
-          
-        }
-      
+          </nav>  
+        }  
     </>
   )
 }
@@ -206,7 +160,6 @@ export const NavbarRes = () => {
             </ul>
           </div>
           }
-          
         </main>
       }
   </>)

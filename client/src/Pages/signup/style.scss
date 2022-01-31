@@ -58,6 +58,16 @@ $font-primary:'Poppins', sans-serif;
     font-weight: 400;
   }
 }
+.form-signup{
+  a:nth-child(3){
+    background-color: red;
+    position: absolute;
+    min-width: 65%;
+    min-height: 2em;
+    padding: 0 5em;
+    margin: 2.5em 0;
+  }
+}
 .box-form-contact{
   max-width: 50%;
   background: $light-color;

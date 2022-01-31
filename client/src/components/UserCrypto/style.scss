@@ -1,0 +1,56 @@
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+@mixin flex-space-around{
+  display: flex;
+  align-items: center;
+}
+#uc-container{
+ position: relative;
+ display: flex;
+ align-items: center;
+ background: #fff;
+ border-radius: .8em;
+ font-size: .8em;
+ 
+ min-height: 12vh;
+ margin: 0;
+ overflow-x: scroll;
+ scroll-behavior: smooth;
+}
+.uc-card{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  @include flex-space-around();
+  background-color: rgb(230, 232, 255);
+  padding: .8em;
+  min-width: 30em;
+  margin: 0 1em;
+  border-radius:.5em;
+  p:nth-child(2){
+    margin: 0 2em 0 .5em;
+  }
+  p:nth-child(3){
+    margin: 0 2em 0 0;
+  }
+  .uc-quantity{
+    span{
+      font-weight: bold;
+    }
+  }
+}
+.uc-total{
+  font-size: 1.1em;
+  margin: 0;
+  font-weight: 600;
+}
+.coin-icn{
+  background-color: #be56ff;  
+  padding: .7em;
+  border-radius: 20px;
+  display: flex;
+  left: 0;
+}

@@ -9,7 +9,7 @@ export const Input = styled.input`
   outline: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
-  transition: all 50ms ease-out ;
+  transition: all 20ms ease-out ;
   background-color: ${({ bg }) => bg };
   &:focus{
     box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.1);

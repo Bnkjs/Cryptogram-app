@@ -1,20 +1,21 @@
 import React,{useEffect, useState} from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { getMarket } from "Actions/crypto";
 import { v4 as uuidv4 } from "uuid";
 import RowMarket  from "components/Rowmarket";
 import { Button } from "components/Button";
+import animationFm from "utils/framer";
+import { motion } from 'framer-motion';
 
-const Market = ({ state }) => {
+const Market = ({ storedMarket,showModalBuyCrypto, setShowMarket }) => {
   const [nthElement, setNthElement] = useState(5)
-  const storeMarket = state? state : null
+  const storeMarket = storedMarket? storedMarket : null
  
-  const marketSliced = state? storeMarket.slice(0,nthElement) : null
+  const marketSliced = storedMarket? storeMarket.slice(0,nthElement) : null
 
-  const getDatasMarketAll = state? marketSliced.map((el,index)=>{
+  const getDatasMarketAll = storedMarket? marketSliced.map((el,index)=>{
     return (
-      <Link key={uuidv4()}  className="link-redirect-buy" to='/buy_crypto'>
+      <div key={uuidv4()}  className="link-redirect-buy">
           <RowMarket
           rank={el.market_cap_rank}
           image={el.image}
@@ -27,8 +28,10 @@ const Market = ({ state }) => {
           market_cap_prc={el.market_cap_change_24h}
           market_cap_prct={el.market_cap_change_percentage_24h}
           total_volum={el.total_volume}
+          showModalBuyCrypto={showModalBuyCrypto}
+          setShowMarket={setShowMarket}
         />
-      </Link>
+      </div>
     )
   }) : null
   
@@ -39,7 +42,12 @@ const Market = ({ state }) => {
  
   return(<>
       
-    
+      <motion.div
+        variants={animationFm()}
+        initial={animationFm(0,50).hidden}
+        animate={animationFm(1,0).visible}
+        transition={{ duration: .4}}          
+        >
     <div className="landing-market-content">
       <header>
         <div className="header-text-market">
@@ -66,7 +74,7 @@ const Market = ({ state }) => {
       <div className="c-more-w">
         {nthElement !== 100?
          <Button 
-         black 
+         dark 
          className="c-more"
          onClick={()=> setNthElement(nthElement + 20)}
          >
@@ -75,6 +83,7 @@ const Market = ({ state }) => {
         }
       </div>
     </div>
+    </motion.div>
   </>)
 }
 

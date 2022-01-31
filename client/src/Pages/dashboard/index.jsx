@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import dashboard from "Actions/dashboard";
 import { PageContainer } from "components/PageContainer";
 import 'Pages/dashboard/style.scss';
-
 import { ActivityStore } from "Pages/activity";
 import activity from "Actions/activity";
 import { DashLeftAside } from "components/Dashcomponent/DashLeftAside";
@@ -11,26 +10,29 @@ import { ContactStore } from "Pages/contact/contact";
 import { DashCenterPage } from "components/Dashcomponent/DashCenterComp";
 import TransfertModal from "components/Modal/transfert";
 import { getAllContact } from "Actions/contact";
-import { useSelector } from "react-redux";
 import { getMarket, getUserCoins } from "Actions/crypto";
 import BuyCrypto from "components/Modal/buy";
 import { navDisable } from "utils/navUtils";
+import Market from "Pages/market";
+import Profil from "Pages/profil";
+import { ProfilStore } from "Pages/profil";
 
-const Dashboard = ({ state, token, contact,crypto, userCryptoWallet, userCryptoTransfered }) =>{
+const Dashboard = ({ state, token, contact,crypto, userCryptoOrdered, userCryptoTransfered, storedMarket, userCryptoWallet }) =>{
   const storedUserName = state? state.user.username : null
   const storedContact = contact? contact : null
-  const storedUserInvestment = crypto? crypto : null
+  const storedUserInvestment = userCryptoWallet? userCryptoWallet : null
   const storedUserTransfert = state? state.transfert : null
   const storedUserBalance = state? state.user.balance : null
+  const [showProfil, setShowProfil] = useState(false)
+  const [showMarket, setShowMarket] = useState(false)
   const [showActivity, setShowActivity] = useState(false)
   const [showContact, setShowContact] = useState(false)
   const [showTransfert, setShowTransfert] = useState(false)
   const [showBuyCrypto, setShowBuyCrypto] = useState(false)
   const contactLength = contact ? contact.length : null
-  const investmentLength = state? userCryptoWallet : null
+  const investmentLength = state? userCryptoOrdered : null
   const transfertLength = state? userCryptoTransfered : null
-  const storedMarket = useSelector(state => state.cryptoReducer.coinsMarket)
-  
+
   const showModalTransfert = (boolean) => {
     setShowTransfert(boolean)
   }
@@ -38,16 +40,14 @@ const Dashboard = ({ state, token, contact,crypto, userCryptoWallet, userCryptoT
     setShowBuyCrypto(boolean)
   }
   useEffect(()=>{
+    getMarket()
     const pathname = window.location.pathname //returns the current url minus the domain name
     navDisable(pathname)
     activity(token)
     getUserCoins(token)
     getAllContact(token)
-    getMarket()
     dashboard(token)
-    console.log('salut');
  },[contactLength, investmentLength,transfertLength])
-  
   return(
     <>
        
@@ -59,16 +59,19 @@ const Dashboard = ({ state, token, contact,crypto, userCryptoWallet, userCryptoT
             setShowContact={setShowContact}
             setShowTransfert={setShowTransfert}
             setShowBuyCrypto={setShowBuyCrypto}
+            setShowMarket={setShowMarket}
+            setShowProfil={setShowProfil}
           />
-          {!showActivity && !showContact && !! !showTransfert && !showBuyCrypto &&
+          {!showActivity && !showContact && !showTransfert && !showBuyCrypto && !showMarket && !showProfil &&
             <DashCenterPage 
               storedContact={storedContact}
               storedUserBalance={storedUserBalance}
               storedUserInvestment={storedUserInvestment}
               storedUserTransfert={storedUserTransfert}
               storedCrypto={storedUserInvestment}
+              storedMarket={storedMarket}
+              userCryptoWallet={userCryptoWallet}
               state={state}
-              token={token}
             />
           }
           {showActivity &&
@@ -86,7 +89,8 @@ const Dashboard = ({ state, token, contact,crypto, userCryptoWallet, userCryptoT
             <TransfertModal 
               showModalTransfert={showModalTransfert} 
               storedContact={storedContact}
-              storedCrypto={storedUserInvestment} 
+              storedCrypto={storedUserInvestment}
+              storedMarket={storedMarket}
               token={token}/>
           </div>
           }
@@ -97,6 +101,20 @@ const Dashboard = ({ state, token, contact,crypto, userCryptoWallet, userCryptoT
               storedMarket={storedMarket}
               token={token}/>
           </div>
+          }
+          {showMarket && 
+            <div className="center-content" id="app">
+              <Market
+                storedMarket={storedMarket}
+                showModalBuyCrypto={showModalBuyCrypto}
+                setShowMarket={setShowMarket}
+              />
+            </div>
+          }
+          {showProfil && 
+            <div className="center-content" id="app">
+              <ProfilStore token={token}/>
+            </div>
           }
         </PageContainer>
        
@@ -109,9 +127,10 @@ export const DashboardStore = connect(
   (state) => ({
     state: state.dashboardReducer.dashboardInfos,
     contact: state.contactReducer.contactInfos,
-    userCryptoWallet: state.cryptoReducer.coinOrdered,
+    userCryptoOrdered: state.cryptoReducer.coinOrdered,
     userCryptoTransfered: state.cryptoReducer.coinTransfered,
-    crypto: state.cryptoReducer.userCoins
+    userCryptoWallet: state.cryptoReducer.userCoins,
+    storedMarket: state.cryptoReducer.coinsMarket
   })
 )(Dashboard)
 

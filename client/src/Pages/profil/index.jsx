@@ -4,19 +4,21 @@ import { Button } from "components/Button";
 import Div from "components/Div";
 import { PageContainer } from "components/PageContainer";
 import { delete_profil }from "Actions/profil";
-import { myCustomNotif } from "components/notification/notif";
 import { navEnable } from "utils/navUtils";
+import { Marged } from "components/Marged";
 
 const Profil = ({ state, token }) => {
   const submitDelete = (e) => {
     delete_profil(e,token)
     window.location.reload()
   }
+  console.log(state, token);
   useEffect(()=>{
     navEnable()
   },[])
   return(
     <PageContainer bg='#F8F8F9'>
+      <Marged top="4em"/>
       <h1 className="hone-center">Informations profil</h1>
       <Div display='flex' alignItems='center' justifyContent='center' flexDirection='column' className="profil-wrap">
         <Div display='flex' alignItems='center' justifyContent='start' flexDirection='column'  className="user-infos-wrap">

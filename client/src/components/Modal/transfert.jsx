@@ -11,10 +11,12 @@ import animationFm from "utils/framer";
 import { FaArrowLeft } from "react-icons/fa";
 import transfert_svg from 'assets/transfert.svg'
 import { myCustomNotif } from "components/notification/notif";
+import ValidAction from "./validaction";
 
-const TransfertModal = ({ state, token, showModalTransfert, storedContact, storedCrypto }) => {
+const TransfertModal = ({ storedMarket, token, showModalTransfert, storedContact, storedCrypto }) => {
   const [selectedContact, setSelectedContact] = useState(null);
   const [selectedCrypto, setSelectedCrypto] = useState(null);
+  const [showValidModal, setShowValidModal] = useState(false)
   const selectedCryptoValue = selectedCrypto ? selectedCrypto.toLowerCase() : null
   const [inputs, setInputs] = useState({
     message: "",
@@ -31,6 +33,8 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContact, store
   const onChangeSelectCrypto = e => {
     setSelectedCrypto(e.target.value)
   }
+  const filteredCryptoPrice = storedMarket? storedMarket.filter( crypto => selectedCrypto === crypto.name) : null
+
   const onSubmitForm = (e) => {
     if(selectedContact && selectedCrypto && message && amount ){
       e.preventDefault()
@@ -44,8 +48,12 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContact, store
     } else{
       e.preventDefault()
     }
+    showModalTransfert(false) 
   }
-
+  const validAction = (e) =>{
+    e.preventDefault()
+    setShowValidModal(!showValidModal)
+  } 
   useEffect(()=>{
     if(storedContact <= 0){
       setTimeout(()=>
@@ -53,7 +61,6 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContact, store
       ,[500])
     }
   },[storedContact])
-
   return (<>
          <motion.div
        variants={animationFm()}
@@ -61,20 +68,32 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContact, store
        animate={animationFm(1,0).visible}
        transition={{ duration: .4 }}          
     >
+      {showValidModal && amount !== "" && 
+          <ValidAction
+          onSubmitForm = {onSubmitForm}
+          exitValidModal={setShowValidModal}
+          title={"Confirmer le transfert"} 
+          crypto={selectedCrypto}
+          amount={amount}
+          spentAmountInCoin={0}
+          messageTransfert={message}
+          amountInCoin ={amount / filteredCryptoPrice[0].current_price }
+          text={`Vous êtes sur le point de transferer ${parseFloat(amount / filteredCryptoPrice[0].current_price).toFixed(8)} ${selectedCrypto}`}/>
+          }
       <PageContainer id="form-container">
         <div className="box-form form-transfert">
           <div className="close-modal" onClick={()=> showModalTransfert(false)}>
             <FaArrowLeft/>
           </div>
           <div className="header-form">
-          <img className="cubes_form" src={transfert_svg} alt="deux flèches de sens opposées avec un dégr&dé bleue au dessus d'un cube blanc" />
+          <img className="cubes_form" src={transfert_svg} alt="deux flèches de sens opposées avec un dégradé bleu au dessus d'un cube blanc" />
             <div className="text-header-form">
               <h1 className="title-form title-signup"><span className="hr-header hr-signup"></span> Effectuez un transfert</h1>
               <h2>À vos contacts <br/> partout dans le monde.</h2>
               <p>Vos crypto-monnaies transférées à vos contacts en quelques cliques!</p>
             </div>
           </div>
-        <Form className="form-signup" method="POST" onSubmit={(e)=> onSubmitForm(e)}>
+        <Form className="form-signup" method="POST">
           <label>De quel compte?
               <select className="select-input">
                 <option defaultValue="#" disabled={false}>Mon compte</option>
@@ -131,7 +150,10 @@ const TransfertModal = ({ state, token, showModalTransfert, storedContact, store
               />
             </label>
             <Marged bottom="20px"/>
-            <Button width="100%" primary_xl>Effectuer le transfert</Button>   
+            <Button width="100%" 
+              primary_xl
+              onClick={(e)=> validAction(e)}
+            > Effectuer le transfert</Button>   
         </Form>
         </div>                
       </PageContainer>

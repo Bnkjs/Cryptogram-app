@@ -1,16 +1,16 @@
 import { Button } from "components/Button";
 import { motion } from "framer-motion";
-import React, {useState} from "react";
+import React from "react";
 import { BiWallet } from "react-icons/bi";
+import { FiMessageSquare } from "react-icons/fi";
 import animationFm from "utils/framer";
 
-const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, onSubmitForm}) => {
+const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, onSubmitForm, spentAmountInCoin, messageTransfert}) => {
 
   const exitModal = (boolean) => {
     exitValidModal(boolean)
   }
   return(<>
-       
           <div id="modal-valid">
             <div className="overlay"></div>
             <motion.div
@@ -18,11 +18,10 @@ const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, 
               initial={animationFm(0,50).hidden}
               animate={animationFm(1,0).visible}
               transition={{ duration: .4 }}
-              className="modal-valid"
-              id="re-up"        
+              className="modal-valid"    
             >
            
-              <div className="header-modal">
+              <div className="header-modal" >
                 <h1>{title}</h1>
                 <h2>Achat {crypto}</h2>
                 </div>
@@ -43,7 +42,7 @@ const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, 
                       </div>
                       <div className="col-action">
                         <p>Recevez</p>
-                        <p>{parseFloat(amountInCoin).toFixed(5)} {crypto}</p>
+                        <p>{parseFloat(spentAmountInCoin).toFixed(5)} {crypto}</p>
                       </div>
                     </div>
                     <div className="col-info">
@@ -57,9 +56,6 @@ const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, 
                     </div>
                   
                 </div>
-              </div>
-              <div className="content">
-                  <p>{text}</p>
               </div>
               <div className="recap-order">
                 <div className="r-crypto">
@@ -77,6 +73,10 @@ const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, 
                     <p>{amount}€</p>
                   </div>
                 </div>
+              </div>
+              <div className="r-text">
+                <h4><FiMessageSquare/></h4>
+                <p>{messageTransfert}</p>
               </div>
               <div className="btn-actions">
                 <Button dark onClick={()=> exitModal(false)}>Revenir</Button>

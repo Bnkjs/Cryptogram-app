@@ -59,6 +59,7 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
           title={"Confirmer l'achat"} 
           crypto={selectedCrypto}
           amount={amount}
+          spentAmountInCoin={amount / coinCurrentPrice[0].current_price}
           amountInCoin ={amount / coinCurrentPrice[0].current_price}
           text={`Vous êtes sur le point d'acheter ${parseFloat(amount / coinCurrentPrice[0].current_price).toFixed(8)} ${selectedCrypto}`}/>
           }
@@ -89,18 +90,18 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
                   </select>   
                 </label>
                 <Marged bottom="20px"/>
-                <label>Pour quel Montant?
-                  <Input 
-                    bg='#F4F6F8' 
-                    type="number" 
-                    name="amount" 
-                    placeholder="Indiquer le montant en € 🇪🇺"
-                    onChange={(e)=> onChange(e)}
-                    value={amount}
-                    autoComplete="off"
-                    required={true}
-                    />
-                </label>
+                  <label>Pour quel Montant?
+                    <Input 
+                      bg='#F4F6F8' 
+                      type="number" 
+                      name="amount" 
+                      placeholder="Indiquer le montant en € 🇪🇺"
+                      onChange={(e)=> onChange(e)}
+                      value={amount}
+                      autoComplete="off"
+                      required={true}
+                      />
+                  </label>
                 <Marged bottom="20px"/>
                 <div className="amount-converted-wrap">
                   {selectedCrypto ?
@@ -126,11 +127,11 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
                 }
                 </div>
                 <Marged bottom="20px"/>
-                <a href="#re-up">
+                <a href="#app">
                   <Button 
                     width="100%" 
                     primary_xl
-                    onClick={(e)=> validAction(e) }
+                    onClick={(e)=> validAction(e)}
                     >
                     Acheter
                   </Button> 
