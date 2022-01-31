@@ -12,7 +12,9 @@ router.get('/', authorization, async (req,res)=>{
         const userInvestmentInfos = await pool.query(`
         SELECT 
          user_investment_item.crypto_name,
-         user_investment_item.crypto_id_name
+         user_investment_item.crypto_id_name,
+         user_investment_item.total_amount_of_converted_coin,
+         user_investment_item.total_amount_of_coin_in_user_currency
        FROM user_investment
        INNER JOIN user_investment_item USING(investment_id)
        WHERE user_id = ($1);`,[req.user])

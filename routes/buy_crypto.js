@@ -32,7 +32,7 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
       [req.user,generateTransactionId,"paid",checkUserExist.rows[0].wallet_adress,date])
       // ---- ADD NEW ORDER ITEM ----  //
       const newOrderItem = await pool.query('INSERT INTO user_order_item (order_id,crypto_name,crypto_id_name,amount_in_user_currency,amount_converted_in_coin) VALUES ($1,$2,$3,$4,$5) RETURNING *',
-      [newOrder.rows[0].order_id,cryptoName, cryptoSymbol.toUpperCase(), parseInt(amount), amount / amountExchangeInUserCurrency ])
+      [newOrder.rows[0].order_id,cryptoName, cryptoSymbol.toUpperCase(), parseInt(amount), (amount / amountExchangeInUserCurrency) ])
       // ---- CHECK IF USER HAVE THE COIN ----  //
       const checkIfUserHaveCoin = await pool.query('SELECT * FROM user_investment_item WHERE (crypto_name) = ($1)',[cryptoName])
 
@@ -47,9 +47,9 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
                 crypto_name, crypto_id_name, amount_in_user_currency, amount_converted_in_coin, 
                 total_amount_of_coin_in_user_currency, total_amount_of_converted_coin, investment_id)
             VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *`,
-            [cryptoName,cryptoSymbol.toUpperCase(),parseInt(amount),amount / amountExchangeInUserCurrency , amountExchangeInUserCurrency,
-            amount,newInvestment.rows[0].investment_id])
-            console.log(amount, amount / amountExchangeInUserCurrency  );
+            [cryptoName,cryptoSymbol.toUpperCase(),parseInt(amount),amount / amountExchangeInUserCurrency , parseFloat(amount),
+            amount / amountExchangeInUserCurrency,newInvestment.rows[0].investment_id])
+            
         } else{
           // ---- IF ALREADY EXITS UPDATE INVESTMENT ITEM ----  //
             const updateInvestmentItem = await pool.query(`
@@ -57,7 +57,7 @@ router.post('/',validInfosCrypto ,authorization, async (req,res)=>{
             SET (
               total_amount_of_coin_in_user_currency,total_amount_of_converted_coin) = ($1,$2) 
               WHERE crypto_name = ($3) RETURNING *`,
-            [parseFloat(checkIfUserHaveCoin.rows[0].total_amount_of_coin_in_user_currency) + amountExchangeInUserCurrency, parseFloat(checkIfUserHaveCoin.rows[0].total_amount_of_converted_coin) + parseFloat(amount), cryptoName])
+            [parseFloat(checkIfUserHaveCoin.rows[0].total_amount_of_coin_in_user_currency) + parseFloat(amount), parseFloat(checkIfUserHaveCoin.rows[0].total_amount_of_converted_coin) + parseFloat((amount / amountExchangeInUserCurrency)), cryptoName])
             // UPDATE USER_INVESTMENT DATE
             const updateInvestmentDate = await pool.query('UPDATE user_investment SET updated_at = ($1) WHERE (user_id) = ($2)',[date,req.user])
         }

@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
     } else if (!validEmail(email)) {
       return res.status(401).json("L'email n'est pas valide");
     } else if (!validPswd(password)) {
-      return res.json("Le mots de pass est trop court/long");
+      return res.json("Le mot de passe est trop court/long");
     }else if (!validUserName(username)) {
       return res.json("Le nom d'utilsateur est trop court/long");
     }
@@ -28,7 +28,7 @@ module.exports = function(req, res, next) {
       } else if (!validEmail(email)) {
         return res.status(401).json("L'email n'est pas valide");
       } else if (!validPswd(password)) {
-        return res.status(401).json("Le mots de pass est trop court/long");
+        return res.status(401).json("Le mot de pass est trop court/long");
       }
   }
 

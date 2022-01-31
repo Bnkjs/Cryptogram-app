@@ -36,8 +36,8 @@ router.post('/', validInfosCrypto, authorization, async (req,res)=>{
   }else{
      // ---- CHECK IF USER HAVE THE COIN ----  //
     const checkUserBalance = await pool.query('SELECT balance FROM users WHERE user_id = ($1)',[req.user])
-    const newtransfert = await pool.query('INSERT INTO user_transfert (user_id,tracking_id,wallet_adress,created_at) VALUES ($1,$2,$3,$4) RETURNING *',
-    [req.user,generateTrackingId,checkUserExist.rows[0].wallet_adress,date])
+
+    
       // amount converted
       const amountExchangeInUserCurrency = await cryptoService.cryptoExchange(crypto_name,amount).then(res => res)
       //get crypto id
@@ -46,27 +46,33 @@ router.post('/', validInfosCrypto, authorization, async (req,res)=>{
       const cryptoName = await cryptoService.getCryptoName(crypto_name).then(res => res)
       
       const checkIfUserHaveCoin = await pool.query('SELECT * FROM user_investment_item WHERE (crypto_name) = ($1)',[cryptoName])
+
       if(checkIfUserHaveCoin.rows[0] === undefined){
         res.status(404).json('Cette crypto-monnaie n\'est pas disponible dans votre portefeuille')
-      }else if(userInvestmentInfos.rows[0].total_amount_of_coin_in_user_currency < amount)
-      {        console.log(userInvestmentInfos.rows[0].total_amount_of_coin_in_user_currency,amount);
-
+      }else if(userInvestmentInfos.rows[0].total_amount_of_converted_coin < amount)
+      {    
         res.status(401).json('Le montant du transfert dépasse celui de votre solde')
+        console.log(userInvestmentInfos.rows[0].total_amount_of_converted_coin , amount);
       } else{
-        const newTransfertItem = await pool.query('INSERT INTO user_transfert_item (transfert_id,crypto_name,crypto_id_name,amount_in_user_currency,amount_converted_in_coin,description,contact_id,contact_wallet_adress) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *',
-        [newtransfert.rows[0].transfert_id,cryptoName,cryptoSymbol.toUpperCase(),amountExchangeInUserCurrency,(amount / amountExchangeInUserCurrency ),description,findContact.rows[0].contact_id,findContact.rows[0].wallet_adress])
-        res.json(newtransfert.rows[0])
-        console.log(userInvestmentInfos.rows[0].total_amount_of_coin_in_user_currency,amount);
-        // Update user crypto balance
-        const newUserInvestmentItemBalance = await pool.query('UPDATE user_investment_item SET (total_amount_of_coin_in_user_currency,total_amount_of_converted_coin) = ($1,$2) WHERE investment_id = ($3) RETURNING *',
-        [(userInvestmentInfos.rows[0].total_amount_of_coin_in_user_currency - amount), (userInvestmentInfos.rows[0].total_amount_of_converted_coin - (amount / amountExchangeInUserCurrency)) , userInvestmentInfos.rows[0].investment_id])
+        const newtransfert = await pool.query('INSERT INTO user_transfert (user_id,tracking_id,wallet_adress,created_at) VALUES ($1,$2,$3,$4) RETURNING *',
+        [req.user,generateTrackingId,checkUserExist.rows[0].wallet_adress,date])
+
+        const newTransfertItem = await pool.query(`INSERT INTO user_transfert_item (transfert_id,crypto_name,crypto_id_name,amount_in_user_currency,amount_converted_in_coin,description,contact_id,contact_wallet_adress) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`,
+        [newtransfert.rows[0].transfert_id,cryptoName,cryptoSymbol.toUpperCase(),parseFloat(amount),(amount / amountExchangeInUserCurrency ),description,findContact.rows[0].contact_id,findContact.rows[0].wallet_adress])
+        res.json(newTransfertItem.rows[0])
         
+        // Update user crypto balance
+        const newUserInvestmentItemBalance = await pool.query('UPDATE user_investment_item SET (total_amount_of_coin_in_user_currency, total_amount_of_converted_coin) = ($1,$2) WHERE investment_id = ($3) RETURNING *',
+        [(userInvestmentInfos.rows[0].total_amount_of_coin_in_user_currency - amount), (userInvestmentInfos.rows[0].total_amount_of_converted_coin - ( amount / amountExchangeInUserCurrency) ) , userInvestmentInfos.rows[0].investment_id])
+        // delete Crypto Item where total amount  = 0
+        if(newUserInvestmentItemBalance.rows[0].total_amount_of_coin_in_user_currency === "0"){
+          const deleteCrypto = await pool.query('DELETE FROM user_investment_item WHERE total_amount_of_coin_in_user_currency = ($1)',[0])
+        }
         // Update user Global Balance
-        if(parseFloat(checkUserExist.rows[0].balance) - amountExchangeInUserCurrency < 0){
+        if(parseFloat(checkUserExist.rows[0].balance) - amountExchangeInUserCurrency  <= 0){
           const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING *',[0, req.user])
         } else{
-          const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING *',[parseFloat(checkUserExist.rows[0].balance) - amountExchangeInUserCurrency, req.user])
-          console.log(checkUserExist.rows[0].balance, amountExchangeInUserCurrency );
+          const newUserBalance = await pool.query('UPDATE users SET balance = ($1) WHERE user_id = ($2) RETURNING *',[parseFloat(checkUserExist.rows[0].balance) - amount, req.user])
           res.json([newtransfert.rows[0],newTransfertItem.rows[0]])
         }
         

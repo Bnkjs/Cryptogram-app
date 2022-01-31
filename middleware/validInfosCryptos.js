@@ -5,7 +5,7 @@ module.exports = function (req,res,next) {
     return /^[0-9-.\S]{1,50}$/.test(cryptoAmount);
   }
   function validDescription(transfertDesc) {
-    return /^[a-zA-Z0-9\-\s\!\?\.\,\()]{5,250}$/.test(transfertDesc);
+    return /^[a-zA-Z0-9\-\s\!\?\.\,\()\']{5,250}$/.test(transfertDesc);
   }
   function validCryptoName (crypto_name){
     return /^[a-zA-Z\s\-]{3,50}$/.test(crypto_name)
