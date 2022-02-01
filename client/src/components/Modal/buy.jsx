@@ -10,6 +10,7 @@ import { buyCrypto } from "Actions/crypto";
 import { FaArrowLeft } from "react-icons/fa";
 import buy_svg from 'assets/buy.svg'
 import ValidAction from "./validaction";
+import { validActionModal, validActionModalvalidActionModal } from "utils/validActionModal";
 
 
 const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
@@ -37,11 +38,6 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
     buyCrypto(selectedCrypto, amountConvertedInCoin, token)
     showModalBuyCrypto(false) 
   }
-  const validAction = (e) =>{
-    e.preventDefault()
-    setShowValidModal(!showValidModal)
-  } 
-
   useEffect(()=>{
   },[amount])
   
@@ -52,16 +48,16 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
           animate={animationFm(1,0).visible}
           transition={{ duration: .4 }}          
         >
-         {showValidModal && amount !== "" && 
+         {showValidModal && amount !== "" && selectedCrypto !== null &&
           <ValidAction
           onSubmitForm = {onSubmitForm}
           exitValidModal={setShowValidModal}
           title={"Confirmer l'achat"} 
           crypto={selectedCrypto}
           amount={amount}
-          spentAmountInCoin={amount / coinCurrentPrice[0].current_price}
+          spentAmountInCoin={coinCurrentPrice[0]? amount / coinCurrentPrice[0].current_price : null }
           amountInCoin ={amount / coinCurrentPrice[0].current_price}
-          text={`Vous êtes sur le point d'acheter ${parseFloat(amount / coinCurrentPrice[0].current_price).toFixed(8)} ${selectedCrypto}`}/>
+          text={`Vous êtes sur le point d'acheter ${coinCurrentPrice[0]? parseFloat(amount / coinCurrentPrice[0].current_price).toFixed(8) : null} ${selectedCrypto}`}/>
           }
         <PageContainer id="form-container">
             <div className="box-form form-transfert" id='app'>
@@ -131,7 +127,7 @@ const Modal = ({ showModalBuyCrypto, storedMarket, token }) => {
                   <Button 
                     width="100%" 
                     primary_xl
-                    onClick={(e)=> validAction(e)}
+                    onClick={(e)=> validActionModal(e, selectedCrypto,setShowValidModal(!showValidModal))}
                     >
                     Acheter
                   </Button> 

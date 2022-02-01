@@ -5,7 +5,7 @@ import { BiWallet } from "react-icons/bi";
 import { FiMessageSquare } from "react-icons/fi";
 import animationFm from "utils/framer";
 
-const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, onSubmitForm, spentAmountInCoin, messageTransfert}) => {
+const ValidAction =  ({title, crypto ,amount,amountInCoin,exitValidModal, onSubmitForm, spentAmountInCoin, messageTransfert}) => {
 
   const exitModal = (boolean) => {
     exitValidModal(boolean)
@@ -74,10 +74,12 @@ const ValidAction =  ({title, text, crypto ,amount,amountInCoin,exitValidModal, 
                   </div>
                 </div>
               </div>
-              <div className="r-text">
+             {messageTransfert?
+               <div className="r-text">
                 <h4><FiMessageSquare/></h4>
                 <p>{messageTransfert}</p>
-              </div>
+              </div> : null 
+            }
               <div className="btn-actions">
                 <Button dark onClick={()=> exitModal(false)}>Revenir</Button>
                 <a href="#app">

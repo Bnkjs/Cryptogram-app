@@ -49,10 +49,10 @@ router.post('/', validInfosCrypto, authorization, async (req,res)=>{
 
       if(checkIfUserHaveCoin.rows[0] === undefined){
         res.status(404).json('Cette crypto-monnaie n\'est pas disponible dans votre portefeuille')
-      }else if(userInvestmentInfos.rows[0].total_amount_of_converted_coin < amount)
+      }else if(userInvestmentInfos.rows[0].total_amount_of_coin_in_user_currency < amount)
       {    
         res.status(401).json('Le montant du transfert dépasse celui de votre solde')
-        console.log(userInvestmentInfos.rows[0].total_amount_of_converted_coin , amount);
+        console.log(userInvestmentInfos.rows[0].total_amount_of_coin_in_user_currency , amount);
       } else{
         const newtransfert = await pool.query('INSERT INTO user_transfert (user_id,tracking_id,wallet_adress,created_at) VALUES ($1,$2,$3,$4) RETURNING *',
         [req.user,generateTrackingId,checkUserExist.rows[0].wallet_adress,date])

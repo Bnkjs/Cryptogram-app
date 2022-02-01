@@ -12,6 +12,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import transfert_svg from 'assets/transfert.svg'
 import { myCustomNotif } from "components/notification/notif";
 import ValidAction from "./validaction";
+import { validActionModal } from "utils/validActionModal";
 
 const TransfertModal = ({ storedMarket, token, showModalTransfert, storedContact, storedCrypto }) => {
   const [selectedContact, setSelectedContact] = useState(null);
@@ -50,10 +51,6 @@ const TransfertModal = ({ storedMarket, token, showModalTransfert, storedContact
     }
     showModalTransfert(false) 
   }
-  const validAction = (e) =>{
-    e.preventDefault()
-    setShowValidModal(!showValidModal)
-  } 
   useEffect(()=>{
     if(storedContact <= 0){
       setTimeout(()=>
@@ -68,7 +65,7 @@ const TransfertModal = ({ storedMarket, token, showModalTransfert, storedContact
        animate={animationFm(1,0).visible}
        transition={{ duration: .4 }}          
     >
-      {showValidModal && amount !== "" && 
+      {showValidModal && amount !== "" && selectedCrypto !== null &&
           <ValidAction
           onSubmitForm = {onSubmitForm}
           exitValidModal={setShowValidModal}
@@ -77,8 +74,8 @@ const TransfertModal = ({ storedMarket, token, showModalTransfert, storedContact
           amount={amount}
           spentAmountInCoin={0}
           messageTransfert={message}
-          amountInCoin ={amount / filteredCryptoPrice[0].current_price }
-          text={`Vous êtes sur le point de transferer ${parseFloat(amount / filteredCryptoPrice[0].current_price).toFixed(8)} ${selectedCrypto}`}/>
+          amountInCoin ={filteredCryptoPrice[0] ? amount / filteredCryptoPrice[0].current_price : null }
+          text={`Vous êtes sur le point de transferer ${filteredCryptoPrice[0] ? parseFloat(amount / filteredCryptoPrice[0].current_price).toFixed(8) : null} ${selectedCrypto} `}/>
           }
       <PageContainer id="form-container">
         <div className="box-form form-transfert">
@@ -152,7 +149,7 @@ const TransfertModal = ({ storedMarket, token, showModalTransfert, storedContact
             <Marged bottom="20px"/>
             <Button width="100%" 
               primary_xl
-              onClick={(e)=> validAction(e)}
+              onClick={(e)=> validActionModal(e, selectedCrypto, selectedContact,setShowValidModal(!showValidModal))}
             > Effectuer le transfert</Button>   
         </Form>
         </div>                

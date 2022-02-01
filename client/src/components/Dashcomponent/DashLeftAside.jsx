@@ -188,6 +188,13 @@ export const Navres = ({backToHomeDash, setBuyCrypto, setContact, setActivity, s
                       </li>
                     </a>
                     <a href="#app">
+                    <li className="li-sidenav" onClick={()=> setContact()}>
+                        <div className="li-sidenav-icon">
+                          <RiFileUserLine className="li-icon-img"/>
+                        </div>
+                    </li>
+                  </a>
+                    <a href="#app">
                       <li className="li-sidenav" onClick={()=> setTransfert()}>
                         <div className="li-sidenav-icon">
                           <BiTransferAlt className="li-icon-img"/>
