@@ -66,7 +66,7 @@ const ValidAction =  ({title, crypto ,amount,amountInCoin,exitValidModal, onSubm
                 <div className="r-service-pay">
                   <div className="r-fee">
                     <p>Frais de d'achat</p>
-                    <p> Gratuit <span role='img'>😎</span></p>
+                    <p> Gratuit <span role='img' aria-label="emoji d'un visage jaune avec lunettes de soleil">😎</span></p>
                   </div>
                   <div className="r-pay">
                     <p>Total</p>

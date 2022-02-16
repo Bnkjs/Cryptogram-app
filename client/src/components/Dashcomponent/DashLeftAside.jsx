@@ -73,8 +73,6 @@ export const DashLeftAside = ({storedUserName, setShowActivity, setShowContact, 
     setShowMarket(false)
     setShowProfil(true)
   }
-
-  
   
   return(
       <div id="container-dashboard" height="100vh">

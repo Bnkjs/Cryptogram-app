@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiLogOut, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";

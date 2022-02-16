@@ -11,14 +11,12 @@ import animationFm from "utils/framer";
 import { motion } from "framer-motion";
 
 const Activity = ({ state, token }) => {
-  const [dashState, getDashState] = useState(state) 
   const currentUserOrder = state? state.order : null
   const currentUserTransfert = state? state.transfert : null
   const currentUserTransfertLength = state? state.transfert.length : null
   const currentUserOrderLength = state? state.order.length : null
 
   const getOrders = state? currentUserOrder.map((el, index) => {
-
     return (
       <div key={uuidv4()}>
         <RowOrder
@@ -32,6 +30,7 @@ const Activity = ({ state, token }) => {
       </div>  
     )
   }) : null
+
 
   const getTransferts = state? currentUserTransfert.map((el, index) => {
     return (

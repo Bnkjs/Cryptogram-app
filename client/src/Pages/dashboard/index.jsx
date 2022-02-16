@@ -14,10 +14,9 @@ import { getMarket, getUserCoins } from "Actions/crypto";
 import BuyCrypto from "components/Modal/buy";
 import { navDisable } from "utils/navUtils";
 import Market from "Pages/market";
-import Profil from "Pages/profil";
 import { ProfilStore } from "Pages/profil";
 
-const Dashboard = ({ state, token, contact,crypto, userCryptoOrdered, userCryptoTransfered, storedMarket, userCryptoWallet }) =>{
+const Dashboard = ({ state, token, contact, userCryptoOrdered, userCryptoTransfered, storedMarket, userCryptoWallet }) =>{
   const storedUserName = state? state.user.username : null
   const storedContact = contact? contact : null
   const storedUserInvestment = userCryptoWallet? userCryptoWallet : null
@@ -32,6 +31,7 @@ const Dashboard = ({ state, token, contact,crypto, userCryptoOrdered, userCrypto
   const contactLength = contact ? contact.length : null
   const investmentLength = state? userCryptoOrdered : null
   const transfertLength = state? userCryptoTransfered : null
+  
 
   const showModalTransfert = (boolean) => {
     setShowTransfert(boolean)

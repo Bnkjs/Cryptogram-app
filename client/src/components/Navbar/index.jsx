@@ -37,9 +37,6 @@ const Navbar = ({ setAuth, state }) =>{
                 </div>
               </Link>
             </li>
-             <li className="li-nav">
-              <Link to="/market"><p className="li-p">Marché</p></Link>
-            </li>
             <li className="li-nav">
              <div className="right-nav">
                <Link to="/activity">
@@ -79,9 +76,6 @@ const Navbar = ({ setAuth, state }) =>{
                   </Link>
               </li>
               <div className="market-wrap">
-                <li className="li-nav">
-                  <Link to="/market"><p className="li-p">Marché</p></Link>
-                </li>
               </div>
               <div className="auth-wrap">
                 <li className="li-nav">

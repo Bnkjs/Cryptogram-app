@@ -32,7 +32,6 @@ const App = () => {
         <NavBarResStore setAuth={setAuth}/>
         <NavbarStore setAuth={setAuth} state={currentUserInfo}/>
         <Route exact path ="/" render={props => <Landing {...props} />}/>
-        <Route exact path ="/market" render={props =>  <MarketStore {...props} />}/>
         <Route exact path ="/signup" render={props => !myStore? <SignupStore {...props} setAuth={setAuth}/>  : <Redirect to="/login"/>} />
         <Route exact path ="/login" render={props => !myStore ? <LoginStore {...props} setAuth={setAuth} /> : <Redirect to="/dashboard"/>} />
         <Route exact path="/profil" render={props => myStore? <ProfilStore {...props} token={currentUserInfo.token}/> : <Redirect to="/login"/>}/>
