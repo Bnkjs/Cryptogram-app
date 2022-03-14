@@ -2,7 +2,7 @@
 
 [👉 Try it here 👈](https://cryptogram-desktop-app.herokuapp.com/)
 
-## **Check the weather forecast for any city**
+## **Buy, Share Cryptocurrencies with your contacts**
 CRYPTOGRAM is a financial digital currency wallet clone (Binance, Coinbase...) which allows you to exchange and transfer cryptocurrencies.
 
 Cryptogramp isn't connected with a real API so you can't buy any crypto-currencies.
